@@ -1,0 +1,14 @@
+{
+  "name": "SVS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "repository": "https://github.com/Vijay-K-2003/S.V.S.git",
+  "author": "Vijay-Kewal",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.9",
+    "nodemon": "^2.0.15"
+  }
+}
