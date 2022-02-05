@@ -7,18 +7,24 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
 <link rel="stylesheet" href="map.css">
+<script src="mapbox.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+type="text/css"
+/>
     <title>Map</title>
     
 </head>
 <body>
 <div id="map"></div>
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1Ijoia2V3YWxkZWxoaXdhbGEiLCJhIjoiY2t1dGo4dXkyMWh1YjJxcDVmdXI4OWFlYyJ9.ht2jl-uDv_SBHXE7DBaPvQ';
+	mapboxgl.accessToken = 'pk.eyJ1Ijoia2V3YWxkZWxoaXdhbGEiLCJhIjoiY2t6OGgxcXVqMHZmdjJ2czh1OWljYjNscCJ9.Xssyc6T_KwRT3Gjbb_X9Qw';
 const map = new mapboxgl.Map({
-container: 'map', // container ID
-style: 'mapbox://styles/mapbox/streets-v11', // style URL
-center: [9, 8], // starting position [lng, lat]
-zoom: 9 // starting zoom
+    container: 'map', // Container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // Map style to use
+    center: [74.3, 44], // Starting position [lng, lat]
+    zoom: 14, // Starting zoom level
 
 
 });
@@ -32,11 +38,23 @@ enableHighAccuracy: true
 trackUserLocation: true,
 // Draw an arrow next to the location dot to indicate which direction the device is heading.
 showUserHeading: true
-
 })
- );
+);
+// Add the control to the map.
+
+if(navigator.geolocation)
+{
+    navigator.geolocation.getCurrentPosition((pos) => {
+        console.log(pos.coords.latitude +","+ pos.coords.longitude);
+    })
+}
+else{
+    console.log("You are not allowed to access location");
+}
+
 
 </script>
 </body>
 
 </html>
+
