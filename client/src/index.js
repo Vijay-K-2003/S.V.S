@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import './index.css';
 import App from './App';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
