@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import AllCustomers from "./components/AllCustomers";
-import CreateCustomer from "./components/Createcustomer";
+import CreateCustomer from "./components/CreateCustomer";
 import {
   BrowserRouter as Router,
   Routes,
