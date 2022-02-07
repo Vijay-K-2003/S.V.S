@@ -1,7 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
-// import Map from "./components/Map.js";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import { NavigationControl } from "mapbox-gl";
+import AllCustomers from "./components/AllCustomers";
+import CreateCustomer from "./components/Createcustomer";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoia2V3YWxkZWxoaXdhbGEiLCJhIjoiY2t6OGgxcXVqMHZmdjJ2czh1OWljYjNscCJ9.Xssyc6T_KwRT3Gjbb_X9Qw";
@@ -36,10 +42,7 @@ function App() {
       showUserHeading: true
       })
       );
-      navigator.geolocation.getCurrentPosition((pos) =>{
-        console.log(pos.coords.longitude);
-        console.log(pos.coords.latitude);
-      })
+     
   });
 
 
@@ -49,6 +52,21 @@ function App() {
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
       <div ref={mapContainer} className="map-container" />
+      <Router>
+        <ul>
+          <li>
+            <Link to="/getCustomers">All Customers</Link>
+
+          </li>
+          <li>
+            <Link to="/createCustomer">Create a Customer</Link>
+          </li>
+        </ul>
+      <Routes>
+        <Route path="getCustomers" element={<AllCustomers/>}></Route>
+        <Route path="createCustomer" element={<CreateCustomer/>}></Route>
+      </Routes>
+      </Router>
     </div>
   );
 }
