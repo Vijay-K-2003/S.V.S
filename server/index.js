@@ -6,11 +6,12 @@ import mongoose from "mongoose";
 dotenv.config();
 
 const app = express();
-MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = process.env.MONGO_URL;
+
 mongoose
   .connect(MONGO_URL)
   .then(() => {
-    
+    console.log("Database connected!");
   })
   .catch((error) => console.log("Something went wrong", error.message));
 

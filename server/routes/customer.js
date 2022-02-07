@@ -5,3 +5,5 @@ import { getCustomer, createCustomer } from "../controllers/customers.js";
 router.get("/", getCustomer);
 
 router.post("/new", createCustomer);
+
+export default router;

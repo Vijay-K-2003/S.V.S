@@ -2,7 +2,7 @@ import Customer from "../models/customers.js";
 
 
 export const getCustomer = async (req, res) => {
-    const Customers = Customer.find({}, (err, result) => {
+    const Customers = await Customer.find({}, (err, result) => {
         if(err)
         {
             res.status(500).json(err);
