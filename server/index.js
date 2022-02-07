@@ -17,12 +17,8 @@ mongoose
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-  cors({
-    origin: "http://localhost:4000",
-    "Access-Control-Allow-Origin": "http://localhost:4000/",
-  })
-);
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("This is my home route!");
