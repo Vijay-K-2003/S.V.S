@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import customerRoutes from "./routes/customer.js";
+import vendorRoutes from "./routes/vendor.js";
 import mongoose from "mongoose";
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/customers", customerRoutes);
+app.use("/vendors", vendorRoutes);
 
 app.listen(4000, () => {
   console.log("Listening to port 4000");
