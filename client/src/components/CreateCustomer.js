@@ -30,10 +30,12 @@ const CreateCustomer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(customer);
+  
     axios
       .post("http://localhost:4000/customers/new", customer)
-      .then((res) => {});
+      .then((res) => {
+        
+      });
   };
 
   return (

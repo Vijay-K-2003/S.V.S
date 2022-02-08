@@ -21,7 +21,7 @@ useEffect(() => {
         <>
         <h5>Name: {cust.name}</h5>
         <h5>Email: {cust.email}</h5>
-        <h5>Mobile No. : {cust.mobileNumber}</h5>
+        <h5>Mobile No: {cust.mobileNumber}</h5>
         <h5>lat : {cust.latitude}</h5>
         <h5>long : {cust.longitude}</h5>
         </>

@@ -9,7 +9,10 @@ const initialState = {
 };
 
 const CreateVendor = () => {
+  
   const [vendor, setVendor] = useState(initialState);
+  const [customer, setCustomer] = useState([]);
+
 //   const [lat, setLat] = useState(0);
 //   const [lng, setLng] = useState(0);
 
@@ -30,9 +33,24 @@ const CreateVendor = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(vendor);
+    console.log(customer);
     axios
       .post("http://localhost:4000/vendors/new", vendor)
-      .then((res) => {});
+      .then((res) => {
+    
+         navigator.geolocation.watchPosition((pos) => {
+           customer.map((cust) => {
+            if (pos.coords.latitude === cust.latitude && pos.coords.longitude === cust.longitude) {
+              console.log("Yaya we made it!!");
+            }
+            else{
+              console.log("It did not match");
+            }
+
+           })
+          
+         })
+      });
   };
 
   return (
