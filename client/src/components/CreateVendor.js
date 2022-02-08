@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const initialState = {
@@ -29,27 +29,37 @@ const CreateVendor = () => {
 //       vendor.longitude = pos.coords.longitude;
 //     })
 //   }
+useEffect(() => {
+  axios.get("http://localhost:4000/customers")
+  .then((res) => {
+      setCustomer(res.data);
+  })
+}, []);
+
+navigator.geolocation.watchPosition((pos) => {
+  customer.map((cust) => {
+   
+   if (pos.coords.latitude === cust.latitude && pos.coords.longitude === cust.longitude) {
+     console.log("Yaya we made it!!");
+    
+   }
+   else{
+     console.log(pos.coords.latitude);
+   }
+
+  })
+ 
+})
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(vendor);
-    console.log(customer);
+    console.log(customer[0].latitude);
     axios
       .post("http://localhost:4000/vendors/new", vendor)
       .then((res) => {
     
-         navigator.geolocation.watchPosition((pos) => {
-           customer.map((cust) => {
-            if (pos.coords.latitude === cust.latitude && pos.coords.longitude === cust.longitude) {
-              console.log("Yaya we made it!!");
-            }
-            else{
-              console.log("It did not match");
-            }
-
-           })
-          
-         })
+      
       });
   };
 
