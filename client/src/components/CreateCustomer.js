@@ -5,17 +5,28 @@ const initialState = {
   name: "",
   email: "",
   mobileNumber: "",
+  latitude: 0,
+  longitude: 0
 };
 
 const CreateCustomer = () => {
   const [customer, setCustomer] = useState(initialState);
-  // const [lat, setLat] = useState(0);
-  // const [lng, setLng] = useState(0);
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
 
   const handleChange = (event) =>setCustomer((data) => ({
     ...data,
     [event.target.name]: event.target.value,
   }));
+
+  const handleLocation = () => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      setLat(pos.coords.latitude);
+      setLng(pos.coords.longitude);
+      customer.latitude = pos.coords.latitude;
+      customer.longitude = pos.coords.longitude;
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +52,11 @@ const CreateCustomer = () => {
           onChange={handleChange}
 
         />
+
+        <h4>Please provide ur location</h4>
+        {/* <input type="number" name="latitude" value={customer.latitude} onChange={handleChange} id="latitude" />
+        <input type="number" name="longitude" value={customer.longitude} onChange={handleChange} id="longitude" /> */}
+        <button type="button" onClick={handleLocation}>Current Location</button>
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

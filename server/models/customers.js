@@ -15,14 +15,14 @@ const customerSchema = new Schema({
             type: Number,
             required: [true, 'Mobile Number cannot be empty!']
         },
-    //    latitude: {
-    //        type: Number,
-    //        required: [true, 'latitude is required']
-    //    },
-    //    longitude: {
-    //     type: Number,
-    //     required: [true, 'longitude is required']
-    // }
+       latitude: {
+           type: Number,
+            required: [true, 'latitude is required']
+       },
+       longitude: {
+        type: Number,
+        required: [true, 'longitude is required']
+    }
 });
 
 const Customer = mongoose.model("Customer", customerSchema);
