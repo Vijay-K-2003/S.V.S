@@ -20,10 +20,12 @@ useEffect(() => {
     return(
         <>
         <h5>Name: {ven.name}</h5>
-        {/* <h5>Email: {ven.email}</h5> */}
+      
         <h5>Mobile No. : {ven.mobileNumber}</h5>
-        {/* <h5>lat : {ven.latitude}</h5>
-        <h5>long : {ven.longitude}</h5> */}
+        {/* <Link to={`/customers/${cust._id}`}>
+       <button onClick={() => handleCustomer(cust._id)}>View Customer</button>
+     </Link>
+        */}
         </>
     )
 })}

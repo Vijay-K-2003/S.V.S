@@ -8,9 +8,10 @@
   padding: 6px 12px;
   font-family: monospace;
   z-index: 1;
-  position: absolute;
-  top: 0;
+  position: relative;
+  top: 50px;
   left: 0;
   margin: 12px;
+  width: 26%;
   border-radius: 4px;
 }

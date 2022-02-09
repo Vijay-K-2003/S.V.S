@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
+  Link,
+  Navigate
 } from "react-router-dom";
+
 import ViewCustomer from "./ViewCustomer";
 
 
@@ -20,12 +23,16 @@ useEffect(() => {
     })
 }, []);
 
+let navigate = useNavigate();
 const handleCustomer = (id) => {
  
     axios.get(`http://localhost:4000/customers/${id}`)
     .then((res) => {
-        console.log(res.data);
+      //Redirect to viewCustomer with res.data
+   navigate(`/customers/${id}`);
+    
     })
+
 
 }
 
@@ -40,11 +47,11 @@ const handleCustomer = (id) => {
         <h5>Mobile No: {cust.mobileNumber}</h5>
         <h5>lat : {cust.latitude}</h5>
         <h5>long : {cust.longitude}</h5>
-       <Router>
-         <Routes>
-         
-         </Routes>
-       </Router>
+       
+     <Link to={`/customers/${cust._id}`}>
+       <button onClick={() => handleCustomer(cust._id)}>View Customer</button>
+     </Link>
+        
         </>
     )
 })}

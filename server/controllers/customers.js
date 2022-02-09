@@ -26,11 +26,11 @@ export const createCustomer = async (req, res) => {
       try {
         const { id } = req.params;
         const customer = await Customer.findById(id);
-        console.log(customer);
         await customer.save();
+        res.status(200).json(customer);
         
       } catch (e) {
-        
+        res.status(500).json({message: "Vijay sir is great"});
       }
    
 
