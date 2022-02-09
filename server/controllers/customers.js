@@ -19,6 +19,19 @@ export const createCustomer = async (req, res) => {
        } catch (e) {
         res.status(500).json({message: "Vijay sir"});
     }
+
+   
+    }
+    export const viewCustomer = async(req, res) => {
+      try {
+        const { id } = req.params;
+        const customer = await Customer.findById(id);
+        console.log(customer);
+        await customer.save();
+        
+      } catch (e) {
+        
+      }
    
 
 };
