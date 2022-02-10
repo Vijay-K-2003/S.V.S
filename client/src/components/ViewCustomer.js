@@ -39,13 +39,26 @@ useEffect(() => {
     );
   }, []);
 
+ 
+  
+
+  
+ 
+
   const { id } = useParams();
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${id}`).then((res) => {
       setCustomer(res.data);
       map.current.setCenter([customer.longitude, customer.latitude]);
-    });
+    
+
+    
+      const marker =  new mapboxgl.Marker()
+      .setLngLat([customer.longitude, customer.latitude])
+   .addTo(map.current)
   }, [map.current]);
+    });
+   
 
   return (
     <div>

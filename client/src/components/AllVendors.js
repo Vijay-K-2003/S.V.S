@@ -22,10 +22,10 @@ useEffect(() => {
         <h5>Name: {ven.name}</h5>
       
         <h5>Mobile No. : {ven.mobileNumber}</h5>
-        {/* <Link to={`/customers/${cust._id}`}>
-       <button onClick={() => handleCustomer(cust._id)}>View Customer</button>
-     </Link>
-        */}
+        {/* <Link to={`/customers/${cust._id}/vendors`}>
+       <button onClick={() => handleApprove(ven._id)}>Approve</button>
+     </Link> */}
+       
         </>
     )
 })}
