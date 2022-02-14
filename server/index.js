@@ -40,7 +40,8 @@ app.get("/failed", (req, res) => {
 });
 
 app.get("/good", isLoggedIn, (req, res) => {
-  res.send(`Welcome, ${req.user}`);
+  res.send(`Welcome, ${req.session.passport.user}`);
+  
 })
 
 app.get('/google',

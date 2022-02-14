@@ -14,7 +14,8 @@ passport.use(new GoogleStrategy({
     
      const user = await User.findOrCreate({googleId: profile.id, username: profile.displayName, email: profile.emails[0].value}, function(err, user){
         //  console.log(profile);
-         console.log(user);
+        //  console.log(user);
+        
          return cb(err, user);
      })
     
