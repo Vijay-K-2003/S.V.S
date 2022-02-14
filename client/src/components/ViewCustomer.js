@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "../index.css";
 
@@ -44,14 +44,13 @@ useEffect(() => {
 
   
  
-
   const { id } = useParams();
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${id}`).then((res) => {
       setCustomer(res.data);
       map.current.setCenter([customer.longitude, customer.latitude]);
     
-
+      // console.log(customer._id);
     
       const marker =  new mapboxgl.Marker()
       .setLngLat([customer.longitude, customer.latitude])
@@ -72,6 +71,9 @@ useEffect(() => {
         <h1>{customer.name}</h1>
         <h1>{customer.email}</h1>
         <h1>{customer.mobileNumber}</h1>
+      </div>
+      <div>
+        <Link to={`/customers/${customer._id}/allVendor`}>TO Customer Vendor</Link>
       </div>
     </div>
   );

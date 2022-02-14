@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import ViewCustomer from "./components/ViewCustomer";
 import LoginPage from "./components/LoginPage";
-
+import Hello from "./components/Hello";
 // mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 
 
@@ -46,11 +46,11 @@ function App() {
         <Route path="login" element={<LoginPage/>}></Route>
         <Route path="getCustomers" element={<AllCustomers/>}></Route>
         <Route path="createCustomer" element={<CreateCustomer/>}></Route>
-        <Route path="getVendors" element={<AllVendors/>}></Route>
+        {/* <Route path="getVendors" element={<AllVendors/>}></Route> */}
         <Route path="createVendor" element={<CreateVendor/>}></Route>
         <Route path="/customers/:id" element={<ViewCustomer/>} />
-
-
+        <Route path="/customers/:id/allVendor" element={<AllVendors />}/>
+        <Route path="/customers/:id/allVendor/:venid" element={<Hello />} />
       </Routes>
       </Router>
     </div>
