@@ -28,7 +28,7 @@ passport.use(new GoogleStrategy({
 });
 
 passport.deserializeUser(async(id, cb)=>{
-    const user = await User.findOne({where: {id}}).catch((err) => {
+    const user = await User.findById(id).catch((err) => {
         console.log("Error in deserializing");
         cb(err, null);
     });
