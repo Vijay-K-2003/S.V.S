@@ -40,7 +40,7 @@ app.get("/failed", (req, res) => {
 });
 
 app.get("/good", isLoggedIn, (req, res) => {
-  res.send(`Welcome, ${req.user.username}`);
+  res.send(`Welcome, ${req.user}`);
 })
 
 app.get('/google',
@@ -52,7 +52,9 @@ app.get('/google/callback/',
     // Successful authentication, redirect home.
     res.redirect('/good');
   });
-
+app.get('/protected',isLoggedIn, (req, res) => {
+res.send("If you are here means you are loggedIn");
+})
   app.get('/logout', (req, res) =>{
     res.session = null;
     req.logout();
