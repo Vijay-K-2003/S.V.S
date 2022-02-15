@@ -1,4 +1,4 @@
-import React, {useContext } from "react";
+import React, {useState, useEffect, useContext } from "react";
 // import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import AllCustomers from "./components/AllCustomers";
 import CreateCustomer from "./components/CreateCustomer";
@@ -22,8 +22,20 @@ import { myContext } from "./components/Context";
 
 function App() {
 
+  const [customer, setCustomer] = useState("");
+
 const userObject = useContext(myContext);
 console.log(userObject);
+
+// useEffect(() => {
+  
+// axios.get("http://localhost:4000/customers/:id")
+// .then((res) =>{
+//   setCustomer(res.data);
+// })
+  
+// }, [])
+
 
 const handleLogout = () => {
       axios.get("http://localhost:4000/logout", {withCredentials:true})
@@ -85,14 +97,17 @@ const handleLogout = () => {
         <Route path="createCustomer" element={<CreateCustomer/>}></Route>
         {/* <Route path="getVendors" element={<AllVendors/>}></Route> */}
         <Route path="createVendor" element={<CreateVendor/>}></Route>
-        <Route path="/customers/:id" element={<ViewCustomer/>} />
         <Route path="/customers/:id/allVendor" element={<AllVendors />}/>
-        {/* <Route path="/customers/:id/allVendor/:venid" element={<Hello />} /> */}
+        <Route path="/customers/:id/allVendor/:venid" element={<Hello />} />
+        <Route path="/customers/:id" element={<ViewCustomer/>} />
         </>
         ): (
           <Route path="login" element={<LoginPage/>}></Route>
-        )}
-    
+          )}
+    {/* {userObject.email === customer.email ? (
+
+    ): "You are not authorized to do that"} */}
+    {console.log(customer.email)}
 
       </Routes>
       </Router>

@@ -27,7 +27,7 @@ const AllVendors = () => {
 
 
   const handleVendor = (id) => {
-    axios.post(`http://localhost:4000/customers/${customerId}/allVendor/${id}`)
+    axios.put(`http://localhost:4000/customers/${customerId}/allVendor/${id}`)
     .then((res) => {
       console.log(res.data);
    navigate(`/customers/${customerId}`);
@@ -48,7 +48,7 @@ const AllVendors = () => {
             <h5>Mobile No. : {ven.mobileNumber}</h5>
             {userObject.email === customer.email ? (
               <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link>
-            ): "You are not authorized to do that"}
+            ): null}
             
           </>
         );

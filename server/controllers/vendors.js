@@ -22,16 +22,3 @@ export const createVendor = async (req, res) => {
   }
 };
 
-export const addVendor = async (req, res) => {
-    console.log(req.params);
-  try {
-    const { id, venid } = req.params;
-    const customer = Customer.findById(id);
-    const vendor = Vendor.findById(venid);
-    customer.myVendors.push(vendor);
-    await customer.save();
-    console.log(customer);
-  } catch (e) {
-    console.log(e);
-  }
-};

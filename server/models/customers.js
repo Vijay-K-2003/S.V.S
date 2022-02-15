@@ -22,9 +22,10 @@ const customerSchema = new Schema({
     type: Number,
     required: [true, "longitude is required"],
   },
-  myVendors: [{
-    type: Array,
-  }],
+  myVendors : [{
+      type: Array
+     }]
+
 });
 
 const Customer = mongoose.model("Customer", customerSchema);
