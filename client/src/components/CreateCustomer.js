@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { myContext } from "./Context";
 
 const initialState = {
   name: "",
@@ -9,10 +10,13 @@ const initialState = {
   longitude: 0
 };
 
+
+
 const CreateCustomer = () => {
   const [customer, setCustomer] = useState(initialState);
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
+  const userObject = useContext(myContext);
 
   const handleChange = (event) =>setCustomer((data) => ({
     ...data,
@@ -25,16 +29,17 @@ const CreateCustomer = () => {
       setLng(pos.coords.longitude);
       customer.latitude = pos.coords.latitude;
       customer.longitude = pos.coords.longitude;
+      
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+    customer.email = userObject.email;
     axios
       .post("http://localhost:4000/customers/new", customer)
       .then((res) => {
-        
+        console.log(res.data);
       });
   };
 
@@ -43,8 +48,9 @@ const CreateCustomer = () => {
       <form>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" value={customer.email} onChange={handleChange} />
+        {/* <label htmlFor="email">Email</label>
+        <input type="email" name="email" value={customer.email} onChange={handleChange} /> */}
+        
         <label htmlFor="mobileNumber">Mobile No.</label>
         <input
           type="tel"

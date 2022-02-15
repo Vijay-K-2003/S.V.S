@@ -6,14 +6,15 @@ const initialState = {
     email: "",
     };
 
-    const myContext = createContext({});
+   export const myContext = createContext({});
 const Context = (props) => {
 
     const [user, setUser] = useState(initialState);
 
     useEffect(() => {
-      axios.get("http://localhost:4000/google")
+      axios.get("http://localhost:4000/getUser", {withCredentials: true})
       .then((res) => {
+          console.log(res.data);
          setUser(res.data);
       })
       .catch((e) => {

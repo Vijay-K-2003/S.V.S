@@ -7,6 +7,7 @@ import isLoggedIn from "../middleware.js";
 router.get("/", getCustomer);
 router.get("/:id", viewCustomer);
 router.get("/:id/allVendor", getVendor);
+
 router.post("/new", createCustomer);
 
 export default router;

@@ -29,7 +29,14 @@ app.use(
     keys: [process.env.COOKIE_KEY],
   })
 );
-app.use(cors());
+
+const corsOptions ={
+  origin:'http://localhost:3000', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
+
+app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -47,22 +54,26 @@ app.get(
   passport.authenticate("google", { failureRedirect: "/failed" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/good");
+    res.redirect("http://localhost:3000");
   }
 );
 app.get("/protected", isLoggedIn, (req, res) => {
   res.send("If you are here means you are loggedIn");
 });
 app.get("/logout", (req, res) => {
+  if(req.user)
+  {
   res.session = null;
   req.logout();
-  res.redirect("/");
+  res.send("success");
+  }
+
 });
 
 
 
-app.get("/getUser", isLoggedIn, (req, res) => {
-  res.json(200).send(req.user);
+app.get("/getUser", (req, res) => {
+  res.send(req.user);
 });
 
 app.get("/failed", (req, res) => {
