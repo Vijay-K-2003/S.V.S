@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Vendor from "../models/vendors.js";
 const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
@@ -22,11 +23,12 @@ const customerSchema = new Schema({
     type: Number,
     required: [true, "longitude is required"],
   },
-  myVendors : [{
-      type: Array
-     }]
-
+  myVendors: {
+    type: Array,
+    default: [],
+  },
 });
 
 const Customer = mongoose.model("Customer", customerSchema);
+
 export default Customer;
