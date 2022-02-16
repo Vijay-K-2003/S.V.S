@@ -5,6 +5,7 @@ import CreateCustomer from "./components/CreateCustomer";
 import AllVendors from "./components/AllVendors";
 import CreateVendor from "./components/CreateVendor";
 import HomePage from "./components/HomePage";
+import StayVendor from "./components/StayVendor";
 
 import axios from "axios";
 import {
@@ -92,6 +93,7 @@ const handleLogout = () => {
         <Route path="/customers/:id/allVendor/:venid" element={<CustomerVendor />} />
         <Route path="/customers/:id" element={<ViewCustomer/>} />
         <Route path="/customers/:id/myVendors" element={<CustomerVendor/>} />
+        <Route path="/vendors/:id" element={<StayVendor/>} />
         </>
         ): (
           <Route path="login" element={<LoginPage/>}></Route>

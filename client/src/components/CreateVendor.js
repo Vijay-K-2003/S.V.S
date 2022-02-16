@@ -61,7 +61,7 @@ useEffect(() => {
     customer.map((cust) => {
      
     //  if (pos.coords.latitude === cust.latitude && pos.coords.longitude === cust.longitude) {
-      //  console.log(cust._id);
+       console.log(cust.latitude);
       //  console.log(ven[0]._id);
       console.log(pos.coords.latitude);
       

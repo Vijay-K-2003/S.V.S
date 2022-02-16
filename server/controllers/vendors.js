@@ -1,5 +1,4 @@
 import Vendor from "../models/vendors.js";
-import Customer from "../models/customers.js";
 
 export const getVendor = async (req, res) => {
   const vendor = await Vendor.find({});
@@ -18,6 +17,19 @@ export const createVendor = async (req, res) => {
     console.log(e);
     res.status(500).json({
       message: "Error Occurred",
+    });
+  }
+};
+
+export const stayVendor = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const vendor = await Vendor.findById(id);
+    res.status(200).json(vendor);
+  } catch(e) {
+    console.log(e);
+    res.status(500).json({
+      message: "Error Occurred in Stay Vendor",
     });
   }
 };
