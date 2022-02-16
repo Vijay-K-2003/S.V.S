@@ -1,11 +1,13 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { myContext } from "./Context";
 import "../index.css";
 
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 const ViewCustomer = () => {
+  const userObject = useContext(myContext);
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
@@ -41,7 +43,9 @@ useEffect(() => {
 
  
   
+const handleMyVendors = (id) => {
 
+}
   
  
   const { id } = useParams();
@@ -60,8 +64,11 @@ useEffect(() => {
    
 
   return (
+    
     <div>
-      <h1>View Customer</h1>
+      {/* {userObject.email === customer.email ? ( */}
+        
+        <h1>View Customer</h1>
       <div>
         <div className="sidebar">
           Longitude: {customer.latitude} | Latitude: {customer.longitude} | Zoom: {zoom}
@@ -73,9 +80,19 @@ useEffect(() => {
         <h1>{customer.mobileNumber}</h1>
       </div>
       <div>
-        <Link to={`/customers/${customer._id}/allVendor`}>TO Customer Vendor</Link>
+        <Link to={`/customers/${customer._id}/allVendor`}><button>All Vendors</button></Link>
       </div>
+    <div>
+     <Link to={`/customers/${customer._id}/myVendors`}><button>My Vendors</button></Link> 
     </div>
+      {/* ): "You are not authorized to do that"}  */}
+     
+        
+        
+     
+    
+    </div>
+    
   );
 };
 

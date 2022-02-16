@@ -14,13 +14,14 @@ const AllVendors = () => {
   // const customerId = id;
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}/allVendor`).then((res) => {
+      // setVendor(customer.myVendors.filter(e => e.vendor._id.toString() !==).length > 0);
       setVendor(res.data);
     });
   }, [ customerId ]);
 
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setCustomer(res.data);
     });
   }, []);
@@ -29,7 +30,7 @@ const AllVendors = () => {
   const handleVendor = (id) => {
     axios.put(`http://localhost:4000/customers/${customerId}/allVendor/${id}`)
     .then((res) => {
-      console.log(res.data);
+      
    navigate(`/customers/${customerId}`);
    
     })
@@ -37,24 +38,32 @@ const AllVendors = () => {
 
 }
 
-  return (
-    <div>
+  return <div>
       <h1>Here is list of vendors</h1>
       {vendor.map((ven) => {
         return (
           <>
+          <ul>
+            <li>
             <h5>Name: {ven.name}</h5>
 
             <h5>Mobile No. : {ven.mobileNumber}</h5>
-            {userObject.email === customer.email ? (
+            {/* {console.log(customer.myVendors[0].vendor._id.toString())} */}
+            { (customer.myVendors && !(customer.myVendors.filter(e => e.vendor._id.toString() === ven._id).length > 0))? (
+              
               <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link>
-            ): null}
             
+             ): "Approved"} 
+              {/* <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link> */}
+            
+          
+            </li>
+            </ul>
           </>
-        );
+        )
       })}
     </div>
-  );
+
 };
 
 export default AllVendors;

@@ -11,14 +11,14 @@ export const getCustomer = async (req, res) => {
 export const createCustomer = async (req, res) => {
     
     try {
-        console.log(req.body);
+    
        
         const newCustomer = new Customer(req.body);
         
         await newCustomer.save();
          res.json(req.body);
        } catch (e) {
-        res.status(500).json({message: "Vijay sir"});
+        res.status(500).json({message: "Error while creating a customer"});
     }
 
    
@@ -31,7 +31,7 @@ export const createCustomer = async (req, res) => {
         res.status(200).json(customer);
         
       } catch (e) {
-        res.status(500).json({message: "Vijay sir is great"});
+        res.status(500).json({message: "Error in the view customer"});
       }
    
 
@@ -39,15 +39,20 @@ export const createCustomer = async (req, res) => {
 
 
 export const addVendor = async (req, res) => {
-  console.log(req.params);
 try {
   const { id, venid } = req.params;
   const customer = await Customer.findById(id);
   const vendor = await Vendor.findById(venid);
+  
 
+if(!(customer.myVendors.filter(e => e.vendor._id.toString() === venid).length > 0))
+{
   customer.myVendors.push({vendor});
   await customer.save();
+}
+
+  
 } catch (e) {
-  console.log(e);
+  res.status(500).json({message: "Error in pushing vendor to customer"});
 }
 };

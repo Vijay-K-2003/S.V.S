@@ -43,23 +43,24 @@ const handleCustomer = (id) => {
   return <div>
 <h1>Here is list of customers</h1>
 {customer.map((cust) => {
-    return(
-        <>
+  return(
+    <>
+      {userObject.email === cust.email ? (
         <ol>
           <li>
         <h5>Name: {cust.name}</h5>
        
 
-      {userObject.email === cust.email ? (
         <Link to={`/customers/${cust._id}`}>
         <button onClick={() => handleCustomer(cust._id)}>My Page</button>
       </Link>
-      ): null}
       </li>
      </ol>
+      ): null}
+      
         
         </>
-    )
+        )
 })}
   </div>;
 };

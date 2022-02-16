@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from "react";
+import React, {useContext } from "react";
 // import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import AllCustomers from "./components/AllCustomers";
 import CreateCustomer from "./components/CreateCustomer";
@@ -11,30 +11,21 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
 import ViewCustomer from "./components/ViewCustomer";
 import LoginPage from "./components/LoginPage";
-import Hello from "./components/Hello";
+import CustomerVendor from "./components/CustomerVendor";
 import { myContext } from "./components/Context";
 // mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 
 
 function App() {
 
-  const [customer, setCustomer] = useState("");
 
 const userObject = useContext(myContext);
 console.log(userObject);
 
-// useEffect(() => {
-  
-// axios.get("http://localhost:4000/customers/:id")
-// .then((res) =>{
-//   setCustomer(res.data);
-// })
-  
-// }, [])
 
 
 const handleLogout = () => {
@@ -64,9 +55,9 @@ const handleLogout = () => {
    <li>
      <Link to="/createCustomer">Create a Customer</Link>
    </li>
-   <li>
+   {/* <li>
      <Link to="/getVendors">All Vendors</Link>
-   </li>
+   </li> */}
    <li>
      <Link to="/createVendor">Create a Vendor</Link>
    </li>
@@ -98,17 +89,14 @@ const handleLogout = () => {
         {/* <Route path="getVendors" element={<AllVendors/>}></Route> */}
         <Route path="createVendor" element={<CreateVendor/>}></Route>
         <Route path="/customers/:id/allVendor" element={<AllVendors />}/>
-        <Route path="/customers/:id/allVendor/:venid" element={<Hello />} />
+        <Route path="/customers/:id/allVendor/:venid" element={<CustomerVendor />} />
         <Route path="/customers/:id" element={<ViewCustomer/>} />
+        <Route path="/customers/:id/myVendors" element={<CustomerVendor/>} />
         </>
         ): (
           <Route path="login" element={<LoginPage/>}></Route>
           )}
-    {/* {userObject.email === customer.email ? (
-
-    ): "You are not authorized to do that"} */}
-    {console.log(customer.email)}
-
+   
       </Routes>
       </Router>
     </div>
