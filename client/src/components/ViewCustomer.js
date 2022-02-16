@@ -54,46 +54,51 @@ const handleMyVendors = (id) => {
       setCustomer(res.data);
       map.current.setCenter([customer.longitude, customer.latitude]);
     
-      // console.log(customer._id);
-    
       const marker =  new mapboxgl.Marker()
       .setLngLat([customer.longitude, customer.latitude])
    .addTo(map.current)
+   .catch((e) => {
+     console.log("Error", e);
+   })
   }, [map.current]);
     });
    
 
   return (
-    
+    <>
     <div>
-      {/* {userObject.email === customer.email ? ( */}
-        
+
+      {/* {customer.email && userObject.email === customer.email ? ( */}
+    
+    <>
         <h1>View Customer</h1>
-      <div>
+      
         <div className="sidebar">
           Longitude: {customer.latitude} | Latitude: {customer.longitude} | Zoom: {zoom}
         </div>
         <div ref={mapContainer} className="map-container" />
-
+             
         <h1>{customer.name}</h1>
         <h1>{customer.email}</h1>
         <h1>{customer.mobileNumber}</h1>
-      </div>
-      <div>
+        
+        <div>
         <Link to={`/customers/${customer._id}/allVendor`}><button>All Vendors</button></Link>
       </div>
-    <div>
+     <div>
      <Link to={`/customers/${customer._id}/myVendors`}><button>My Vendors</button></Link> 
-    </div>
-      {/* ): "You are not authorized to do that"}  */}
-     
-        
-        
-     
+     </div> 
+       </>
     
+        {/* ): "You are not authorized to do that"} */}
+     
     </div>
-    
+    </>
   );
 };
-
+        
+        
+     
 export default ViewCustomer;
+    
+

@@ -56,7 +56,7 @@ const AllVendors = () => {
               <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link>
             
               ): "Approved"} 
-                {/* <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link>  */}
+
             
           
             </li>

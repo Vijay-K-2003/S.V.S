@@ -23,6 +23,7 @@ axios.get("http://localhost:4000/customers")
 })
 })
 
+// console.log(customer);
 // customer.map((cust) => {
 // navigator.geolocation.watchPosition((pos) => {
 // 	console.log(cust.latitude);
@@ -34,18 +35,23 @@ axios.get("http://localhost:4000/customers")
 	  <div>
 		<h1>
 This is Stay Vendor
+{/* {console.log(customer)} */}
 		</h1>
-		{customer.map((cust) => {
+		{customer && customer.map((cust) => {
 			navigator.geolocation.watchPosition((pos) => {
 				if(cust.latitude === pos.coords.latitude && cust.longitude === pos.coords.longitude)
 				{
-					<h3>They matched</h3>
+					// <h3>They matched</h3>
+					// console.log("Matched");
 				}
 				else{
-					<h3>They did not match</h3>
+					// <h3>They did not match</h3>
+					// console.log("Not Matched")
+					// console.log(pos.coords.latitude);
 
 				}
 			})
+			// console.log(cust);
 		})}
 	</div>
   )
