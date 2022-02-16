@@ -11,6 +11,7 @@ const initialState = {
 const CreateVendor = () => {
   
   const [vendor, setVendor] = useState(initialState);
+  const[ven, setVen] = useState("");
   const [customer, setCustomer] = useState([]);
 
 //   const [lat, setLat] = useState(0);
@@ -21,14 +22,9 @@ const CreateVendor = () => {
     [event.target.name]: event.target.value,
   }));
 
-//   const handleLocation = () => {
-//     navigator.geolocation.getCurrentPosition((pos) => {
-//       setLat(pos.coords.latitude);
-//       setLng(pos.coords.longitude);
-//       vendor.latitude = pos.coords.latitude;
-//       vendor.longitude = pos.coords.longitude;
-//     })
-//   }
+
+
+
 useEffect(() => {
   axios.get("http://localhost:4000/customers")
   .then((res) => {
@@ -36,25 +32,23 @@ useEffect(() => {
   })
 }, []);
 
-navigator.geolocation.watchPosition((pos) => {
-  customer.map((cust) => {
-   
-   if (pos.coords.latitude === cust.latitude && pos.coords.longitude === cust.longitude) {
-     console.log("Yaya we made it!!");
-    
-   }
-   else{
-     console.log(pos.coords.latitude);
-   }
+useEffect(() => {
+  const ven = async() => {
 
-  })
- 
-})
+    const res = await axios.get("http://localhost:4000/vendors")
+
+    setVen(res.data);
+  }
+ ven();
+  
+}, []);
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(vendor);
-    console.log(customer[0].latitude);
+    // console.log(vendor);
+    // console.log(customer[0].latitude);
     axios
       .post("http://localhost:4000/vendors/new", vendor)
       .then((res) => {
@@ -62,6 +56,24 @@ navigator.geolocation.watchPosition((pos) => {
       
       });
   };
+
+  navigator.geolocation.watchPosition((pos) => {
+    customer.map((cust) => {
+     
+    //  if (pos.coords.latitude === cust.latitude && pos.coords.longitude === cust.longitude) {
+      //  console.log(cust._id);
+      //  console.log(ven[0]._id);
+      console.log(pos.coords.latitude);
+      
+     }
+    //  else{
+      //  console.log(cust._id);
+    //  }
+  
+    )
+  })
+   
+  
 
   return (
     <div>

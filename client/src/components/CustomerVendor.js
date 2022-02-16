@@ -12,27 +12,29 @@ const CustomerVendor = () => {
   
   axios.get(`http://localhost:4000/customers/${id}`)
   .then((res) => {
-  
+  // console.log(res.data);
     setCustomer(res.data);
     
   })
   }, []);
 
- useEffect(() => {
+//  if(customer.myVendors)
+//  {
+//    customer.myVendors.map((e) => {
+//      navigator.geolocation.getCurrentPosition((pos) => {
+//        if(pos.coords.latitude === customer.latitude && pos.coords.longitude === customer.longitude)
+//        {
+//          console.log("Matched");
+//        }
+//        else{
+//          console.log("No matched")
+//        }
+//      })
+//    })
+//   }
+
+  
    
-  navigator.geolocation.watchPosition((pos) => {
-   
-      console.log(pos.coords.latitude);
-      console.log(pos.coords.longitude);
-      // console.log(customer.latitude);
-      // console.log(customer.longitude);
-    
-    
-      // console.log("It did not match!");
-    
-  })
-   
- }, [])
  
 
   return (
@@ -43,8 +45,8 @@ const CustomerVendor = () => {
  <ol>
  {Object.values(customer.myVendors).map((keyName, i) => (
 <li key={i}>
-    <span>Name: {keyName.vendor.name}</span>
-    <span>MobileNo: {keyName.vendor.mobileNumber}</span>
+    <span>Name: {keyName.name}</span>
+    <span>MobileNo: {keyName.mobileNumber}</span>
 </li>
 
 ))}

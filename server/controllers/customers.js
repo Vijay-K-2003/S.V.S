@@ -45,9 +45,9 @@ try {
   const vendor = await Vendor.findById(venid);
   
 
-if(!(customer.myVendors.filter(e => e.vendor._id.toString() === venid).length > 0))
+if(!(customer.myVendors.filter(e => e._id === venid).length > 0))
 {
-  customer.myVendors.push({vendor});
+  customer.myVendors.push(vendor);
   await customer.save();
 }
 
@@ -56,3 +56,13 @@ if(!(customer.myVendors.filter(e => e.vendor._id.toString() === venid).length > 
   res.status(500).json({message: "Error in pushing vendor to customer"});
 }
 };
+
+// export const trigger = async(req, res) => {
+//   const {id} = req.params;
+//   const customer = await Customer.findById(id);
+//   customer.myVendors.map((e) => {
+//     navigator.geolocation.watchPosition((pos) => {
+//       console.log(pos.coords.latitude);
+//     })
+//   })
+// }

@@ -22,6 +22,7 @@ const AllVendors = () => {
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}`).then((res) => {
       // console.log(res.data);
+      // console.log(customer.myVendors[0]._id)
       setCustomer(res.data);
     });
   }, []);
@@ -48,13 +49,14 @@ const AllVendors = () => {
             <h5>Name: {ven.name}</h5>
 
             <h5>Mobile No. : {ven.mobileNumber}</h5>
+          
             {/* {console.log(customer.myVendors[0].vendor._id.toString())} */}
-            { (customer.myVendors && !(customer.myVendors.filter(e => e.vendor._id.toString() === ven._id).length > 0))? (
+            { (customer.myVendors && !(customer.myVendors.filter(e => e._id === ven._id).length > 0))? (
               
               <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link>
             
-             ): "Approved"} 
-              {/* <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link> */}
+              ): "Approved"} 
+                {/* <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link>  */}
             
           
             </li>
