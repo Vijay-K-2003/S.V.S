@@ -3,59 +3,49 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-
 const StayVendor = () => {
-		const [vendor, setVendor] = useState("");
-		const [customer, setCustomer] = useState("");
-			const { id } = useParams();
-			
-			useEffect(() => {
-				
-axios.get(`http://localhost:4000/vendors/${id}`)
-.then((res) =>{
-	setVendor(res.data);
-})}, [])
+	const [vendor, setVendor] = useState("");
+	const [customer, setCustomer] = useState("");
+	const { id } = useParams();
 
-useEffect(() => {
-axios.get("http://localhost:4000/customers")
-.then((res) => {
-	setCustomer(res.data);
-})
-})
+	useEffect(() => {
+		axios.get(`http://localhost:4000/vendors/${id}`).then((res) => {
+			setVendor(res.data);
+		});
+	}, []);
 
-// console.log(customer);
-// customer.map((cust) => {
-// navigator.geolocation.watchPosition((pos) => {
-// 	console.log(cust.latitude);
-// })
-// })
+	useEffect(() => {
+		axios.get("http://localhost:4000/customers").then((res) => {
+			setCustomer(res.data);
+		});
+	}, []);
 
-
-  return (
-	  <div>
-		<h1>
-This is Stay Vendor
-{/* {console.log(customer)} */}
-		</h1>
-		{customer && customer.map((cust) => {
+	function watcher() {
+		customer.map((cust) => {
 			navigator.geolocation.watchPosition((pos) => {
-				if(cust.latitude === pos.coords.latitude && cust.longitude === pos.coords.longitude)
-				{
-					// <h3>They matched</h3>
-					// console.log("Matched");
+				if (
+					cust.latitude === pos.coords.latitude &&
+					cust.longitude === pos.coords.longitude
+				) {
+					console.log("Matched");
+				} else {
+					console.log("Not Matched")
 				}
-				else{
-					// <h3>They did not match</h3>
-					// console.log("Not Matched")
-					// console.log(pos.coords.latitude);
+			});
+		});
+	}
+	if (customer) {
+		setInterval(watcher, 10000);
+	}
 
-				}
-			})
-			// console.log(cust);
-		})}
-	</div>
-  )
-}
+	return (
+		<div>
+			<h1>
+				This is Stay Vendor
+			</h1>
+
+		</div>
+	);
+};
 
 export default StayVendor;
-
