@@ -57,12 +57,17 @@ if(!(customer.myVendors.filter(e => e._id === venid).length > 0))
 }
 };
 
-// export const trigger = async(req, res) => {
-//   const {id} = req.params;
-//   const customer = await Customer.findById(id);
-//   customer.myVendors.map((e) => {
-//     navigator.geolocation.watchPosition((pos) => {
-//       console.log(pos.coords.latitude);
-//     })
-//   })
-// }
+export const notify = async(req, res) => {
+  try {
+    const {id, venid} = req.params;
+    const customer = await Customer.findById(id);
+    const vendor = await Vendor.findById(venid);
+   //Notification code
+  //  res.send(vendor);
+  
+    
+  } catch (error) {
+    res.status(401).json({Message: "Error in notifying customer"})
+  }
+ 
+}
