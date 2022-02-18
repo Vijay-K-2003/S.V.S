@@ -1,5 +1,6 @@
 import Customer from "../models/customers.js";
 import Vendor from "../models/vendors.js";
+import mongoose from "mongoose";
 
 
 export const getCustomer = async (req, res) => {
@@ -70,4 +71,11 @@ export const notify = async(req, res) => {
     res.status(401).json({Message: "Error in notifying customer"})
   }
  
+}
+
+export const deleteCustomer = async (req, res) => {
+  const {id} = req.params;
+  if(mongoose.Types.ObjectId.isValid(id))
+   await Customer.findByIdAndDelete(id);
+
 }

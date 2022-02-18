@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const StayVendor = () => {
@@ -25,7 +25,14 @@ const StayVendor = () => {
 		
 	}, []);
 
+	const onDeleteVendor = () => {
+		const deleteVendor = async () => {
+               const res = await axios.delete(`http://localhost:4000/vendors/${id}`)
+			   window.location.href = "https://localhost:3000";
+		}
+	}
 
+let navigate = useNavigate();
 		// if(customer)
 // console.log(customer[0].myVendors);
 	function setGeolocation() {
@@ -45,6 +52,7 @@ const StayVendor = () => {
 					//We have send customer and vendor id from here 
 					console.log("Vendor exist in customer");
 				    //  axios.get(`http:localhost:4000/customers/${cust._id}/notify/${id}`);
+					navigate(`${cust._id}/notify`);
 				}
 			})
 			window.setTimeout( function () {
@@ -80,8 +88,9 @@ const StayVendor = () => {
 	return (
 		<div>
 			<h1>
-				This is Stay Vendor
+				This is Stay vendor
 			</h1>
+			<button onClick={() => onDeleteVendor()}>Delete</button>
 
 		</div>
 	);

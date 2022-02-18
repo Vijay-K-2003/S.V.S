@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link} from "react-router-dom";
-import { useNavigate } from 'react-router';
-import { myContext } from "./Context";
+import { myContext } from "../Context";
 import axios from "axios";
 
 
 const AllVendors = () => {
-  let navigate = useNavigate();
+
   const [vendor, setVendor] = useState([]);
   const [customer, setCustomer] = useState("");
   const customerId = useParams().id;
@@ -32,7 +31,7 @@ const AllVendors = () => {
     axios.put(`http://localhost:4000/customers/${customerId}/allVendor/${id}`)
     .then((res) => {
       
-   navigate(`/customers/${customerId}`);
+   
    
     })
 
@@ -53,7 +52,7 @@ const AllVendors = () => {
             {/* {console.log(customer.myVendors[0].vendor._id.toString())} */}
             { (customer.myVendors && !(customer.myVendors.filter(e => e._id === ven._id).length > 0))? (
               
-              <Link to={`/customers/${customerId}/allVendor/${ven._id}`}><button onClick={() => handleVendor(ven._id)}>Approve</button></Link>
+              <button onClick={() => handleVendor(ven._id)}>Approve</button>
             
               ): "Approved"} 
 

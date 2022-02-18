@@ -2,15 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router';
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+  
   Link,
-  Navigate
-} from "react-router-dom";
 
-import ViewCustomer from "./ViewCustomer";
-import { myContext } from "./Context";
+} from "react-router-dom";
+import { myContext } from "../Context";
 
 
 const AllCustomers = () => {
@@ -41,18 +37,21 @@ const handleCustomer = (id) => {
 
 
   return <div>
-<h1>Here is list of customers</h1>
+<h1>They are ur customers</h1>
 {customer.map((cust) => {
   return(
     <>
       {userObject.email === cust.email ? (
+        
         <ol>
           <li>
+            <h3>Your customer</h3>
         <h5>Name: {cust.name}</h5>
        
 
         <Link to={`/customers/${cust._id}`}>
-        <button onClick={() => handleCustomer(cust._id)}>My Page</button>
+        
+        <button onClick={() => handleCustomer(cust._id)}>Your view page</button>
       </Link>
       </li>
      </ol>

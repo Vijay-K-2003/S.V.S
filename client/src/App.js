@@ -1,11 +1,12 @@
 import React, {useContext } from "react";
 // import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import AllCustomers from "./components/AllCustomers";
-import CreateCustomer from "./components/CreateCustomer";
-import AllVendors from "./components/AllVendors";
-import CreateVendor from "./components/CreateVendor";
+import AllCustomers from "./components/Customer/AllCustomers";
+import CreateCustomer from "./components/Customer/CreateCustomer";
+import AllVendors from "./components/Vendor/AllVendors";
+import CreateVendor from "./components/Vendor/CreateVendor";
 import HomePage from "./components/HomePage";
-import StayVendor from "./components/StayVendor";
+import StayVendor from "./components/Vendor/StayVendor";
+import Notify from "./components/Notify";
 
 import axios from "axios";
 import {
@@ -14,10 +15,11 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import ViewCustomer from "./components/ViewCustomer";
+import ViewCustomer from "./components/Customer/ViewCustomer";
 import LoginPage from "./components/LoginPage";
-import CustomerVendor from "./components/CustomerVendor";
+import CustomerVendor from "./components/Customer/CustomerVendor";
 import { myContext } from "./components/Context";
+
 // mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 
 
@@ -94,6 +96,7 @@ const handleLogout = () => {
         <Route path="/customers/:id" element={<ViewCustomer/>} />
         <Route path="/customers/:id/myVendors" element={<CustomerVendor/>} />
         <Route path="/vendors/:id" element={<StayVendor/>} />
+        <Route path="vendors/:venid/:id/notify" element={<Notify/>} />
         </>
         ): (
           <Route path="login" element={<LoginPage/>}></Route>

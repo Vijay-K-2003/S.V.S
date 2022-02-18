@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { myContext } from "./Context";
-import "../index.css";
+import { myContext } from "../Context";
+import "../../index.css";
 
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
@@ -42,19 +42,24 @@ useEffect(() => {
   }, []);
 
  
-  
-const handleMyVendors = (id) => {
-
-}
+  let navigate = useNavigate();
+ const onDeleteCustomer = (id) => {
+          axios.delete(`http://localhost:4000/customers/${id}/delete`)
+          .then((res) => {
+            setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
+            window.location.href = "https://localhost:3000";
+          })
+  }
   
  
   const { id } = useParams();
+  
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${id}`).then((res) => {
       setCustomer(res.data);
       map.current.setCenter([customer.longitude, customer.latitude]);
     
-      const marker =  new mapboxgl.Marker()
+       new mapboxgl.Marker()
       .setLngLat([customer.longitude, customer.latitude])
    .addTo(map.current)
    .catch((e) => {
@@ -64,19 +69,23 @@ const handleMyVendors = (id) => {
     });
    
 
-  return (
-    <>
-    <div>
-
-      {/* {customer.email && userObject.email === customer.email ? ( */}
+  return <div>
     
-    <>
+
+
+ 
+      {/* {customer.email === userObject.email ? ( */}
+    
+  <>
         <h1>View Customer</h1>
-      
+     
+        
         <div className="sidebar">
           Longitude: {customer.latitude} | Latitude: {customer.longitude} | Zoom: {zoom}
         </div>
         <div ref={mapContainer} className="map-container" />
+
+        
              
         <h1>{customer.name}</h1>
         <h1>{customer.email}</h1>
@@ -88,14 +97,16 @@ const handleMyVendors = (id) => {
      <div>
      <Link to={`/customers/${customer._id}/myVendors`}><button>My Vendors</button></Link> 
      </div> 
-       </>
+     <button onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
+     </>
     
-        {/* ): "You are not authorized to do that"} */}
-     
-    </div>
-    </>
-  );
-};
+          {/* ): "You are not authorized to do that"}   */}
+      
+
+    </div>;
+  
+  
+  };
         
         
      
