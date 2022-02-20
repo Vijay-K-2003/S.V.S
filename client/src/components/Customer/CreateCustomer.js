@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
+import { useNavigate } from "react-router";
 
 const initialState = {
   name: "",
@@ -32,10 +33,11 @@ const CreateCustomer = () => {
       
     })
   }
-
+let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     customer.email = userObject.email;
+    navigate("/");
     axios
       .post("http://localhost:4000/customers/new", customer)
       .then((res) => {

@@ -25,14 +25,10 @@ const StayVendor = () => {
 		
 	}, []);
 
-	const onDeleteVendor = () => {
-		const deleteVendor = async () => {
-               const res = await axios.delete(`http://localhost:4000/vendors/${id}`)
-			   window.location.href = "https://localhost:3000";
-		}
-	}
 
-let navigate = useNavigate();
+	
+	
+
 		// if(customer)
 // console.log(customer[0].myVendors);
 	function setGeolocation() {
@@ -52,7 +48,7 @@ let navigate = useNavigate();
 					//We have send customer and vendor id from here 
 					console.log("Vendor exist in customer");
 				    //  axios.get(`http:localhost:4000/customers/${cust._id}/notify/${id}`);
-					navigate(`${cust._id}/notify`);
+					// navigate(`${cust._id}/notify`);
 				}
 			})
 			window.setTimeout( function () {
@@ -88,9 +84,9 @@ let navigate = useNavigate();
 	return (
 		<div>
 			<h1>
-				This is Stay vendor
+				We will inform the customer as soon as you get closer
 			</h1>
-			<button onClick={() => onDeleteVendor()}>Delete</button>
+			
 
 		</div>
 	);

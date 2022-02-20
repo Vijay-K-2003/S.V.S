@@ -7,10 +7,10 @@ const vendorSchema = new Schema({
         type: String,
         required: [true, "Name cannot be empty!"]
     },
-    // email: {
-    //     type: String,
-    //     required: [true, "Email cannot be empty!"]
-    // },
+    email: {
+        type: String,
+        required: [true, "Email cannot be empty!"]
+    },
     mobileNumber: {
         type: Number,
         required: [true, 'Mobile Number cannot be empty!']

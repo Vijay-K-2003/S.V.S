@@ -53,7 +53,7 @@ const AllVendors = () => {
             { (customer.myVendors && !(customer.myVendors.filter(e => e._id === ven._id).length > 0))? (
               
               <button onClick={() => handleVendor(ven._id)}>Approve</button>
-            
+                //Frontend push 
               ): "Approved"} 
 
             

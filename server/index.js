@@ -32,6 +32,7 @@ app.use(
 
 const corsOptions ={
   origin:'http://localhost:3000', 
+  headers: "*", methods: "*",
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }

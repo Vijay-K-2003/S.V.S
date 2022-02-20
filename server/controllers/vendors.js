@@ -8,9 +8,8 @@ export const getVendor = async (req, res) => {
 
 export const createVendor = async (req, res) => {
   try {
-
+  
     const newVendor = new Vendor(req.body);
-
     await newVendor.save();
     res.json(req.body);
   } catch (e) {
@@ -36,18 +35,40 @@ export const stayVendor = async (req, res) => {
 
 export const deleteVendor = async (req, res) => {
   try {
-    const {venid} = req.params;
-    if(mongoose.Types.ObjectId.isValid(venid))
-    await Vendor.findByIdAndDelete(venid);
-
-    //Delete from customer.myVendors
-    Customer.myVendors.map((e) => {
-      if(e._id === venid)
+    
+    const {id }= req.params;
+    // res.send(id);
+    console.log("I am in delete vendor");
+    // console.log(venid.toString().trim());
+    // if(mongoose.Types.ObjectId.isValid(venid))
+    //  await Vendor.findByIdAndDelete(id);
+    const customers = await Customer.find({});
+    // console.log(customers);
+ customers.map((cust) => {
+   cust.myVendors.map((e) => {
+    
+      if(e._id.toString() === id)
       {
-        Customer.findByIdAndUpdate(id, {$pull: {_id: venid}});
-          }
-    })
+        //  filter((e) => e._id.toString() !== id);
+        // console.log(e);
+        
+      
+      }
+    
+     
+   })
+ })
+    // res.send(vendor);
+
+    // Delete from customer.myVendors
+    // Customer.myVendors.map((e) => {
+    //   if(e._id === venid)
+    //   {
+    //     Customer.findByIdAndUpdate(id, {$pull: {_id: venid}});
+    //       }
+    // })
   } catch (e) {
+  
     res.status(401).json({
       message: "Error Occurred in delete Vendor",
     });

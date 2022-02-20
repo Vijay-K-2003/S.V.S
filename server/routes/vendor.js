@@ -5,7 +5,7 @@ import { getVendor, createVendor, stayVendor, deleteVendor } from "../controller
 
 router.get("/", getVendor);
 router.get("/:id", stayVendor);
-router.delete("/:venid/delete", deleteVendor);
+router.delete("/:id/delete", deleteVendor);
 router.post("/new", createVendor);
 
 export default router;

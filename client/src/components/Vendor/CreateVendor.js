@@ -1,77 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { myContext } from "../Context";
+import { useNavigate } from "react-router";
 
 const initialState = {
   name: "",
+  email: "",
   mobileNumber: "",
-//   latitude: 0,
-//   longitude: 0
+
 };
 
 const CreateVendor = () => {
   
   const [vendor, setVendor] = useState(initialState);
-  const[ven, setVen] = useState("");
-  const [customer, setCustomer] = useState([]);
-
-//   const [lat, setLat] = useState(0);
-//   const [lng, setLng] = useState(0);
+const userObject = useContext(myContext);
 
   const handleChange = (event) =>setVendor((data) => ({
     ...data,
     [event.target.name]: event.target.value,
   }));
 
-
-
-
-useEffect(() => {
-  axios.get("http://localhost:4000/customers")
-  .then((res) => {
-      setCustomer(res.data);
-  })
-}, []);
-
-useEffect(() => {
-  const ven = async() => {
-
-    const res = await axios.get("http://localhost:4000/vendors")
-
-    setVen(res.data);
-  }
- ven();
-  
-}, []);
-
-
-
+let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(vendor);
-    // console.log(customer[0].latitude);
+    vendor.email = userObject.email;
+navigate("/");
     axios
       .post("http://localhost:4000/vendors/new", vendor)
       .then((res) => {
     
-      
+      console.log(res.data);
       });
   };
 
-  navigator.geolocation.watchPosition((pos) => {
-    customer.map((cust) => {
-     
-    //  if (pos.coords.latitude === cust.latitude && pos.coords.longitude === cust.longitude) {
-       console.log(cust.latitude);
-      //  console.log(ven[0]._id);
-      console.log(pos.coords.latitude);
-      
-     }
-    //  else{
-      //  console.log(cust._id);
-    //  }
   
-    )
-  })
    
   
 
@@ -91,11 +53,6 @@ useEffect(() => {
           onChange={handleChange}
 
         />
-
-        {/* <h4>Please provide ur location</h4> */}
-        {/* <input type="number" name="latitude" value={vendor.latitude} onChange={handleChange} id="latitude" />
-        <input type="number" name="longitude" value={vendor.longitude} onChange={handleChange} id="longitude" /> */}
-        {/* <button type="button" onClick={handleLocation}>Current Location</button> */}
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

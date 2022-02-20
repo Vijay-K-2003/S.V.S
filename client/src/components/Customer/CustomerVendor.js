@@ -18,25 +18,6 @@ const CustomerVendor = () => {
   })
   }, []);
 
-//  if(customer.myVendors)
-//  {
-//    customer.myVendors.map((e) => {
-//      navigator.geolocation.getCurrentPosition((pos) => {
-//        if(pos.coords.latitude === customer.latitude && pos.coords.longitude === customer.longitude)
-//        {
-//          console.log("Matched");
-//        }
-//        else{
-//          console.log("No matched")
-//        }
-//      })
-//    })
-//   }
-
-  
-   
- 
-
   return (
     <div>
       <h1>Here is ur vendors list</h1>

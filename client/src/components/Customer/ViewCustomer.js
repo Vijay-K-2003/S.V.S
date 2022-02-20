@@ -16,20 +16,18 @@ const ViewCustomer = () => {
   const [customer, setCustomer] = useState("");
 
   useEffect(() => {
-  
-  map.current = new mapboxgl.Map({
-    container: mapContainer.current,
-    style: "mapbox://styles/mapbox/streets-v11",
-    center: [lng, lat],
-    zoom: zoom,
-  });
-  
-}, []);
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: [lng, lat],
+      zoom: zoom,
+    });
+  }, []);
 
-useEffect(() => {
+  useEffect(() => {
     // if(map.current) return;
-     map.current = map.current.addControl(
-      ( new mapboxgl.GeolocateControl({
+    map.current = map.current.addControl(
+      new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
         },
@@ -37,79 +35,84 @@ useEffect(() => {
         trackUserLocation: true,
         // Draw an arrow next to the location dot to indicate which direction the device is heading.
         showUserHeading: true,
-      }))
+      })
     );
   }, []);
 
- 
   let navigate = useNavigate();
- const onDeleteCustomer = (id) => {
-          axios.delete(`http://localhost:4000/customers/${id}/delete`)
-          .then((res) => {
-            setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
-            window.location.href = "https://localhost:3000";
-          })
-  }
-  
- 
-  const { id } = useParams();
-  
-  useEffect(() => {
-    axios.get(`http://localhost:4000/customers/${id}`).then((res) => {
-      setCustomer(res.data);
-      map.current.setCenter([customer.longitude, customer.latitude]);
-    
-       new mapboxgl.Marker()
-      .setLngLat([customer.longitude, customer.latitude])
-   .addTo(map.current)
-   .catch((e) => {
-     console.log("Error", e);
-   })
-  }, [map.current]);
+  const onDeleteCustomer = (id) => {
+    navigate("/");
+    axios.delete(`http://localhost:4000/customers/${id}/delete`).then((res) => {
+      setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
     });
-   
-
-  return <div>
-    
-
-
- 
-      {/* {customer.email === userObject.email ? ( */}
-    
-  <>
-        <h1>View Customer</h1>
-     
-        
-        <div className="sidebar">
-          Longitude: {customer.latitude} | Latitude: {customer.longitude} | Zoom: {zoom}
-        </div>
-        <div ref={mapContainer} className="map-container" />
-
-        
-             
-        <h1>{customer.name}</h1>
-        <h1>{customer.email}</h1>
-        <h1>{customer.mobileNumber}</h1>
-        
-        <div>
-        <Link to={`/customers/${customer._id}/allVendor`}><button>All Vendors</button></Link>
-      </div>
-     <div>
-     <Link to={`/customers/${customer._id}/myVendors`}><button>My Vendors</button></Link> 
-     </div> 
-     <button onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
-     </>
-    
-          {/* ): "You are not authorized to do that"}   */}
-      
-
-    </div>;
-  
-  
   };
-        
-        
-     
-export default ViewCustomer;
-    
 
+  const { id } = useParams();
+
+  useEffect(() => {
+
+    axios.get(`http://localhost:4000/customers/${id}`).then(
+      (res) => {
+    setCustomer(res.data); // add conditional check
+
+        // setCustomer(res.data);
+        map.current.setCenter([customer.longitude, customer.latitude]);
+
+        new mapboxgl.Marker()
+          .setLngLat([customer.longitude, customer.latitude])
+          .addTo(map.current)
+          .catch((e) => {
+            console.log("Error", e);
+          });
+        
+      },
+      [map.current]
+    ).catch((e) => {
+      console.log(e);
+    })
+  });
+
+  //  if(!customer || customer.email !== userObject.email)
+  //  return <h1> unauthorized</h1>
+  //  else
+
+  return (
+    <div>
+ 
+
+
+      {/* {customer.email === userObject.email ? ( */}
+        <div>
+        
+          {/* <h1>{customer.email}</h1> */}
+          <h1>View Customer</h1>
+
+          <div className="sidebar">
+            Longitude: {customer.latitude} | Latitude: {customer.longitude} |
+            Zoom: {zoom}
+          </div>
+          <div ref={mapContainer} className="map-container" />
+
+          <h1>{customer.name}</h1>
+          <h1>{customer.email}</h1>
+          <h1>{customer.mobileNumber}</h1>
+
+          <div>
+            <Link to={`/customers/${customer._id}/allVendor`}>
+              <button>All Vendors</button>
+            </Link>
+          </div>
+          <div>
+            <Link to={`/customers/${customer._id}/myVendors`}>
+              <button>My Vendors</button>
+            </Link>
+          </div>
+          <button onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
+        </div> 
+      {/* ) : ("You are not authorized to do that" */}
+      
+    </div>
+  );
+};
+
+export default ViewCustomer;

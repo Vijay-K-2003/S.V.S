@@ -9,7 +9,7 @@ import {
 import { myContext } from "../Context";
 
 
-const AllCustomers = () => {
+const YourCustomer = () => {
 const [customer, setCustomer] = useState([]);
 const userObject = useContext(myContext);
 
@@ -37,7 +37,7 @@ const handleCustomer = (id) => {
 
 
   return <div>
-<h1>They are ur customers</h1>
+
 {customer.map((cust) => {
   return(
     <>
@@ -45,13 +45,13 @@ const handleCustomer = (id) => {
         
         <ol>
           <li>
-            <h3>Your customer</h3>
-        <h5>Name: {cust.name}</h5>
+            <h1>Your customer</h1>
+        <h3>Name: {cust.name}</h3>
        
 
         <Link to={`/customers/${cust._id}`}>
         
-        <button onClick={() => handleCustomer(cust._id)}>Your view page</button>
+        <button onClick={() => handleCustomer(cust._id)}>Your View Page</button>
       </Link>
       </li>
      </ol>
@@ -64,5 +64,5 @@ const handleCustomer = (id) => {
   </div>;
 };
 
-export default AllCustomers;
+export default YourCustomer;
 
