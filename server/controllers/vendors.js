@@ -1,5 +1,6 @@
 import Vendor from "../models/vendors.js";
 import Customer from "../models/customers.js";
+import mongoose from "mongoose";
 
 export const getVendor = async (req, res) => {
   const vendor = await Vendor.find({});
@@ -38,35 +39,19 @@ export const deleteVendor = async (req, res) => {
     
     const {id }= req.params;
     // res.send(id);
-    console.log("I am in delete vendor");
-    // console.log(venid.toString().trim());
-    // if(mongoose.Types.ObjectId.isValid(venid))
-    //  await Vendor.findByIdAndDelete(id);
-    const customers = await Customer.find({});
-    // console.log(customers);
- customers.map((cust) => {
-   cust.myVendors.map((e) => {
     
-      if(e._id.toString() === id)
-      {
-        //  filter((e) => e._id.toString() !== id);
-        // console.log(e);
-        
-      
-      }
+    // console.log("I am in delete vendor");
+    const objectId = new mongoose.Types.ObjectId(id);
+ 
+    if(mongoose.Types.ObjectId.isValid(venid))
+     await Vendor.findByIdAndDelete(id);
     
-     
-   })
- })
-    // res.send(vendor);
-
-    // Delete from customer.myVendors
-    // Customer.myVendors.map((e) => {
-    //   if(e._id === venid)
-    //   {
-    //     Customer.findByIdAndUpdate(id, {$pull: {_id: venid}});
-    //       }
-    // })
+// console.log(objectId);
+     await Customer.updateMany({}, {$pull: {myVendors: {_id: objectId}}});
+    
+  
+   
+   
   } catch (e) {
   
     res.status(401).json({

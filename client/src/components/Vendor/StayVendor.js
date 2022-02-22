@@ -31,6 +31,7 @@ const StayVendor = () => {
 
 		// if(customer)
 // console.log(customer[0].myVendors);
+let navigate = useNavigate();
 	function setGeolocation() {
 		customer.map((cust) => {
 		 const geolocation = window.navigator.geolocation.watchPosition((pos) => {
@@ -46,9 +47,8 @@ const StayVendor = () => {
 				{
 					//Should notify customer that which particular vendor has come
 					//We have send customer and vendor id from here 
-					console.log("Vendor exist in customer");
-				    //  axios.get(`http:localhost:4000/customers/${cust._id}/notify/${id}`);
-					// navigate(`${cust._id}/notify`);
+				console.log("I am in view vendor");
+					navigate(`${cust._id}/notify`);
 				}
 			})
 			window.setTimeout( function () {
