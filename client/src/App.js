@@ -80,10 +80,10 @@ function App() {
               {/* <Route path="getVendors" element={<AllVendors/>}></Route> */}
               <Route path="createVendor" element={<CreateVendor />}></Route>
               <Route path="/customers/:id/allVendor" element={<AllVendors />} />
-              <Route
+              {/* <Route
                 path="/customers/:id/allVendor/:venid"
                 element={<CustomerVendor />}
-              />
+              /> */}
               <Route path="/customers/:id" element={<ViewCustomer />} />
               <Route
                 path="/customers/:id/myVendors"

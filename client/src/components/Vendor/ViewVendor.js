@@ -37,15 +37,19 @@ let navigate = useNavigate();
     
     
   return (
-    <div>
-    
+      <div>
+      {userObject.email === vendor.email ? (
+          <>
         <h1>View Vendor</h1>
         <h3>Name: {vendor.name}</h3>
         <h3>Mobile Number: {vendor.mobileNumber}</h3>
         <h3>Email: {vendor.email}</h3>
         <button onClick={handleTracking}>Start Tracking</button>
         <button onClick={handleDelete}>Delete</button>
-    </div>
+        </>
+        ): null}
+        </div>
+        
   )
 }
 

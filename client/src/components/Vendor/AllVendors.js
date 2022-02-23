@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link} from "react-router-dom";
-import { myContext } from "../Context";
+import React, { useState, useEffect } from "react";
+import { useParams} from "react-router-dom";
 import axios from "axios";
 
 
 const AllVendors = () => {
 
   const [vendor, setVendor] = useState([]);
+  // const [disable, setDisable] = useState(false);
   const [customer, setCustomer] = useState("");
   const customerId = useParams().id;
-  const userObject = useContext(myContext);
+  
   // const customerId = id;
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}/allVendor`).then((res) => {
       // setVendor(customer.myVendors.filter(e => e.vendor._id.toString() !==).length > 0);
       setVendor(res.data);
     });
-  }, [ customerId ]);
+  }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}`).then((res) => {
@@ -26,23 +26,35 @@ const AllVendors = () => {
     });
   }, []);
 
+  const checkDisable = (index) => {
+    document.getElementById(index).disabled = true;
+    // console.log(index);
+  }
 
-  const handleVendor = (id) => {
+
+  const handleVendor = (id, index) => {
+
+    
     axios.put(`http://localhost:4000/customers/${customerId}/allVendor/${id}`)
     .then((res) => {
+ 
       
-   
-   
     })
+    checkDisable(index);
 
 
 }
 
+// const checkDisable = (id) => {
+
+// }
+
   return <div>
       <h1>Here is list of vendors</h1>
-      {vendor.map((ven) => {
+      {vendor.map((ven, index) => {
         return (
           <>
+        
           <ul>
             <li>
             <h5>Name: {ven.name}</h5>
@@ -52,7 +64,7 @@ const AllVendors = () => {
             {/* {console.log(customer.myVendors[0].vendor._id.toString())} */}
             { (customer.myVendors && !(customer.myVendors.filter(e => e._id === ven._id).length > 0))? (
               
-              <button onClick={() => handleVendor(ven._id)}>Approve</button>
+              <button id={index} onClick={() => handleVendor(ven._id, index)}>Approve</button>
                 //Frontend push 
               ): "Approved"} 
 

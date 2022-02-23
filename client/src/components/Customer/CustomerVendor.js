@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import { myContext } from "../Context";
 import axios from "axios";
 
 const CustomerVendor = () => {
   const [customer, setCustomer] = useState("");
+  const userObject = useContext(myContext);
 
   const { id } = useParams();
 
-
+let location = useLocation();
   useEffect(() => {
   
   axios.get(`http://localhost:4000/customers/${id}`)
@@ -22,7 +24,7 @@ const CustomerVendor = () => {
     <div>
       <h1>Here is ur vendors list</h1>
     
-      {customer.myVendors ? (
+      {customer.myVendors && userObject.email === customer.email ? (
  <ol>
  {Object.values(customer.myVendors).map((keyName, i) => (
 <li key={i}>

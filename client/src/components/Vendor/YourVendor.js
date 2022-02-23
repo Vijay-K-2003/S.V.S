@@ -31,12 +31,11 @@ let navigate = useNavigate();
     <div>
      
     
-        <h1>This is your vendor</h1>
         {vendor.map((ven) => {
     return(
         <>
-        {console.log(ven)}
-        {/* {userObject.email === ven.email ? ( */}
+        {/* {console.log(ven)} */}
+        {userObject.email === ven.email ? (
     
          <ol>
              <li>
@@ -47,7 +46,7 @@ let navigate = useNavigate();
                  </Link>
              </li>
          </ol>
-         {/* ): null}   */}
+          ): null}  
         </>
     )
 

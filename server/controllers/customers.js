@@ -58,6 +58,28 @@ if(!(customer.myVendors.filter(e => e._id === venid).length > 0))
 }
 };
 
+export const removeVendor = async (req, res) => {
+  try {
+    const { id, venid } = req.params;
+    const customer = await Customer.findById(id);
+    const objectId = new mongoose.Types.ObjectId(venid);
+    const objectId2 = new mongoose.Types.ObjectId(id);
+    await customer.updateOne({}, {$pull: {myVendors: {_id: objectId}}});
+    // console.log(customer.myVendors);
+    // customer.myVendors = customer.myVendors.filter(e => e._id.toString() !== venid);
+    // await customer.save();
+  //  await Customer.updateMany({$match: {_id: objectId2}}, {$pull: {myVendors: {_id: objectId}}});
+    // const vendor = await Vendor.findById(venid);
+    // console.log(customer.myVendors)
+    
+  
+    
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({message: "Error in deleting vendor from customer"});
+  }
+  };
+
 export const notify = async(req, res) => {
   try {
     const {id, venid} = req.params;

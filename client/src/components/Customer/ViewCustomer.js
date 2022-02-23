@@ -16,6 +16,7 @@ const ViewCustomer = () => {
   const [customer, setCustomer] = useState("");
 
   useEffect(() => {
+    
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
@@ -26,6 +27,7 @@ const ViewCustomer = () => {
 
   useEffect(() => {
     // if(map.current) return;
+    console.log(map.current);
     map.current = map.current.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -66,7 +68,7 @@ const ViewCustomer = () => {
           });
         
       },
-      [map.current]
+      [map.current, customer.email]
     ).catch((e) => {
       console.log(e);
     })
@@ -80,37 +82,42 @@ const ViewCustomer = () => {
     <div>
  
 
+{/* {userObject.email === customer.email ?  */}
+<>
+ <div>
+        {/* {console.log(customer.email)} */}
+        {/* {console.log(userObject.email)} */}
+ {/* <h1>{customer.email}</h1> */}
+ <h1>View Customer</h1>
 
-      {/* {customer.email === userObject.email ? ( */}
-        <div>
-        
-          {/* <h1>{customer.email}</h1> */}
-          <h1>View Customer</h1>
+ <div className="sidebar">
+   Longitude: {customer.latitude} | Latitude: {customer.longitude} |
+   Zoom: {zoom}
+ </div>
+ <div ref={mapContainer} className="map-container" />
 
-          <div className="sidebar">
-            Longitude: {customer.latitude} | Latitude: {customer.longitude} |
-            Zoom: {zoom}
-          </div>
-          <div ref={mapContainer} className="map-container" />
+ <h1>{customer.name}</h1>
+ <h1>{customer.email}</h1>
+ <h1>{customer.mobileNumber}</h1>
 
-          <h1>{customer.name}</h1>
-          <h1>{customer.email}</h1>
-          <h1>{customer.mobileNumber}</h1>
-
-          <div>
-            <Link to={`/customers/${customer._id}/allVendor`}>
-              <button>All Vendors</button>
-            </Link>
-          </div>
-          <div>
-            <Link to={`/customers/${customer._id}/myVendors`}>
-              <button>My Vendors</button>
-            </Link>
-          </div>
-          <button onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
-        </div> 
-      {/* ) : ("You are not authorized to do that" */}
+ <div>
+   <Link to={`/customers/${customer._id}/allVendor`}>
+     <button>All Vendors</button>
+   </Link>
+ </div>
+ <div>
+   <Link to={`/customers/${customer._id}/myVendors`}>
+     <button>My Vendors</button>
+   </Link>
+ </div>
+ <button onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
+</div> 
+</>
+ {/* : "You are not authorized to do that"}   */}
+    
+       
       
+
     </div>
   );
 };

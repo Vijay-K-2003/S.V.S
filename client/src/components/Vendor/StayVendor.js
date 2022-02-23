@@ -1,12 +1,14 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { myContext } from "../Context";
 
 const StayVendor = () => {
 	const [vendor, setVendor] = useState("");
 	const [customer, setCustomer] = useState("");
 	const { id } = useParams();
+	const userObject = useContext(myContext)
 
 	useEffect(() => {
 		axios.get(`http://localhost:4000/vendors/${id}`).then((res) => {
@@ -43,11 +45,12 @@ let navigate = useNavigate();
 			// console.log("Matched");
 		    // console.log(cust.myVendors);
 			cust.myVendors.map((e) => {
-				if(e._id === id) 
+				if(e._id === id && userObject.email === e.email) 
 				{
 					//Should notify customer that which particular vendor has come
 					//We have send customer and vendor id from here 
 				console.log("I am in view vendor");
+				
 					navigate(`${cust._id}/notify`);
 				}
 			})
