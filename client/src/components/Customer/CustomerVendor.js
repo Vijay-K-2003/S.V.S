@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { myContext } from "../Context";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ const CustomerVendor = () => {
 
   const { id } = useParams();
 
-let location = useLocation();
+
   useEffect(() => {
   
   axios.get(`http://localhost:4000/customers/${id}`)
@@ -19,6 +19,18 @@ let location = useLocation();
     
   })
   }, []);
+
+  const checkDisable = (index) => {
+    document.getElementById(index).disabled = true;
+  }
+
+  const handleVen = (venid, index) => {
+ axios.delete(`http://localhost:4000/customers/${id}/myVendor/${venid}`)
+ .then((res) => {
+
+ })
+ checkDisable(index);
+  }
 
   return (
     <div>
@@ -30,6 +42,7 @@ let location = useLocation();
 <li key={i}>
     <span>Name: {keyName.name}</span>
     <span>MobileNo: {keyName.mobileNumber}</span>
+    <button id={i} onClick={() => handleVen(keyName._id, i)}>Disapprove</button>
 </li>
 
 ))}

@@ -7,6 +7,7 @@
   "author": "Vijay-Kewal",
   "license": "MIT",
   "dependencies": {
+    "@vonage/server-sdk": "^2.10.10",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -18,6 +19,7 @@
     "mongoose-findorcreate": "^3.0.0",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "twilio": "^3.75.0"
   }
 }

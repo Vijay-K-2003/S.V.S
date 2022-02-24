@@ -74,6 +74,7 @@ const AllVendors = () => {
             </ul>
           </>
         )
+
       })}
     </div>
 

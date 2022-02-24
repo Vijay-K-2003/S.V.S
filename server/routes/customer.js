@@ -8,7 +8,7 @@ router.get("/", getCustomer);
 router.get("/:id", viewCustomer);
 router.get("/:id/allVendor", getVendor);
 router.put("/:id/allVendor/:venid", addVendor);
-router.put("/:id/myVendor/:venid", removeVendor);
+router.delete("/:id/myVendor/:venid", removeVendor);
 router.get("/:id/notify/:venid", notify);
 router.post("/new", createCustomer);
 router.delete("/:id/delete", deleteCustomer);

@@ -1,7 +1,13 @@
 import Customer from "../models/customers.js";
 import Vendor from "../models/vendors.js";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
+import twilio from 'twilio';
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = new twilio(accountSid, authToken);
 
 export const getCustomer = async (req, res) => {
   const customer = await Customer.find({});
@@ -15,7 +21,8 @@ export const createCustomer = async (req, res) => {
     
        
         const newCustomer = new Customer(req.body);
-        
+      
+       
         await newCustomer.save();
          res.json(req.body);
        } catch (e) {
@@ -64,13 +71,9 @@ export const removeVendor = async (req, res) => {
     const customer = await Customer.findById(id);
     const objectId = new mongoose.Types.ObjectId(venid);
     const objectId2 = new mongoose.Types.ObjectId(id);
-    await customer.updateOne({}, {$pull: {myVendors: {_id: objectId}}});
-    // console.log(customer.myVendors);
-    // customer.myVendors = customer.myVendors.filter(e => e._id.toString() !== venid);
-    // await customer.save();
-  //  await Customer.updateMany({$match: {_id: objectId2}}, {$pull: {myVendors: {_id: objectId}}});
-    // const vendor = await Vendor.findById(venid);
-    // console.log(customer.myVendors)
+
+   await Customer.updateOne({_id: objectId2}, {$pull: {myVendors: {_id: objectId}}});
+
     
   
     
@@ -85,9 +88,16 @@ export const notify = async(req, res) => {
     const {id, venid} = req.params;
     const customer = await Customer.findById(id);
     const vendor = await Vendor.findById(venid);
-   //Notification code
-  //  res.send(vendor);
-  
+   
+   client.messages.create({
+     body: `Your vendor ${vendor.name} and mobile no: ${vendor.mobileNumber} is very near to ur house`,
+     from: `whatsapp:${process.env.WATSAAP_FROM}`,       
+    //  to: 'whatsapp:+917600966433' //customer.mobileNumber(should be registered)
+
+   }).then((message) => {
+console.log(message.sid);
+   }).done()
+
     
   } catch (error) {
     res.status(401).json({Message: "Error in notifying customer"})
