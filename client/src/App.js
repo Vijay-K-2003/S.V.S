@@ -16,6 +16,7 @@ import LoginPage from "./components/LoginPage";
 import CustomerVendor from "./components/Customer/CustomerVendor";
 import { myContext } from "./components/Context";
 import YourVendor from "./components/Vendor/YourVendor";
+import EditCustomer from "./components/Customer/EditCustomer";
 
 // mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 
@@ -85,6 +86,7 @@ function App() {
                 element={<CustomerVendor />}
               /> */}
               <Route path="/customers/:id" element={<ViewCustomer />} />
+              <Route path="/customers/:id/edit" element={<EditCustomer />} />
               <Route
                 path="/customers/:id/myVendors"
                 element={<CustomerVendor />}

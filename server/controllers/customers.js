@@ -105,6 +105,13 @@ console.log(message.sid);
  
 }
 
+export const updateCustomer = async (req, res) => {
+  // console.log(req.body);
+  const {id} = req.params;
+  const customer = await Customer.findByIdAndUpdate(id, req.body);
+  await customer.save();
+}
+
 export const deleteCustomer = async (req, res) => {
   const {id} = req.params;
   if(mongoose.Types.ObjectId.isValid(id))

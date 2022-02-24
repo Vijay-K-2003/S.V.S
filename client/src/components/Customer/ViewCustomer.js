@@ -74,6 +74,10 @@ const ViewCustomer = () => {
     })
   });
 
+  const handleEdit = () => {
+    navigate(`edit`);
+  }
+
   //  if(!customer || customer.email !== userObject.email)
   //  return <h1> unauthorized</h1>
   //  else
@@ -112,6 +116,9 @@ const ViewCustomer = () => {
  </div>
  <button onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
 </div> 
+<div>
+  <button onClick={handleEdit}>Edit</button>
+</div>
 </>
  {/* : "You are not authorized to do that"}   */}
     

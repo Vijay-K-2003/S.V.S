@@ -34,6 +34,9 @@ let navigate = useNavigate();
                 
             }
             
+            const handleEdit = () => {
+                navigate(`edit`);
+            }
     
     
   return (
@@ -46,6 +49,7 @@ let navigate = useNavigate();
         <h3>Email: {vendor.email}</h3>
         <button onClick={handleTracking}>Start Tracking</button>
         <button onClick={handleDelete}>Delete</button>
+        <button onClick={handleEdit}>Edit</button>
         </>
         ): null}
         </div>
