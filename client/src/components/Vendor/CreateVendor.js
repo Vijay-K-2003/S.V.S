@@ -15,6 +15,8 @@ const CreateVendor = () => {
   const [vendor, setVendor] = useState(initialState);
   const [cus, setCus] = useState("");
   const [ven, setVen] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 const userObject = useContext(myContext);
 
   const handleChange = (event) =>setVendor((data) => ({
@@ -46,16 +48,49 @@ let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     vendor.email = userObject.email;
-navigate("/");
+    validate(vendor);
+    setFormErrors(validate(vendor));
+    setIsSubmit(true);
+
+  };
+
+  useEffect(() => {
+      
+    // console.log(formErrors);
+    if(Object.keys(formErrors).length === 0 && isSubmit)
+{
+  console.log(vendor);
+  navigate("/");
     axios
       .post("http://localhost:4000/vendors/new", vendor)
       .then((res) => {
     
       console.log(res.data);
       });
-  };
+}
+ 
+}, [formErrors])
 
-  
+  const validate = (values) => {
+    const errors = {};
+    // const regex = /^[^\s@]+@[^\s@]+\.[^s@]{2,}$/i;
+    const regexM = /^((\+91)?|91)?[789][0-9]{9}/;
+    if(!values.name)
+    {
+      errors.name = "Name is required";
+    }
+    if(!values.mobileNumber)
+    {
+      errors.mobileNumber = "Mobile No. is required";
+    }
+    else if(!(values.mobileNumber.match(regexM)))
+    {
+    errors.mobileNumber = "Please enter a valid Mobile No.";
+    }
+   
+    
+    return errors;
+      }
    
   
 
@@ -76,24 +111,29 @@ navigate("/");
          return "A vendor has already been registered with the same email";
        }
      })} */}
-      <form>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" value={vendor.name} onChange={handleChange} />
-        {/* <label htmlFor="email">Email</label>
-        <input type="email" name="email" value={vendor.email} onChange={handleChange} /> */}
-        <label htmlFor="mobileNumber">Mobile No.</label>
-        <input
-          type="tel"
-          name="mobileNumber"
-          id="mobileNumber"
-          value={vendor.mobileNumber}
-          onChange={handleChange}
+ 
+ <form>
+ <label htmlFor="name">Name</label>
+ <input type="text" name="name" id="name" value={vendor.name} onChange={handleChange} />
+ <p>{formErrors.name}</p>
+ {/* <label htmlFor="email">Email</label>
+ <input type="email" name="email" value={vendor.email} onChange={handleChange} /> */}
+ <label htmlFor="mobileNumber">Mobile No.(Include 91)</label>
+ <input
+   type="tel"
+   name="mobileNumber"
+   id="mobileNumber"
+   value={vendor.mobileNumber}
+   onChange={handleChange}
 
-        />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
+ />
+ <p>{formErrors.mobileNumber}</p>
+ <button type="submit" onClick={handleSubmit}>
+   Submit
+ </button>
+</form>
+   
+     
     </div>
   );
 };

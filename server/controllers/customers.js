@@ -2,6 +2,7 @@ import Customer from "../models/customers.js";
 import Vendor from "../models/vendors.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 import twilio from 'twilio';
@@ -13,6 +14,8 @@ export const getCustomer = async (req, res) => {
   const customer = await Customer.find({});
  res.status(200).send(customer);
 }
+
+
 
 
 export const createCustomer = async (req, res) => {
@@ -34,6 +37,7 @@ export const createCustomer = async (req, res) => {
     //   }
     // })
        
+    
       
       
       const newCustomer = new Customer(req.body);
