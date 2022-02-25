@@ -8,6 +8,7 @@ import ViewVendor from "./components/Vendor/ViewVendor";
 import HomePage from "./components/HomePage";
 import StayVendor from "./components/Vendor/StayVendor";
 import Notify from "./components/Notify";
+import Error from "./components/Error";
 
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -16,6 +17,7 @@ import LoginPage from "./components/LoginPage";
 import CustomerVendor from "./components/Customer/CustomerVendor";
 import { myContext } from "./components/Context";
 import YourVendor from "./components/Vendor/YourVendor";
+import EditVendor from "./components/Vendor/EditVendor";
 import EditCustomer from "./components/Customer/EditCustomer";
 
 // mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
@@ -87,6 +89,7 @@ function App() {
               /> */}
               <Route path="/customers/:id" element={<ViewCustomer />} />
               <Route path="/customers/:id/edit" element={<EditCustomer />} />
+              <Route path="/vendors/:id/edit" element={<EditVendor />} />
               <Route
                 path="/customers/:id/myVendors"
                 element={<CustomerVendor />}
@@ -95,7 +98,8 @@ function App() {
               <Route path="vendors/:id" element={<ViewVendor />} />
 
               <Route path="/vendors/:id/locate" element={<StayVendor />} />
-              <Route path="vendors/:venid/locate/:id/notify" element={<Notify />} />
+              <Route path="/vendors/:venid/locate/:id/notify" element={<Notify />} />
+              <Route path="/error" element={<Error />} />
             </>
           ) : (
             <Route path="login" element={<LoginPage />}></Route>

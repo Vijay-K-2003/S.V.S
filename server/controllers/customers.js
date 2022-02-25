@@ -18,11 +18,25 @@ export const getCustomer = async (req, res) => {
 export const createCustomer = async (req, res) => {
     
     try {
-    
+    const customer = await Customer.find({});
+    const vendor = await Vendor.find({});
+    // customer.map((e) => {
+    //   if(e.email === req.body.email)
+    //   {
+    //     res.status(400).json({message: "A Customer already exists with the same account"});
+    //   }
+    // })
+
+    // vendor.map((e) => {
+    //   if(e.email === req.body.email)
+    //   {
+    //     res.status(400).json({message: "A Vendor already exists with the same account"});
+    //   }
+    // })
        
-        const newCustomer = new Customer(req.body);
       
-       
+      
+      const newCustomer = new Customer(req.body);
         await newCustomer.save();
          res.json(req.body);
        } catch (e) {
@@ -98,6 +112,7 @@ export const notify = async(req, res) => {
 console.log(message.sid);
    }).done()
 
+   
     
   } catch (error) {
     res.status(401).json({Message: "Error in notifying customer"})

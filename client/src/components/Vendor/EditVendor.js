@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
-import { useNavigate,useParams } from "react-router";
+import { useNavigate,useParams } from "react-router-dom";
 
 
 
@@ -24,6 +24,16 @@ const {id} = useParams();
     [event.target.name]: event.target.value,
   }));
 
+  useEffect(() => {
+    
+    axios.get(`http://localhost:4000/vendors/${id}`)
+    .then((res) =>{
+        setVendor(res.data);
+    })
+    
+    }, [])
+    
+
 let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +47,7 @@ navigate("/");
       });
   };
 
-  
+ 
    
   
 

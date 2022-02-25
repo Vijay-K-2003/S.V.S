@@ -78,20 +78,13 @@ const ViewCustomer = () => {
     navigate(`edit`);
   }
 
-  //  if(!customer || customer.email !== userObject.email)
-  //  return <h1> unauthorized</h1>
-  //  else
+  
 
   return (
     <div>
- 
 
-{/* {userObject.email === customer.email ?  */}
-<>
  <div>
-        {/* {console.log(customer.email)} */}
-        {/* {console.log(userObject.email)} */}
- {/* <h1>{customer.email}</h1> */}
+
  <h1>View Customer</h1>
 
  <div className="sidebar">
@@ -119,13 +112,7 @@ const ViewCustomer = () => {
 <div>
   <button onClick={handleEdit}>Edit</button>
 </div>
-</>
- {/* : "You are not authorized to do that"}   */}
-    
-       
-      
-
-    </div>
+ </div>
   );
 };
 

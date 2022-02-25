@@ -9,10 +9,23 @@ export const getVendor = async (req, res) => {
 
 export const createVendor = async (req, res) => {
   try {
-  
+    const customer = await Customer.find({});
+    const vendor = await Vendor.find({});
+  // customer.map((e) => {
+    //   if(e.email === req.body.email)
+    //   {
+    //     res.status(400).json({message: "A Customer already exists with the same account"});
+    //   }
+    // })
+
+    // vendor.map((e) => {
+    //   if(e.email === req.body.email)
+    //   {
+    //     res.status(400).json({message: "A Vendor already exists with the same account"});
+    //   }
+    // })
     const newVendor = new Vendor(req.body);
     await newVendor.save();
-    res.json(req.body);
   } catch (e) {
   
     res.status(500).json({
@@ -58,5 +71,22 @@ export const deleteVendor = async (req, res) => {
       message: "Error Occurred in delete Vendor",
     });
   }
+}
+
+export const updateVendor = async (req, res) => {
+  const {id} = req.params;
+  const customer = await Customer.find({});
+  const ven = await Vendor.find({});
+  const vendor = await Vendor.findByIdAndUpdate(id, req.body);
+  const objectId = new mongoose.Types.ObjectId(id);
+  await vendor.save();
+  // customer.map((cus) => {
+  //   if(cus.myVendors._id === objectId)
+  //   {
+  //     cus.myVendors.push(vendor);
+  //   }
+  // })
+  await Customer.updateMany( {'myVendors._id': objectId}, {$set: {'myVendors.$._id': objectId,'myVendors.$.name': req.body.name, 'myVendors.$.mobileNumber': req.body.mobileNumber}});
+  
 }
 

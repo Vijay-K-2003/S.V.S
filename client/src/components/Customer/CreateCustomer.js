@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate } from "react-router";
@@ -15,6 +15,8 @@ const initialState = {
 
 const CreateCustomer = () => {
   const [customer, setCustomer] = useState(initialState);
+  const [cus, setCus] = useState("");
+  const [ven, setVen] = useState("");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
   const userObject = useContext(myContext);
@@ -33,10 +35,33 @@ const CreateCustomer = () => {
       
     })
   }
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/customers")
+    .then((res) => {
+setCus(res.data);
+
+    })
+  
+   
+  }, [])
+  
+  useEffect(() => {
+    axios.get("http://localhost:4000/vendors")
+    .then((res) => {
+setVen(res.data);
+
+    })
+  
+   
+  }, [])
+  
+  
 let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     customer.email = userObject.email;
+   
     //send me
     navigate("/");
     axios
@@ -46,8 +71,27 @@ let navigate = useNavigate();
       });
   };
 
+
   return (
     <div>
+    
+    {/* {cus && cus.map((e) => {
+       if(e.email === userObject.email)
+       {
+         navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
+         return "A customer with the same email already exist";
+       }
+     })} */}
+
+     {/* {ven && ven.map((e) => {
+       if(e.email === userObject.email)
+       {
+         navigate("/error/?error=A vendor has already been registered with the same email");
+         return "A vendor has already been registered with the same email";
+       }
+     })} */}
+    
+    
       <form>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
@@ -65,9 +109,7 @@ let navigate = useNavigate();
         />
 
         <h4>Please provide ur location</h4>
-        {/* <input type="number" name="latitude" value={customer.latitude} onChange={handleChange} id="latitude" />
-        <input type="number" name="longitude" value={customer.longitude} onChange={handleChange} id="longitude" /> */}
-        <button type="button" onClick={handleLocation}>Current Location</button>
+        <button type="button" onClick={handleLocation}>Current Location</button> 
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
