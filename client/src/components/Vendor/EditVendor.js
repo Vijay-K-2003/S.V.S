@@ -68,6 +68,18 @@ navigate("/");
           onChange={handleChange}
 
         />
+
+<label htmlFor="area">Please select area where you spend maximum time of the day</label>
+<select name="area" value={vendor.area} onChange={handleChange} id="area">
+  <option value="areas">Areas</option>
+  <option value="ambavadi">Ambavadi</option>
+  <option value="bhadaj">Bhadaj</option>
+  <option value="ghodasar">Ghodasar</option>
+  <option value="naranpura">Naranpura</option>
+  <option value="vastrapura">Vastrapur</option>
+  <option value="prahladnagar">Prahladnagar</option>
+
+</select>
         <button type="submit" onClick={handleSubmit}>
           Update
         </button>

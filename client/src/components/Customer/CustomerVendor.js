@@ -42,6 +42,7 @@ const CustomerVendor = () => {
 <li key={i}>
     <span>Name: {keyName.name}</span>
     <span>MobileNo: {keyName.mobileNumber}</span>
+    <div>Area: {keyName.area}</div>
     <button id={i} onClick={() => handleVen(keyName._id, i)}>Disapprove</button>
 </li>
 

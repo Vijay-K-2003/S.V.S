@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import YourCustomer from "./components/Customer/YourCustomer";
 import CreateCustomer from "./components/Customer/CreateCustomer";
@@ -19,12 +19,15 @@ import { myContext } from "./components/Context";
 import YourVendor from "./components/Vendor/YourVendor";
 import EditVendor from "./components/Vendor/EditVendor";
 import EditCustomer from "./components/Customer/EditCustomer";
+import MyCustomer from "./components/Vendor/MyCustomer";
 
 // mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 
 function App() {
   const userObject = useContext(myContext);
-  console.log(userObject);
+
+  const [customer, setCustomer] = useState("");
+  const [vendor, setVendor] = useState("");
 
   const handleLogout = () => {
     axios
@@ -36,12 +39,41 @@ function App() {
       });
   };
 
+  useEffect(() => {
+    axios.get("http://localhost:4000/customers")
+    .then((res) => {
+      setCustomer(res.data);
+    })
+  
+   
+  }, [])
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/vendors")
+    .then((res) => {
+      setVendor(res.data);
+    })
+  
+   
+  }, [])
+
+  // customer.map((e) => {
+  //   if(userObject && e.email === userObject.email)
+  //   {
+  //     console.log("It matched");
+  //   }
+  // })
+
+  
+
   return (
     <div>
       <Router>
         {userObject ? (
           <>
+
             <ul>
+              
               <li>
                 <Link to="/getCustomer">Your Customer</Link>
               </li>
@@ -99,6 +131,7 @@ function App() {
 
               <Route path="/vendors/:id/locate" element={<StayVendor />} />
               <Route path="/vendors/:venid/locate/:id/notify" element={<Notify />} />
+              <Route path="/vendors/:id/myCustomers" element={<MyCustomer />} />
               <Route path="/error" element={<Error />} />
             </>
           ) : (

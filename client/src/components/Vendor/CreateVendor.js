@@ -7,7 +7,7 @@ const initialState = {
   name: "",
   email: "",
   mobileNumber: "",
-
+  area: ""
 };
 
 const CreateVendor = () => {
@@ -87,7 +87,10 @@ let navigate = useNavigate();
     {
     errors.mobileNumber = "Please enter a valid Mobile No.";
     }
-   
+   if(!values.area)
+   {
+     errors.area = "Please select a preffered area";
+   }
     
     return errors;
       }
@@ -113,6 +116,7 @@ let navigate = useNavigate();
      })} */}
  
  <form>
+   <h1>Create Vendor</h1>
  <label htmlFor="name">Name</label>
  <input type="text" name="name" id="name" value={vendor.name} onChange={handleChange} />
  <p>{formErrors.name}</p>
@@ -128,6 +132,18 @@ let navigate = useNavigate();
 
  />
  <p>{formErrors.mobileNumber}</p>
+ <label htmlFor="area">Please select area where you spend maximum time of the day</label>
+<select name="area" value={vendor.area} onChange={handleChange} id="area">
+  <option value="areas">Areas</option>
+  <option value="ambavadi">Ambavadi</option>
+  <option value="bhadaj">Bhadaj</option>
+  <option value="ghodasar">Ghodasar</option>
+  <option value="naranpura">Naranpura</option>
+  <option value="vastrapura">Vastrapur</option>
+  <option value="prahladnagar">Prahladnagar</option>
+
+</select>
+<p>{formErrors.area}</p>
  <button type="submit" onClick={handleSubmit}>
    Submit
  </button>

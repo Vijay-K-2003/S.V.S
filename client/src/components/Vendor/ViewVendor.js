@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import axios from "axios";
-import {useNavigate, useParams } from 'react-router-dom';
+import {useNavigate, useParams, Link } from 'react-router-dom';
 import { myContext } from '../Context';
 
 const ViewVendor = () => {
@@ -50,6 +50,7 @@ let navigate = useNavigate();
         <button onClick={handleTracking}>Start Tracking</button>
         <button onClick={handleDelete}>Delete</button>
         <button onClick={handleEdit}>Edit</button>
+        <Link to={`/vendors/${id}/myCustomers`}><button>My Customers</button></Link>
         </>
         ): null}
         </div>

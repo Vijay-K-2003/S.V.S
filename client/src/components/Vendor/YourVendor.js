@@ -41,6 +41,7 @@ let navigate = useNavigate();
              <li>
                  <h1>Your Vendor</h1>
                  <h3>Name: {ven.name}</h3>
+                 <h4>Preffered Area: {ven.area}</h4>
                  <Link to={`/vendors/${ven._id}`}>
                      <button onClick={() => handleVendor(ven._id)}>Your View Page</button>
                  </Link>

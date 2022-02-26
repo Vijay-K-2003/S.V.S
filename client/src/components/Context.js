@@ -12,14 +12,12 @@ const Context = (props) => {
     const [user, setUser] = useState(initialState);
 
     useEffect(() => {
-      axios.get("http://localhost:4000/getUser", {withCredentials: true})
-      .then((res) => {
-          console.log(res.data);
-         setUser(res.data);
-      })
-      .catch((e) => {
-          console.log("Error in accessing users data");
-      })
+     const getUser = async() => {
+     const res =  await axios.get("http://localhost:4000/getUser", {withCredentials: true});
+     console.log(res.data);
+      setUser(res.data);
+     }
+     getUser();
     }, [])
     
   return (
@@ -28,3 +26,12 @@ const Context = (props) => {
 }
 
 export default Context
+
+// axios.get("http://localhost:4000/getUser", {withCredentials: true})
+// .then((res) => {
+//     console.log(res.data);
+//    setUser(res.data);
+// })
+// .catch((e) => {
+//     console.log("Error in accessing users data");
+// })

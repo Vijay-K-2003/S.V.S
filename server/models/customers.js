@@ -23,6 +23,10 @@ const customerSchema = new Schema({
     type: Number,
     required: [true, "longitude is required"],
   },
+area: {
+  type: String,
+  required: [true, "area is required!"]
+},
   myVendors: {
     type: Array,
     default: [],

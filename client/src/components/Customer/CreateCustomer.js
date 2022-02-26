@@ -10,6 +10,7 @@ const initialState = {
   mobileNumber: "",
   latitude: 0,
   longitude: 0,
+  area: "",
   checked: false
 };
 
@@ -113,6 +114,10 @@ if(values.checked === false)
 {
   errors.location = "We need your location in order to compare it";
 }
+if(!values.area)
+{
+  errors.area = "We would require your area for our convinience";
+}
 
 return errors;
   }
@@ -156,6 +161,18 @@ return errors;
         />
         <p>{formErrors.mobileNumber}</p>
 <br />
+<label htmlFor="area">Please select area where you live</label>
+<select name="area" value={customer.area} onChange={handleChange} id="area">
+  <option value="areas">Areas</option>
+  <option value="ambavadi">Ambavadi</option>
+  <option value="bhadaj">Bhadaj</option>
+  <option value="ghodasar">Ghodasar</option>
+  <option value="naranpura">Naranpura</option>
+  <option value="vastrapura">Vastrapur</option>
+  <option value="prahladnagar">Prahladnagar</option>
+
+</select>
+<p>{formErrors.area}</p>
         {/* <button type="button" onClick={handleLocation}>Current Location</button>  */}
         <input type="checkbox" onChange={handleCheckBox} name="location" id="location" />
         <label htmlFor="location">You are at location from where you want to be notified</label>

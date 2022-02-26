@@ -47,6 +47,21 @@ export const stayVendor = async (req, res) => {
   }
 };
 
+export const vendorCustomer = async (req, res) => {
+ try {
+   const {id} = req.params;
+   const objectId = new mongoose.Types.ObjectId(id);
+
+   const customer = await Customer.find({'myVendors._id': objectId})
+   res.status(200).json(customer);
+   
+ } catch (e) {
+  res.status(401).json({
+    message: "Error finding vendors customer",
+  });
+ }
+}
+
 export const deleteVendor = async (req, res) => {
   try {
     
@@ -56,7 +71,7 @@ export const deleteVendor = async (req, res) => {
     // console.log("I am in delete vendor");
     const objectId = new mongoose.Types.ObjectId(id);
  
-    if(mongoose.Types.ObjectId.isValid(venid))
+    // if(mongoose.Types.ObjectId.isValid(venid))
      await Vendor.findByIdAndDelete(id);
     
 // console.log(objectId);
@@ -80,13 +95,8 @@ export const updateVendor = async (req, res) => {
   const vendor = await Vendor.findByIdAndUpdate(id, req.body);
   const objectId = new mongoose.Types.ObjectId(id);
   await vendor.save();
-  // customer.map((cus) => {
-  //   if(cus.myVendors._id === objectId)
-  //   {
-  //     cus.myVendors.push(vendor);
-  //   }
-  // })
-  await Customer.updateMany( {'myVendors._id': objectId}, {$set: {'myVendors.$._id': objectId,'myVendors.$.name': req.body.name, 'myVendors.$.mobileNumber': req.body.mobileNumber}});
+
+  await Customer.updateMany( {'myVendors._id': objectId}, {$set: {'myVendors.$._id': objectId,'myVendors.$.name': req.body.name, 'myVendors.$.mobileNumber': req.body.mobileNumber, 'myVendors.$.area': req.body.area}});
   
 }
 
