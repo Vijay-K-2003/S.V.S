@@ -90,13 +90,18 @@ export const deleteVendor = async (req, res) => {
 
 export const updateVendor = async (req, res) => {
   const {id} = req.params;
+  const {name, mobileNumber, area} = req.body;
+  const objectId = new mongoose.Types.ObjectId(id);
   const customer = await Customer.find({});
   const ven = await Vendor.find({});
+  const venn = await Vendor.findById(id);
   const vendor = await Vendor.findByIdAndUpdate(id, req.body);
-  const objectId = new mongoose.Types.ObjectId(id);
+  // vendor.items.map((e) => {
+
+  // })
   await vendor.save();
 
-  await Customer.updateMany( {'myVendors._id': objectId}, {$set: {'myVendors.$._id': objectId,'myVendors.$.name': req.body.name, 'myVendors.$.mobileNumber': req.body.mobileNumber, 'myVendors.$.area': req.body.area}});
+  await Customer.updateMany( {'myVendors._id': objectId}, {$set: {'myVendors.$._id': objectId,'myVendors.$.name': req.body.name, 'myVendors.$.mobileNumber': req.body.mobileNumber, 'myVendors.$.area': req.body.area, 'myVendors.$.items': req.body.items}});
   
 }
 

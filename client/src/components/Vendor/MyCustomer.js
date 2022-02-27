@@ -26,14 +26,11 @@ const MyCustomer = () => {
             const res = await axios.get(`http://localhost:4000/vendors/${id}`)
             setVendor(res.data);
         }
-        // sortData(customer);
       getVendor();
        
       }, [])
 
- const sortData = (customer) => {
-    customer.sort((a, b) => a.area.localeCompare(b.area))
- }
+ 
     
     return (
       

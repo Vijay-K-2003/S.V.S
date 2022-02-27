@@ -15,7 +15,10 @@ const vendorSchema = new Schema({
         type: Number,
         required: [true, 'Mobile Number cannot be empty!']
     },
-    
+    items: {
+        type: Array,
+        default: []
+    },
     area:{
         type: String,
         required: [true, 'Area is required']

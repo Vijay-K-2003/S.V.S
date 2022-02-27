@@ -47,6 +47,13 @@ let navigate = useNavigate();
         <h3>Name: {vendor.name}</h3>
         <h3>Mobile Number: {vendor.mobileNumber}</h3>
         <h3>Email: {vendor.email}</h3>
+        <h3>Items on cart:</h3>
+        {vendor.items.map((e) => {
+            return(
+                <h4>{e}, </h4>
+            )
+        })}
+        <br />
         <button onClick={handleTracking}>Start Tracking</button>
         <button onClick={handleDelete}>Delete</button>
         <button onClick={handleEdit}>Edit</button>

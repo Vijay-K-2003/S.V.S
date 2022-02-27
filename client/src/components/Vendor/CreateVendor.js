@@ -7,12 +7,16 @@ const initialState = {
   name: "",
   email: "",
   mobileNumber: "",
-  area: ""
+  area: "",
+  items: []
 };
 
 const CreateVendor = () => {
-  
+  const items = ['Tomato', 'Potato', 'Carrot', 'Brinjal', 'Onion', 'Capsicum', 'Cabbage', 'Cauliflower', 'Lady finger', 'Apple', 'Banana', 'Grapes', 'Chiku', 'Pomegranate']
   const [vendor, setVendor] = useState(initialState);
+ const [checked, setChecked] = useState(
+    new Array(items.length).fill(false)
+);
   const [cus, setCus] = useState("");
   const [ven, setVen] = useState("");
   const [formErrors, setFormErrors] = useState({});
@@ -24,6 +28,14 @@ const userObject = useContext(myContext);
     [event.target.name]: event.target.value,
   }));
 
+  const handleItemChange = (position) => {
+    const updatedChecked = checked.map((item, index) =>
+       position === index ? ! item: item
+    );
+
+  
+    setChecked(updatedChecked);
+  };
   useEffect(() => {
     axios.get("http://localhost:4000/customers")
     .then((res) => {
@@ -48,12 +60,22 @@ let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     vendor.email = userObject.email;
+    addItems(checked);
+    // vendor.items = checked
     validate(vendor);
     setFormErrors(validate(vendor));
     setIsSubmit(true);
 
   };
 
+  const addItems = (checked) => {
+    checked.map((e, index) => {
+      if(e)
+      {
+        vendor.items.push(items[index]);
+      }
+    })
+  }
   useEffect(() => {
       
     // console.log(formErrors);
@@ -144,6 +166,26 @@ let navigate = useNavigate();
 
 </select>
 <p>{formErrors.area}</p>
+<label htmlFor="items">Please select items that are on your cart</label>
+{items.map(( name ,index) => {
+      return(
+            // <li key={index}>
+              <div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id={`custom-checkbox-${index}`}
+                    name={name}
+                    value={vendor.items}
+                    checked={checked[index]}
+                    onChange={() => handleItemChange(index)}
+                  />
+                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                </div>
+              </div>
+            // </li>
+      );
+        })}
  <button type="submit" onClick={handleSubmit}>
    Submit
  </button>
@@ -153,5 +195,6 @@ let navigate = useNavigate();
     </div>
   );
 };
+
 
 export default CreateVendor;

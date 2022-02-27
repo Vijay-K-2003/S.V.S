@@ -14,8 +14,11 @@ const initialState = {
 
 
 const EditVendor = () => {
-  
+  const items = ['Tomato', 'Potato', 'Carrot', 'Brinjal', 'Onion', 'Capsicum', 'Cabbage', 'Cauliflower', 'Lady finger', 'Apple', 'Banana', 'Grapes', 'Chiku', 'Pomegranate'];
   const [vendor, setVendor] = useState(initialState);
+  const [checked, setChecked] = useState(
+    new Array(items.length).fill(false)
+);
 const userObject = useContext(myContext);
 
 const {id} = useParams();
@@ -24,13 +27,63 @@ const {id} = useParams();
     [event.target.name]: event.target.value,
   }));
 
-  useEffect(() => {
-    
-    axios.get(`http://localhost:4000/vendors/${id}`)
-    .then((res) =>{
-        setVendor(res.data);
+  const handleItemChange = (position) => {
+    const updatedChecked = checked.map((item, index) =>
+       position === index ? !item: item
+    );
+
+  
+    setChecked(updatedChecked);
+  };
+
+ 
+
+    const defaultChecked = (vendor) => {
+      const temp = new Array(items.length).fill(false);
+
+      vendor && vendor.items.map((e, index) => {
+         if(e)
+         {
+           let indx = items.indexOf(e);
+          //  checked[indx] = true;
+          // setChecked(checked[indx] = true);
+            temp[indx] = true;
+            
+            
+            
+          }
+        })
+        setChecked(temp);
+       
+     }
+
+ 
+ 
+
+
+  const addDeleteItems = (checked) => {
+    vendor.items.splice(0, vendor.items.length)
+    checked.map((e, index) => {
+      if(e === true && !(vendor.items.includes(items[index])))
+      {
+        vendor.items.push(items[index]);
+      }
+      else if(e === false && vendor.items.includes(items[index])){
+        vendor.items.splice(index)
+      }
     })
+  }
+
+  useEffect(() => {
+    // defaultChecked(vendor)
+     axios.get(`http://localhost:4000/vendors/${id}`)
+   .then((res) => {
+     setVendor(res.data);
+     defaultChecked(res.data)
+   })
+
     
+  
     }, [])
     
 
@@ -38,6 +91,8 @@ let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     vendor.email = userObject.email;
+    addDeleteItems(checked);
+console.log(vendor);
 navigate("/");
     axios
       .put(`http://localhost:4000/vendors/${id}/edit`, vendor)
@@ -50,6 +105,12 @@ navigate("/");
  
    
   
+if(!vendor)
+{
+  return(
+    <div>Loading...</div>
+  )
+}
 
   return (
     <div>
@@ -80,6 +141,28 @@ navigate("/");
   <option value="prahladnagar">Prahladnagar</option>
 
 </select>
+<br />
+<label htmlFor="items">Plesae select some items that you carry on your cart</label>
+{ items.map(( name ,index) => {
+      return(
+            // <li key={index}>
+        
+              <div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id={`custom-checkbox-${index}`}
+                    name={name}
+                    // value={}
+                  checked={checked[index]}
+                    onChange={() => handleItemChange(index)}
+                  />
+                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                </div>
+              </div>
+            // </li>
+      );
+        })}
         <button type="submit" onClick={handleSubmit}>
           Update
         </button>
