@@ -9,7 +9,7 @@ const initialState = {
   name: "",
   email: "",
   mobileNumber: "",
-
+  items: []
 };
 
 
@@ -105,12 +105,12 @@ navigate("/");
  
    
   
-if(!vendor)
-{
-  return(
-    <div>Loading...</div>
-  )
-}
+// if(!vendor)
+// {
+//   return(
+//     <div>Loading...</div>
+//   )
+// }
 
   return (
     <div>

@@ -49,7 +49,7 @@ let navigate = useNavigate();
 				{
 					//Should notify customer that which particular vendor has come
 					//We have send customer and vendor id from here 
-				console.log("I am in view vendor");
+				console.log("I am in stay vendor");
 				
 					navigate(`${cust._id}/notify`);
 				}

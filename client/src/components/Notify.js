@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 
 const Notify = () => {
@@ -28,6 +28,21 @@ const Notify = () => {
         ven();
          
         }, [])
+
+        let navigate = useNavigate();
+
+        useEffect(() => {
+          axios.get(`http://localhost:4000/customers/${id}/notify/${venid}`)
+          .then((res) => {
+              if(res.data === "Done")
+              {
+                  navigate("/getVendor");
+              }
+          })
+        
+         
+        }, [])
+        
 
 
      return (

@@ -96,6 +96,7 @@ const ViewCustomer = () => {
  <h1>{customer.name}</h1>
  <h1>{customer.email}</h1>
  <h1>{customer.mobileNumber}</h1>
+ <h3>Send message: "join me-silly" to "+14155238886" to recieve notifications about the vendors</h3>
 
  <div>
    <Link to={`/customers/${customer._id}/allVendor`}>

@@ -82,6 +82,7 @@ app.get("/failed", (req, res) => {
   res.send("You have failed to log in");
 });
 
+
 app.use("/customers", customerRoutes);
 app.use("/vendors", vendorRoutes);
 
