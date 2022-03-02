@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
 import "../../index.css";
-
+import FlashMessage from "react-flash-message";
 
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
@@ -45,7 +45,7 @@ const ViewCustomer = () => {
 
   let navigate = useNavigate();
   const onDeleteCustomer = (id) => {
-    navigate("/");
+    navigate("/flash/?flash=Deleted Customer Successfully!");
     axios.delete(`http://localhost:4000/customers/${id}/delete`).then((res) => {
       if(res.data)
       {

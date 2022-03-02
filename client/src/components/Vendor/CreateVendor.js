@@ -72,7 +72,7 @@ let navigate = useNavigate();
 
   const addItems = (checked) => {
     checked.map((e, index) => {
-      if(e)
+      if(e && !(vendor.items.includes(items[index])))
       {
         vendor.items.push(items[index]);
       }
@@ -84,11 +84,11 @@ let navigate = useNavigate();
     if(Object.keys(formErrors).length === 0 && isSubmit)
 {
   console.log(vendor);
-  navigate("/");
+  // navigate("/");
     axios
       .post("http://localhost:4000/vendors/new", vendor)
       .then((res) => {
-    
+        showMessage(true);
       console.log(res.data);
       });
 }
@@ -98,7 +98,7 @@ let navigate = useNavigate();
   const validate = (values) => {
     const errors = {};
     // const regex = /^[^\s@]+@[^\s@]+\.[^s@]{2,}$/i;
-    const regexM = /^((\+91)?|91)?[789][0-9]{9}/;
+    const regexM = /^((\+91)?)?[6789][0-9]{9}/;
     if(!values.name)
     {
       errors.name = "Name is required";
@@ -143,7 +143,7 @@ let navigate = useNavigate();
        (
          <div>
          <FlashMessage duration={5000}>
-           <h1>Vendor Created</h1>
+         <div>Created Vendor Successfully!</div>
          </FlashMessage>
          </div>
        ):

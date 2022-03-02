@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import StayVendor from "./components/Vendor/StayVendor";
 import Notify from "./components/Notify";
 import Error from "./components/Error";
+import Flash from "./components/Flash";
 
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -28,6 +29,8 @@ function App() {
 
   const [customer, setCustomer] = useState("");
   const [vendor, setVendor] = useState("");
+  const [isCustomer, setIsCustomer] = useState(false);
+  const [isVendor, setIsVendor] = useState(false);
 
   const handleLogout = () => {
     axios
@@ -43,6 +46,7 @@ function App() {
     axios.get("http://localhost:4000/customers")
     .then((res) => {
       setCustomer(res.data);
+      setIsCustomer(true);
     })
   
    
@@ -52,6 +56,7 @@ function App() {
     axios.get("http://localhost:4000/vendors")
     .then((res) => {
       setVendor(res.data);
+      setIsVendor(true);
     })
   
    
