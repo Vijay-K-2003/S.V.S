@@ -4,6 +4,7 @@ import axios from "axios";
 import { myContext } from "../Context";
 import "../../index.css";
 
+
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 const ViewCustomer = () => {
@@ -14,6 +15,7 @@ const ViewCustomer = () => {
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
   const [customer, setCustomer] = useState("");
+  const [message, showMessage] = useState(false);
 
   useEffect(() => {
     
@@ -45,7 +47,13 @@ const ViewCustomer = () => {
   const onDeleteCustomer = (id) => {
     navigate("/");
     axios.delete(`http://localhost:4000/customers/${id}/delete`).then((res) => {
-      setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
+      if(res.data)
+      {
+        setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
+
+          showMessage(true);
+       
+      }
     });
   };
 
@@ -82,6 +90,7 @@ const ViewCustomer = () => {
 
   return (
     <div>
+ 
 
  <div>
 

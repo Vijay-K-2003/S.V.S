@@ -2,10 +2,12 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from "axios";
 import {useNavigate, useParams, Link } from 'react-router-dom';
 import { myContext } from '../Context';
+import FlashMessage from "react-flash-message";
 
 const ViewVendor = () => {
 
     const [vendor, setVendor] = useState("");
+    const [message, showMessage] = useState(false)
 const userObject = useContext(myContext);
     
 const {id} = useParams();
@@ -24,10 +26,10 @@ let navigate = useNavigate();
 
   
         const handleDelete = () => {
-            navigate("/");
+            // navigate("/");
                     axios.delete(`http://localhost:4000/vendors/${id}/delete`)
                     .then((res) => {
-                     
+                     showMessage(true);
                     }).catch((e) => {
                         console.log(e);
                     })
@@ -41,7 +43,12 @@ let navigate = useNavigate();
     
   return (
       <div>
-      {userObject.email === vendor.email ? (
+        
+      {message ? (
+           <FlashMessage duration={5000}>
+           <div>Deleted Vendor Successfully!</div>
+       </FlashMessage> 
+      ): userObject.email === vendor.email ? (
           <>
         <h1>View Vendor</h1>
         <h3>Name: {vendor.name}</h3>

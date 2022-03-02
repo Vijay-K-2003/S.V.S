@@ -35,6 +35,7 @@ const Notify = () => {
             if(e.coords.latitude === customer.latitude && e.coords.longitude === customer.longitude)
             {
               setValid(true);
+              console.log("It matched!");
             }
           })
         }
@@ -50,6 +51,7 @@ const Notify = () => {
           .then((res) => {
               if(res.data === "Done")
               {
+                console.log("Yes");
                 //   navigate("/getVendor");
               }
           })
