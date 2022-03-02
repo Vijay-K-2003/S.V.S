@@ -7,7 +7,7 @@ const [searchParams] = useSearchParams();
     
   return (
     <div>
-        <h1>Myself Error Template</h1>
+        <h1>Error Template</h1>
         <h3>{error}</h3>
     </div>
   )

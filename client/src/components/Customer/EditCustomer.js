@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate, useParams } from "react-router-dom";
+import FlashMessage from "react-flash-message";
+
 
 const initialState = {
   name: "",
@@ -16,6 +18,8 @@ const EditCustomer = () => {
     const [customer, setCustomer] = useState(initialState);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
+  const [message, showMessage] = useState(false);
+
     const userObject = useContext(myContext);
     const {id} = useParams();
 
@@ -48,41 +52,63 @@ let navigate = useNavigate();
     e.preventDefault();
     customer.email = userObject.email;
     //send me
-    navigate("/");
+    // navigate("/");
     axios
       .put(`http://localhost:4000/customers/${id}/edit`, customer)
       .then((res) => {
         console.log(res.data);
+        setCustomer(res.data);
+        showMessage(true);
+
       });
   };
+  console.log(message)
 
   return (
     <div>
-      <form>
-          <h1>Edit Customer</h1>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
-        {/* <label htmlFor="email">Email</label>
-        <input type="email" name="email" value={customer.email} onChange={handleChange} /> */}
-        
-        <label htmlFor="mobileNumber">Mobile No.</label>
-        <input
-          type="tel"
-          name="mobileNumber"
-          id="mobileNumber"
-          value={customer.mobileNumber}
-          onChange={handleChange}
+      {message === true ? (
+          <div><FlashMessage duration={5000}>
+          <div>Updated Customer Successfully!</div>
+          </FlashMessage>
+        </div>
+      ):  <form>
+      <h1>Edit Customer</h1>
+    <label htmlFor="name">Name</label>
+    <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
+    {/* <label htmlFor="email">Email</label>
+    <input type="email" name="email" value={customer.email} onChange={handleChange} /> */}
+    
+    <label htmlFor="mobileNumber">Mobile No.</label>
+    <input
+      type="tel"
+      name="mobileNumber"
+      id="mobileNumber"
+      value={customer.mobileNumber}
+      onChange={handleChange}
 
-        />
+    />
 
-        <h4>Please provide ur location</h4>
-        {/* <input type="number" name="latitude" value={customer.latitude} onChange={handleChange} id="latitude" />
-        <input type="number" name="longitude" value={customer.longitude} onChange={handleChange} id="longitude" /> */}
-        <button type="button" onClick={handleLocation}>Current Location</button>
-        <button type="submit" onClick={handleEdit}>
-          Update
-        </button>
-      </form>
+<label htmlFor="area">Please select area where you live</label>
+<select name="area" value={customer.area} onChange={handleChange} id="area">
+<option value="areas">Areas</option>
+<option value="ambavadi">Ambavadi</option>
+<option value="bhadaj">Bhadaj</option>
+<option value="ghodasar">Ghodasar</option>
+<option value="naranpura">Naranpura</option>
+<option value="vastrapura">Vastrapur</option>
+<option value="prahladnagar">Prahladnagar</option>
+
+</select>
+
+    <h4>Please provide ur location</h4>
+    {/* <input type="number" name="latitude" value={customer.latitude} onChange={handleChange} id="latitude" />
+    <input type="number" name="longitude" value={customer.longitude} onChange={handleChange} id="longitude" /> */}
+    <button type="button" onClick={handleLocation}>Current Location</button>
+    <button type="submit" onClick={handleEdit}>
+      Update
+    </button>
+  </form>}
+     
     </div>
   );
 };

@@ -139,14 +139,26 @@ export const notify = async(req, res) => {
 
 export const updateCustomer = async (req, res) => {
   // console.log(req.body);
-  const {id} = req.params;
+  try {
+    const {id} = req.params;
   const customer = await Customer.findByIdAndUpdate(id, req.body);
   await customer.save();
+  res.status(200).json("Done");
+  } catch (error) {
+    res.status(401).json({Message: "Error in updating the customer"})
+  
+  }
+  
 }
 
 export const deleteCustomer = async (req, res) => {
+ try {
   const {id} = req.params;
   if(mongoose.Types.ObjectId.isValid(id))
    await Customer.findByIdAndDelete(id);
-
+res.status(200).json("Done");
+ } catch (error) {
+  res.status(401).json({Message: "Error in deleting the customer!"})
+   
+ }
 }
