@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate } from "react-router";
+import FlashMessage from 'react-flash-message';
 
 const initialState = {
   name: "",
@@ -22,6 +23,7 @@ const CreateVendor = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 const userObject = useContext(myContext);
+const [message, showMessage] = useState(false);
 
   const handleChange = (event) =>setVendor((data) => ({
     ...data,
@@ -65,7 +67,7 @@ let navigate = useNavigate();
     validate(vendor);
     setFormErrors(validate(vendor));
     setIsSubmit(true);
-
+    showMessage(true);
   };
 
   const addItems = (checked) => {
@@ -136,60 +138,71 @@ let navigate = useNavigate();
          return "A vendor has already been registered with the same email";
        }
      })} */}
+     {
+       message === true ?
+       (
+         <div>
+         <FlashMessage duration={5000}>
+           <h1>Vendor Created</h1>
+         </FlashMessage>
+         </div>
+       ):
+       <form>
+       <h1>Create Vendor</h1>
+     <label htmlFor="name">Name</label>
+     <input type="text" name="name" id="name" value={vendor.name} onChange={handleChange} />
+     <p>{formErrors.name}</p>
+     {/* <label htmlFor="email">Email</label>
+     <input type="email" name="email" value={vendor.email} onChange={handleChange} /> */}
+     <label htmlFor="mobileNumber">Mobile No.(Include 91)</label>
+     <input
+       type="tel"
+       name="mobileNumber"
+       id="mobileNumber"
+       value={vendor.mobileNumber}
+       onChange={handleChange}
+    
+     />
+     <p>{formErrors.mobileNumber}</p>
+     <label htmlFor="area">Please select area where you spend maximum time of the day</label>
+    <select name="area" value={vendor.area} onChange={handleChange} id="area">
+      <option value="areas">Areas</option>
+      <option value="ambavadi">Ambavadi</option>
+      <option value="bhadaj">Bhadaj</option>
+      <option value="ghodasar">Ghodasar</option>
+      <option value="naranpura">Naranpura</option>
+      <option value="vastrapura">Vastrapur</option>
+      <option value="prahladnagar">Prahladnagar</option>
+    
+    </select>
+    <p>{formErrors.area}</p>
+    <label htmlFor="items">Please select items that are on your cart</label>
+    {items.map(( name ,index) => {
+          return(
+                // <li key={index}>
+                  <div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id={`custom-checkbox-${index}`}
+                        name={name}
+                        value={vendor.items}
+                        checked={checked[index]}
+                        onChange={() => handleItemChange(index)}
+                      />
+                      <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                    </div>
+                  </div>
+                // </li>
+          );
+            })}
+     <button type="submit" onClick={handleSubmit}>
+       Submit
+     </button>
+    </form>
+     }
  
- <form>
-   <h1>Create Vendor</h1>
- <label htmlFor="name">Name</label>
- <input type="text" name="name" id="name" value={vendor.name} onChange={handleChange} />
- <p>{formErrors.name}</p>
- {/* <label htmlFor="email">Email</label>
- <input type="email" name="email" value={vendor.email} onChange={handleChange} /> */}
- <label htmlFor="mobileNumber">Mobile No.(Include 91)</label>
- <input
-   type="tel"
-   name="mobileNumber"
-   id="mobileNumber"
-   value={vendor.mobileNumber}
-   onChange={handleChange}
-
- />
- <p>{formErrors.mobileNumber}</p>
- <label htmlFor="area">Please select area where you spend maximum time of the day</label>
-<select name="area" value={vendor.area} onChange={handleChange} id="area">
-  <option value="areas">Areas</option>
-  <option value="ambavadi">Ambavadi</option>
-  <option value="bhadaj">Bhadaj</option>
-  <option value="ghodasar">Ghodasar</option>
-  <option value="naranpura">Naranpura</option>
-  <option value="vastrapura">Vastrapur</option>
-  <option value="prahladnagar">Prahladnagar</option>
-
-</select>
-<p>{formErrors.area}</p>
-<label htmlFor="items">Please select items that are on your cart</label>
-{items.map(( name ,index) => {
-      return(
-            // <li key={index}>
-              <div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id={`custom-checkbox-${index}`}
-                    name={name}
-                    value={vendor.items}
-                    checked={checked[index]}
-                    onChange={() => handleItemChange(index)}
-                  />
-                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                </div>
-              </div>
-            // </li>
-      );
-        })}
- <button type="submit" onClick={handleSubmit}>
-   Submit
- </button>
-</form>
+ 
    
      
     </div>
