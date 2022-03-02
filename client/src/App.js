@@ -22,8 +22,6 @@ import EditVendor from "./components/Vendor/EditVendor";
 import EditCustomer from "./components/Customer/EditCustomer";
 import MyCustomer from "./components/Vendor/MyCustomer";
 
-// mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
-
 function App() {
   const userObject = useContext(myContext);
 
@@ -74,44 +72,46 @@ function App() {
   return (
     <div>
       <Router>
-        {userObject ? (
-          <>
+   {userObject ? (
+    <>
 
-            <ul>
-              
-              <li>
-                <Link to="/getCustomer">Your Customer</Link>
-              </li>
-              <li>
-                <Link to="/createCustomer">Create a Customer</Link>
-              </li>
-    
-              <li>
-                <Link to="/createVendor">Create a Vendor</Link>
-              </li>
-              <li>
-                <Link to="/getVendor">Your Vendor</Link>
-              </li>
+<ul>
+  
+  <li>
+    <Link to="/getCustomer">Your Customer</Link>
+  </li>
+  <li>
+    <Link to="/createCustomer">Create a Customer</Link>
+  </li>
 
-              <li>
-                <Link to="/logout" onClick={handleLogout}>
-                  Logout
-                </Link>
-              </li>
-            </ul>
-          </>
-        ) : (
-          <>
-            <ul>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            </ul>
-          </>
-        )}
+  <li>
+    <Link to="/createVendor">Create a Vendor</Link>
+  </li>
+  <li>
+    <Link to="/getVendor">Your Vendor</Link>
+  </li>
+
+  <li>
+    <Link to="/logout" onClick={handleLogout}>
+      Logout
+    </Link>
+  </li>
+</ul>
+</>
+   ): <>
+   <ul>
+     <li>
+       <Link to="/login">Login</Link>
+     </li>
+   </ul>
+ </>}
+          
+
+          
+      
 
         <Routes>
-          {userObject ? (
+          {/* {userObject ? ( */}
             <>
               <Route path="/" element={<HomePage />}></Route>
 
@@ -138,10 +138,11 @@ function App() {
               <Route path="/vendors/:venid/locate/:id/notify" element={<Notify />} />
               <Route path="/vendors/:id/myCustomers" element={<MyCustomer />} />
               <Route path="/error" element={<Error />} />
+              <Route path="/flash" element={<Flash />} />
             </>
-          ) : (
+    
             <Route path="login" element={<LoginPage />}></Route>
-          )}
+   
         </Routes>
       </Router>
     </div>
