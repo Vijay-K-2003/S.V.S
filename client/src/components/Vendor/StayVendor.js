@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
 
@@ -34,6 +34,7 @@ const StayVendor = () => {
 		// if(customer)
 // console.log(customer[0].myVendors);
 let navigate = useNavigate();
+let location = useLocation();
 	function setGeolocation() {
 		customer.map((cust) => {
 		 const geolocation = window.navigator.geolocation.watchPosition((pos) => {
@@ -51,7 +52,7 @@ let navigate = useNavigate();
 					//We have send customer and vendor id from here 
 				console.log("I am in stay vendor");
 				
-					navigate(`${cust._id}/notify`);
+					navigate(`${cust._id}/notify`, location);
 				}
 			})
 			window.setTimeout( function () {

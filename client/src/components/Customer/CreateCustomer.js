@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate } from "react-router";
+import FlashMessage from "react-flash-message";
 
 
 const initialState = {
@@ -24,6 +25,7 @@ const CreateCustomer = () => {
   const [lng, setLng] = useState(0);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [message, showMessage] = useState(false);
   const userObject = useContext(myContext);
 
   const handleChange = (event) =>setCustomer((data) => ({
@@ -82,11 +84,13 @@ setVen(res.data);
       if(Object.keys(formErrors).length === 0 && isSubmit)
   {
     console.log(customer);
-    navigate("/");
+  
+    // navigate("/");
     axios
     .post("http://localhost:4000/customers/new", customer)
     .then((res) => {
           console.log(res.data);
+          showMessage(true);
         });
   
   }
@@ -96,7 +100,6 @@ setVen(res.data);
 
   const validate = (values) => {
 const errors = {};
-// const regex = /^[^\s@]+@[^\s@]+\.[^s@]{2,}$/i;
 const regexM = /^((\+91)?|91)?[789][0-9]{9}/;
 if(!values.name)
 {
@@ -142,46 +145,51 @@ return errors;
        }
      })} */}
     
-    
-      <form>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
-        <p>{formErrors.name}</p>
-        {/* <label htmlFor="email">Email</label>
-        <input type="email" name="email" value={customer.email} onChange={handleChange} /> */}
-        <br />
-        <label htmlFor="mobileNumber">Mobile No.(Include +91)</label>
-        <input
-          type="tel"
-          name="mobileNumber"
-          id="mobileNumber"
-          value={customer.mobileNumber}
-          onChange={handleChange}
+    {message === true ? (
+      <div><FlashMessage duration={5000}>
+        <div>Created a Customer Successfully!</div>
+        </FlashMessage>
+      </div>
+    ):  <form>
+    <label htmlFor="name">Name</label>
+    <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
+    <p>{formErrors.name}</p>
+    {/* <label htmlFor="email">Email</label>
+    <input type="email" name="email" value={customer.email} onChange={handleChange} /> */}
+    <br />
+    <label htmlFor="mobileNumber">Mobile No.(Include +91)</label>
+    <input
+      type="tel"
+      name="mobileNumber"
+      id="mobileNumber"
+      value={customer.mobileNumber}
+      onChange={handleChange}
 
-        />
-        <p>{formErrors.mobileNumber}</p>
+    />
+    <p>{formErrors.mobileNumber}</p>
 <br />
 <label htmlFor="area">Please select area where you live</label>
 <select name="area" value={customer.area} onChange={handleChange} id="area">
-  <option value="areas">Areas</option>
-  <option value="ambavadi">Ambavadi</option>
-  <option value="bhadaj">Bhadaj</option>
-  <option value="ghodasar">Ghodasar</option>
-  <option value="naranpura">Naranpura</option>
-  <option value="vastrapura">Vastrapur</option>
-  <option value="prahladnagar">Prahladnagar</option>
+<option value="areas">Areas</option>
+<option value="ambavadi">Ambavadi</option>
+<option value="bhadaj">Bhadaj</option>
+<option value="ghodasar">Ghodasar</option>
+<option value="naranpura">Naranpura</option>
+<option value="vastrapura">Vastrapur</option>
+<option value="prahladnagar">Prahladnagar</option>
 
 </select>
 <p>{formErrors.area}</p>
-        {/* <button type="button" onClick={handleLocation}>Current Location</button>  */}
-        <input type="checkbox" onChange={handleCheckBox} name="location" id="location" />
-        <label htmlFor="location">You are at location from where you want to be notified</label>
-        <p>{formErrors.location}</p>
-        <br />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
+    {/* <button type="button" onClick={handleLocation}>Current Location</button>  */}
+    <input type="checkbox" onChange={handleCheckBox} name="location" id="location" />
+    <label htmlFor="location">You are at location from where you want to be notified</label>
+    <p>{formErrors.location}</p>
+    <br />
+    <button type="submit" onClick={handleSubmit}>
+      Submit
+    </button>
+  </form>}
+     
     </div>
   );
 };

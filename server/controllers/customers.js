@@ -109,25 +109,25 @@ export const notify = async(req, res) => {
     const customer = await Customer.findById(id);
     const vendor = await Vendor.findById(venid);
   
-   client.messages.create({
-     body: `Your vendor ${vendor.name} carrying ${vendor.items+','} is very near to ur house,contact: ${vendor.mobileNumber}`,
-     from: `whatsapp:${process.env.TWILIO_WATSAAP_NUMBER}`,       
-      to: `whatsapp:${customer.mobileNumber}` //customer.mobileNumber(should be registered)
+//    client.messages.create({
+//      body: `Your vendor ${vendor.name} carrying ${vendor.items+','} is very near to ur house,contact: ${vendor.mobileNumber}`,
+//      from: `whatsapp:${process.env.TWILIO_WATSAAP_NUMBER}`,       
+//       to: `whatsapp:${customer.mobileNumber}` //customer.mobileNumber(should be registered)
 
-   }).then((message) => {
-console.log(message.sid);
-   }).done()
+//    }).then((message) => {
+// console.log(message.sid);
+//    }).done()
 
-  client.calls.create({
-    twiml: '<Response><Say>Hey customer your vendor has reached near your house for more details check your watsaap</Say></Response>',
-    to:`${customer.mobileNumber}`,
-    from:process.env.TWILIO_CALL_NUMBER
-  }).then((call) => {
+//   client.calls.create({
+//     twiml: '<Response><Say>Hey customer your vendor has reached near your house for more details check your watsaap</Say></Response>',
+//     to:`${customer.mobileNumber}`,
+//     from:process.env.TWILIO_CALL_NUMBER
+//   }).then((call) => {
 
-    console.log(call.sid);
-  }).catch((e) => {
-    console.log(e);
-  })
+//     console.log(call.sid);
+//   }).catch((e) => {
+//     console.log(e);
+//   })
 
   res.status(200).json("Done");
     
