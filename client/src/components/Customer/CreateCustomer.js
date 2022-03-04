@@ -145,12 +145,13 @@ return errors;
        }
      })} */}
     
+    <h1>Create A Customer</h1>
     {message === true ? (
       <div><FlashMessage duration={5000}>
         <div>Created a Customer Successfully!</div>
         </FlashMessage>
       </div>
-    ):  <form>
+    ):<form>
     <label htmlFor="name">Name</label>
     <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
     <p>{formErrors.name}</p>

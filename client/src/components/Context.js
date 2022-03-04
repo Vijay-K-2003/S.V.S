@@ -27,11 +27,3 @@ const Context = (props) => {
 
 export default Context
 
-// axios.get("http://localhost:4000/getUser", {withCredentials: true})
-// .then((res) => {
-//     console.log(res.data);
-//    setUser(res.data);
-// })
-// .catch((e) => {
-//     console.log("Error in accessing users data");
-// })

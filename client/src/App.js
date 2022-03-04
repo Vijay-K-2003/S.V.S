@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-// import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import { useNavigate } from "react-router-dom";
 import YourCustomer from "./components/Customer/YourCustomer";
 import CreateCustomer from "./components/Customer/CreateCustomer";
 import AllVendors from "./components/Vendor/AllVendors";
@@ -60,88 +60,112 @@ function App() {
    
   }, [])
 
-  // customer.map((e) => {
-  //   if(userObject && e.email === userObject.email)
-  //   {
-  //     console.log("It matched");
-  //   }
-  // })
 
   
 
   return (
     <div>
       <Router>
-   {userObject ? (
-    <>
 
-<ul>
-  
-  <li>
-    <Link to="/getCustomer">Your Customer</Link>
-  </li>
-  <li>
-    <Link to="/createCustomer">Create a Customer</Link>
-  </li>
+    {userObject && isVendor && isCustomer? (
+      <div>
+<div><Link to="/createCustomer">Create a Customer</Link></div>
+         
+         <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+  <div> <Link to="/getCustomer">Your Customer</Link></div>
 
-  <li>
-    <Link to="/createVendor">Create a Vendor</Link>
-  </li>
-  <li>
-    <Link to="/getVendor">Your Vendor</Link>
-  </li>
 
-  <li>
-    <Link to="/logout" onClick={handleLogout}>
-      Logout
-    </Link>
-  </li>
-</ul>
-</>
-   ): <>
-   <ul>
-     <li>
-       <Link to="/login">Login</Link>
-     </li>
-   </ul>
- </>}
+        <div> <Link to="/getVendor">Your Vendor</Link></div>
+      <div> <Link to="/logout" onClick={handleLogout}>Logout</Link></div> 
+      </div>
+    ):  <div>
+    <div><Link to="/login">Login</Link></div>
+    <div><Link to="/createCustomer">Create a Customer</Link></div>
+         
+    <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+    </div>}
+      
+         
+                        
+     
+                        
+      {/* {userObject && isCustomer === false && isVendor === false} ? (
+        <>
+            <div><Link to="/createCustomer">Create a Customer</Link></div>
+            <Link to="/logout" onClick={handleLogout}>
+                  Logout
+                </Link>
+            <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+          
+        ): {userObject && isCustomer === true && isVendor === false} ? (
+          <div> <Link to="/getCustomer">Your Customer</Link></div>
+          <Link to="/logout" onClick={handleLogout}>
+                  Logout
+                </Link>
+        ): {userObject && isCustomer === false && isVendor === true} ? (
+          <div> <Link to="/getVendor">Your Vendor</Link></div>
+          <Link to="/logout" onClick={handleLogout}>
+                  Logout
+                </Link>
+        ): {!userObject} ? (
+          <div><Link to="/login">Login</Link></div>
+          </>
+        ) */}
+{/* 
+        {userObject && !(isCustomer) && !(isVendor) ? (
+          <div>
+           <div><Link to="/createCustomer">Create a Customer</Link></div>
+           <Link to="/logout" onClick={handleLogout}>
+                 Logout
+               </Link>
+           <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+           </div>
+        ): <div><div><Link to="/logout" onClick={handleLogout}>
+        Logout
+      </Link></div>
+     </div>} */}
+     {/* {userObject ? (
+       console.log(userObject)
+     ): "Kuch nai"} */}
           
 
           
       
 
         <Routes>
-          {/* {userObject ? ( */}
+         {userObject ? (
             <>
-              <Route path="/" element={<HomePage />}></Route>
+            <Route path="/" element={<HomePage />}></Route>
 
-              <Route path="getCustomer" element={<YourCustomer />}></Route>
-              <Route path="createCustomer" element={<CreateCustomer />}></Route>
-              {/* <Route path="getVendors" element={<AllVendors/>}></Route> */}
-              <Route path="createVendor" element={<CreateVendor />}></Route>
-              <Route path="/customers/:id/allVendor" element={<AllVendors />} />
-              {/* <Route
-                path="/customers/:id/allVendor/:venid"
-                element={<CustomerVendor />}
-              /> */}
-              <Route path="/customers/:id" element={<ViewCustomer />} />
-              <Route path="/customers/:id/edit" element={<EditCustomer />} />
-              <Route path="/vendors/:id/edit" element={<EditVendor />} />
-              <Route
-                path="/customers/:id/myVendors"
-                element={<CustomerVendor />}
-              />
-              <Route path="getVendor" element={<YourVendor />} />
-              <Route path="vendors/:id" element={<ViewVendor />} />
+            <Route path="getCustomer" element={<YourCustomer />}></Route>
+            <Route path="createCustomer" element={<CreateCustomer />}></Route>
+        
+            <Route path="createVendor" element={<CreateVendor />}></Route>
+            <Route path="/customers/:id/allVendor" element={<AllVendors />} />
+          
+            <Route path="/customers/:id" element={<ViewCustomer />} />
+            <Route path="/customers/:id/edit" element={<EditCustomer />} />
+            <Route path="/vendors/:id/edit" element={<EditVendor />} />
+            <Route
+              path="/customers/:id/myVendors"
+              element={<CustomerVendor />}
+            />
+            <Route path="getVendor" element={<YourVendor />} />
+            <Route path="vendors/:id" element={<ViewVendor />} />
 
-              <Route path="/vendors/:id/locate" element={<StayVendor />} />
-              <Route path="/vendors/:venid/locate/:id/notify" element={<Notify />} />
-              <Route path="/vendors/:id/myCustomers" element={<MyCustomer />} />
-              <Route path="/error" element={<Error />} />
-              <Route path="/flash" element={<Flash />} />
-            </>
+            <Route path="/vendors/:id/locate" element={<StayVendor />} />
+            <Route path="/vendors/:venid/locate/:id/notify" element={<Notify />} />
+            <Route path="/vendors/:id/myCustomers" element={<MyCustomer />} />
+            <Route path="/error" element={<Error />} />
+            <Route path="/flash" element={<Flash />} />
+          </>
+         ): 
+         <Route path="login" element={<LoginPage />}>
+       
+           </Route>}
+           
     
-            <Route path="login" element={<LoginPage />}></Route>
+            
    
         </Routes>
       </Router>
