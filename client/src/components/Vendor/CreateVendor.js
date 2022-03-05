@@ -138,8 +138,9 @@ let navigate = useNavigate();
          return "A vendor has already been registered with the same email";
        }
      })} */}
+     
      {
-       message === true ?
+       message === true && Object.keys(formErrors).length === 0 ?
        (
          <div>
          <FlashMessage duration={5000}>

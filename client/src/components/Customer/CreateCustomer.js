@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import FlashMessage from "react-flash-message";
 
 
@@ -85,12 +85,13 @@ setVen(res.data);
   {
     console.log(customer);
   
-    // navigate("/");
+   
     axios
     .post("http://localhost:4000/customers/new", customer)
     .then((res) => {
           console.log(res.data);
           showMessage(true);
+      
         });
   
   }
@@ -144,14 +145,15 @@ return errors;
          return "A vendor has already been registered with the same email";
        }
      })} */}
-    
-    <h1>Create A Customer</h1>
-    {message === true ? (
+    <Link to="/">Home Page</Link>
+    {message === true && Object.keys(formErrors).length === 0 ? (
       <div><FlashMessage duration={5000}>
         <div>Created a Customer Successfully!</div>
         </FlashMessage>
       </div>
-    ):<form>
+    
+    ): <form>
+      <h1>Create A Customer</h1>
     <label htmlFor="name">Name</label>
     <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
     <p>{formErrors.name}</p>
@@ -189,7 +191,8 @@ return errors;
     <button type="submit" onClick={handleSubmit}>
       Submit
     </button>
-  </form>}
+  </form>
+  }
      
     </div>
   );
