@@ -14,6 +14,7 @@ const googleLogin = () => {
   return <div>
 <h1>Login Page</h1>
 {/* <img src={googleImage} alt="googleIcon.png" /> */}
+
 <button onClick={googleLogin}>Login with Google</button>
     </div>
 }

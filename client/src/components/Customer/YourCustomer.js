@@ -20,7 +20,7 @@ useEffect(() => {
     
         setCustomer(res.data);
     })
-}, []);
+},[]);
 
 let navigate = useNavigate();
 const handleCustomer = (id) => {

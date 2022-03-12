@@ -9,6 +9,8 @@ const initialState = {
   name: "",
   email: "",
   mobileNumber: "",
+  area: "",
+  checked: false,
   latitude: 0,
   longitude: 0
 };
@@ -18,6 +20,8 @@ const EditCustomer = () => {
     const [customer, setCustomer] = useState(initialState);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
   const [message, showMessage] = useState(false);
 
     const userObject = useContext(myContext);
@@ -27,6 +31,30 @@ const EditCustomer = () => {
     ...data,
     [event.target.name]: event.target.value,
   }));
+
+  
+    const handleCheckBox = (e) => {
+      var checked = e.target.checked;
+      if(checked)
+      {
+        
+      navigator.geolocation.getCurrentPosition((pos) => {
+        setLat(pos.coords.latitude);
+        setLng(pos.coords.longitude);
+        customer.latitude = pos.coords.latitude;
+        customer.longitude = pos.coords.longitude;
+        
+      })
+    }}
+  
+    const handleEdit = (e) => {
+      e.preventDefault();
+      customer.email = userObject.email;
+      validate(customer);
+      setFormErrors(validate(customer));
+      setIsSubmit(true);
+   
+    }
 
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${id}`)
@@ -38,31 +66,54 @@ const EditCustomer = () => {
   }, [])
   
 
-  const handleLocation = () => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      setLat(pos.coords.latitude);
-      setLng(pos.coords.longitude);
-      customer.latitude = pos.coords.latitude;
-      customer.longitude = pos.coords.longitude;
-      
-    })
-  }
-let navigate = useNavigate();
-  const handleEdit = (e) => {
-    e.preventDefault();
-    customer.email = userObject.email;
-    //send me
-    // navigate("/");
+  
+useEffect(() => {
+  if(Object.keys(formErrors).length === 0 && isSubmit){
+ 
     axios
-      .put(`http://localhost:4000/customers/${id}/edit`, customer)
-      .then((res) => {
-        console.log(res.data);
-        setCustomer(res.data);
-        showMessage(true);
+   .put(`http://localhost:4000/customers/${id}/edit`, customer)
+   .then((res) => {
+     console.log(res.data);
+     setCustomer(res.data);
+     showMessage(true);
 
-      });
-  };
-  console.log(message)
+   });
+ 
+}
+
+ 
+}, [formErrors])
+
+
+
+
+ 
+
+
+  const validate = (values) => {
+    const errors = {};
+    const regexM = /^((\+91)?|91)?[789][0-9]{9}/;
+    if(!values.name)
+    {
+      errors.name = "Name is required";
+    }
+    if(!values.mobileNumber)
+    {
+      errors.mobileNumber = "Mobile No. is required";
+    }
+    else if(!(String(values.mobileNumber).match(regexM)))
+    {
+    errors.mobileNumber = "Please enter a valid Mobile No.";
+    }
+    
+    if(!values.area)
+    {
+      errors.area = "We would require your area for our convinience";
+    }
+    
+    return errors;
+      }
+
 
   return (
     <div>
@@ -71,14 +122,12 @@ let navigate = useNavigate();
           <div>Updated Customer Successfully!</div>
           </FlashMessage>
         </div>
-      ):  <form>
+      ): ( <form>
       <h1>Edit Customer</h1>
     <label htmlFor="name">Name</label>
     <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
-    {/* <label htmlFor="email">Email</label>
-    <input type="email" name="email" value={customer.email} onChange={handleChange} /> */}
-    
-    <label htmlFor="mobileNumber">Mobile No.</label>
+<p>{formErrors.name}</p>
+    <label htmlFor="mobileNumber">Mobile No.(Must include +91)</label>
     <input
       type="tel"
       name="mobileNumber"
@@ -87,6 +136,8 @@ let navigate = useNavigate();
       onChange={handleChange}
 
     />
+   <p> {formErrors.mobileNumber}</p>
+
 
 <label htmlFor="area">Please select area where you live</label>
 <select name="area" value={customer.area} onChange={handleChange} id="area">
@@ -99,15 +150,16 @@ let navigate = useNavigate();
 <option value="prahladnagar">Prahladnagar</option>
 
 </select>
+<p>{formErrors.area}</p>
 
-    <h4>Please provide ur location</h4>
-    {/* <input type="number" name="latitude" value={customer.latitude} onChange={handleChange} id="latitude" />
-    <input type="number" name="longitude" value={customer.longitude} onChange={handleChange} id="longitude" /> */}
-    <button type="button" onClick={handleLocation}>Current Location</button>
+<input type="checkbox" checked onChange={handleCheckBox} name="location" id="location" />
+    <label htmlFor="location">You are at location from where you want to be notified</label>
+    <p>{formErrors.location}</p>
+
     <button type="submit" onClick={handleEdit}>
       Update
     </button>
-  </form>}
+  </form>)}
      
     </div>
   );

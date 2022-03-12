@@ -30,23 +30,23 @@ const Notify = () => {
          
         }, [])
 
-        const checkValid = (customer) => {
-          navigator.geolocation.watchPosition((e) => {
-            if(e.coords.latitude === customer.latitude && e.coords.longitude === customer.longitude)
-            {
-              setValid(true);
-              console.log("It matched!");
-            }
-          })
-        }
+        // const checkValid = (customer) => {
+        //   navigator.geolocation.watchPosition((e) => {
+        //     if(e.coords.latitude === customer.latitude && e.coords.longitude === customer.longitude)
+        //     {
+        //       setValid(true);
+        //       console.log("It matched!");
+        //     }
+        //   })
+        // }
 
         let navigate = useNavigate();
         let location = useLocation();
         useEffect(() => {
   
-            checkValid(customer);
-            if(valid === true)
-            {
+            // checkValid(customer);
+            // if(valid === true)
+            // {
           axios.get(`http://localhost:4000/customers/${id}/notify/${venid}`)
           .then((res) => {
               if(res.data === "Done")
@@ -57,11 +57,11 @@ const Notify = () => {
           })
           console.log(valid);
         
-        }
-        else if(valid === false){
+        // }
+        // else if(valid === false){
 
-          navigate("/error/?error=Your locations do not match, therefore you are not authorized to do that!");
-        }
+        //   navigate("/error/?error=Your locations do not match, therefore you are not authorized to do that!");
+        // }
         }, [])
         
 

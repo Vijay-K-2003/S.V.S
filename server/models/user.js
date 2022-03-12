@@ -17,6 +17,7 @@ const userSchema = new Schema({
             type: String,
             // required: [true, "Email cannot be empty!"]
         },
+     
        password: {
            type: String,
         //    required: [true, "Password cannot be empty!"]

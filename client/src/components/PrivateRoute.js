@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { myContext } from "./Context"
 
-const PrivateRoute = (props) => {
+const PrivateRoute = () => {
     const userObject = useContext(myContext);
 
   const location = useLocation();

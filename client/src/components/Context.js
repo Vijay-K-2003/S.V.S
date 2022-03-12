@@ -13,13 +13,15 @@ const Context = (props) => {
 
     useEffect(() => {
      const getUser = async() => {
+    
      const res =  await axios.get("http://localhost:4000/getUser", {withCredentials: true});
      console.log(res.data);
       setUser(res.data);
      }
      getUser();
     }, [])
-    
+  
+  
   return (
       <myContext.Provider value={user}>{props.children}</myContext.Provider>
   )

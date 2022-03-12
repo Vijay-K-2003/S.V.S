@@ -8,6 +8,7 @@ const [searchParams] = useSearchParams();
     
   return (
     <div>
+      <a href="/">Home</a>
     <FlashMessage duration={5000}>
         <div>{flash}</div>
     </FlashMessage>

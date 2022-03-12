@@ -45,8 +45,7 @@ const {id} = useParams();
          if(e)
          {
            let indx = items.indexOf(e);
-          //  checked[indx] = true;
-          // setChecked(checked[indx] = true);
+        
             temp[indx] = true;
             
             
@@ -102,15 +101,7 @@ console.log(vendor);
       });
   };
 
- 
-   
-  
-// if(!vendor)
-// {
-//   return(
-//     <div>Loading...</div>
-//   )
-// }
+
 
   return (
     
