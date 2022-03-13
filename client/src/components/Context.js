@@ -6,24 +6,26 @@ const initialState = {
     email: "",
     };
 
-    const myContext = createContext({});
+   export const myContext = createContext({});
 const Context = (props) => {
 
     const [user, setUser] = useState(initialState);
 
     useEffect(() => {
-      axios.get("http://localhost:4000/google")
-      .then((res) => {
-         setUser(res.data);
-      })
-      .catch((e) => {
-          console.log("Error in accessing users data");
-      })
-    }, [])
+     const getUser = async() => {
     
+     const res =  await axios.get("http://localhost:4000/getUser", {withCredentials: true});
+     console.log(res.data);
+      setUser(res.data);
+     }
+     getUser();
+    }, [])
+  
+  
   return (
       <myContext.Provider value={user}>{props.children}</myContext.Provider>
   )
 }
 
 export default Context
+

@@ -1,11 +1,13 @@
 import express from "express";
 const router = express.Router();
-import { getVendor, createVendor, addVendor } from "../controllers/vendors.js";
-import isLoggedIn from "../middleware.js";
+import { getVendor, createVendor, stayVendor, deleteVendor, updateVendor, vendorCustomer } from "../controllers/vendors.js";
+
 
 router.get("/", getVendor);
-router.get("/customers/:id/allVendor/:venid", addVendor);
-
+router.get("/:id", stayVendor);
+router.get("/:id/myCustomers", vendorCustomer);
+router.delete("/:id/delete", deleteVendor);
+router.put("/:id/edit", updateVendor);
 router.post("/new", createVendor);
 
 export default router;
