@@ -1,6 +1,8 @@
 import React from "react";
 import googleImage from "./assets/googleimage.png";
-import "./loginPage.css";
+import "../css/loginPage.css";
+import loginpage from "./assets/loginpage.png"
+import loginpagelogo from "./assets/loginpagelogo.png"
 
 
 const LoginPage = () => {
@@ -12,11 +14,33 @@ const googleLogin = () => {
 
 
   return <div>
-<h1>Login Page</h1>
-{/* <img src={googleImage} alt="googleIcon.png" /> */}
+  <div className="container">
+    <div className="divleft">
+      <h1>Login to</h1>
+      <h1>stay connected</h1>
+      <p>get instant notification as soon as your vendor get to your location , pick by your own hand or get it delivered fresh.</p>
+      {/* <img src={googleImage} alt="googleIcon.png" /> */}
+      <div className="leftdown">
 
-<button onClick={googleLogin}>Login with Google</button>
+        <button className="btn" onClick={googleLogin}>
+        <div class="btn-text">Login with Google<img src={googleImage} alt="googleimage.png" /> </div></button>
+        <span className="logo">
+          < img src={loginpagelogo} alt="loginpagelogo.png" />
+
+        </span>
+
+      </div>
     </div>
+    <div className="divright">
+
+
+      <img src={loginpage} alt="loginpage.png" />
+
+
+    </div>
+  </div>
+
+</div> 
 }
 
 export default LoginPage;
