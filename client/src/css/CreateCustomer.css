@@ -4,11 +4,14 @@
     background-color: #C8B0B7;
     overflow: hidden;
     font-family: 'Glory', sans-serif;
+    padding: 4rem;
 }
 
 .container-create-customer {
     display: flex;   
     justify-content: space-around;
+    text-align: left;
+    align-items: center;
 }
 
 .create-customer-form {
@@ -22,9 +25,10 @@
 }
 
 .eles {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     line-height: 2.45rem;
+    margin-right: 1rem;
 }
 
 .eles-in {
@@ -32,6 +36,38 @@
     box-sizing: border-box;
     border-radius: 30px;
     font-size: 1.2rem;
+    font-family: 'Glory', sans-serif;
 }
 
+.create-customer-submit-flex {
+    display: flex;
+    justify-content: space-around;
+}
 
+.create-customer-submit {
+    background-color: #5F021E;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-family: 'Glory', sans-serif;
+    font-size: 1.2rem;
+    height: 3rem;
+    width: 8rem;
+    
+}
+
+.create-customer-theimage {
+    height: 95%;
+    width: 95%;
+}
+
+.create-customer-image {
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 880px) {
+    .create-customer-image {
+        display: none;
+    }
+}

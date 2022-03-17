@@ -195,12 +195,13 @@ return errors;
     
     <p>{formErrors.location}</p>
     <br />
-  <button type="submit" onClick={handleSubmit}>
+    <div className="create-customer-submit-flex">
+  <button className="create-customer-submit" type="submit" onClick={handleSubmit}>
       Submit
-    </button>
+    </button></div>
   </form>
   <div className="create-customer-image">
-      <img src={createCustomerImage} />
+      <img className="create-customer-theimage" src={createCustomerImage} />
     </div>
   </div>
   }
