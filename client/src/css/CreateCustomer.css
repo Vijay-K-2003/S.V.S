@@ -18,6 +18,10 @@
     align-content: center;
 }
 
+.create-customer-checkbox {
+    zoom: 1.5;
+}
+
 .left-headline {
     font-size: 4.063rem;
     line-height: 4.55rem;

@@ -190,7 +190,7 @@ return errors;
 </select>
 <p>{formErrors.area}</p>
 
-    <input type="checkbox" onChange={handleCheckBox} name="location" id="location" />
+    <input className="create-customer-checkbox" type="checkbox" onChange={handleCheckBox} name="location" id="location" />
     <label htmlFor="location" className="eles">You are at location from where you want to be notified</label>
     
     <p>{formErrors.location}</p>
