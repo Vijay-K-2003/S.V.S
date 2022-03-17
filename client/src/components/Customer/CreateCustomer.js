@@ -3,7 +3,8 @@ import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate, Link } from "react-router-dom";
 import FlashMessage from "react-flash-message";
-
+import "../../css/CreateCustomer.css"
+import createCustomerImage from "../assets/create_customer.svg";
 
 const initialState = {
   name: "",
@@ -132,7 +133,7 @@ return errors;
 
 
   return (
-    <div>
+    <div className="component-full">
     
     {/* {cus && cus.map((e) => {
        if(e.email === userObject.email)
@@ -157,14 +158,16 @@ return errors;
         </FlashMessage>
       </div>
     
-    ): <form>
-      <h1>Create A Customer</h1>
-    <label htmlFor="name">Name</label>
-    <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
+    ): <div className="container-create-customer">
+      <form className="create-customer-form">
+      <h1 className="left-headline">Create A Customer</h1>
+    <label className="eles " htmlFor="name">Name</label>
+    <input className="eles-in " type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
     <p>{formErrors.name}</p>
     <br />
-    <label htmlFor="mobileNumber">Mobile No.(Include +91)</label>
+    <label className="eles" htmlFor="mobileNumber">Mobile No.(Include +91)</label>
     <input
+      className="eles-in"
       type="tel"
       name="mobileNumber"
       id="mobileNumber"
@@ -174,8 +177,8 @@ return errors;
     />
     <p>{formErrors.mobileNumber}</p>
 <br />
-<label htmlFor="area">Please select area where you live</label>
-<select name="area" value={customer.area} onChange={handleChange} id="area">
+<label className="eles" htmlFor="area">Please select area where you live</label>
+<select className="eles-in" name="area" value={customer.area} onChange={handleChange} id="area">
 <option value="areas">Areas</option>
 <option value="ambavadi">Ambavadi</option>
 <option value="bhadaj">Bhadaj</option>
@@ -188,13 +191,18 @@ return errors;
 <p>{formErrors.area}</p>
 
     <input type="checkbox" onChange={handleCheckBox} name="location" id="location" />
-    <label htmlFor="location">You are at location from where you want to be notified</label>
+    <label htmlFor="location" className="eles">You are at location from where you want to be notified</label>
+    
     <p>{formErrors.location}</p>
     <br />
   <button type="submit" onClick={handleSubmit}>
       Submit
     </button>
   </form>
+  <div className="create-customer-image">
+      <img src={createCustomerImage} />
+    </div>
+  </div>
   }
      
     </div>

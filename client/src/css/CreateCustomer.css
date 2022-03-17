@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;600;800&family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.component-full {
+    background-color: #C8B0B7;
+    overflow: hidden;
+    font-family: 'Glory', sans-serif;
+}
+
+.container-create-customer {
+    display: flex;   
+    justify-content: space-around;
+}
+
+.create-customer-form {
+    align-content: center;
+}
+
+.left-headline {
+    font-size: 4.063rem;
+    line-height: 4.55rem;
+    font-weight: 600;
+}
+
+.eles {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 2.45rem;
+}
+
+.eles-in {
+    border: 1px solid #5F021E;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-size: 1.2rem;
+}
+
+

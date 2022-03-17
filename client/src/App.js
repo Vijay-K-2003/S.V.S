@@ -90,33 +90,33 @@ getCustomer();
      {userObject && !isCustomer && !isVendor ? (
        <div>
          {console.log(isCustomer)}
-       <div> <button> <Link to="/createCustomer" className="btn-link">Create a Customer</Link></button></div>
-     <div> <button><Link to="/createVendor" className="btn-link">Create a Vendor</Link></button> </div>
+       <div> <Link to="/createCustomer" className="nav-link">Create a Customer</Link></div>
+     <div><Link to="/createVendor" className="nav-link">Create a Vendor</Link> </div>
 
-       <div> <button> <Link to="/logout" onClick={handleLogout} className="btn-link">Logout</Link></button></div> 
-       <div> <button><a href="/" className="btn-link">Home</a></button> </div>
+       <div> <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link></div> 
+       <div><a href="/" className="nav-link">Home</a></div>
 
        </div>
      ): userObject && isCustomer && !isVendor ? (
        <div> 
    
-   <div><button><a href="/" className="btn-link">Home</a></button></div>
-         <div> <button><Link to="/getCustomer" className="btn-link">Your Customer</Link></button></div>
-     <div> <button><Link to="/logout" onClick={handleLogout} className="btn-link">Logout</Link></button></div> 
+   <div><a href="/" className="nav-link">Home</a></div>
+         <div> <Link to="/getCustomer" className="nav-link">Your Customer</Link></div>
+     <div> <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link></div> 
 
      </div>
      ): userObject && !isCustomer ?(
        <div>
-         <div> <button><Link to="/getVendor" className="btn-link">Your Vendor</Link></button></div>
-      <div> <button><Link to="/logout" onClick={handleLogout} className="btn-link">Logout</Link></button></div> 
-      <div><button><a href="/" className="btn-link">Home</a></button></div>
+         <div><Link to="/getVendor" className="nav-link">Your Vendor</Link></div>
+      <div> <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link></div> 
+      <div><a href="/" className="nav-link">Home</a></div>
 
       </div>
      ): 
      <div>
-     <div><button><Link to="/login" className="btn-link">Login</Link></button></div>
-     <div><button><Link to="/createCustomer" className="btn-link">Create a Customer</Link></button></div>
-     <div> <button> <Link to="/createVendor" className="btn-link">Create a Vendor</Link></button></div>
+     <div><Link to="/login" className="nav-link">Login</Link></div>
+     <div><Link to="/createCustomer" className="nav-link">Create a Customer</Link></div>
+     <div> <Link to="/createVendor" className="nav-link">Create a Vendor</Link></div>
      </div>}
           
 
