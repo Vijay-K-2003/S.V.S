@@ -88,7 +88,7 @@ getCustomer();
       <Router>
        
      {userObject && !isCustomer && !isVendor ? (
-       <div>
+       <div className="navbar">
          {console.log(isCustomer)}
        <div> <Link to="/createCustomer" className="nav-link">Create a Customer</Link></div>
      <div><Link to="/createVendor" className="nav-link">Create a Vendor</Link> </div>
@@ -98,7 +98,7 @@ getCustomer();
 
        </div>
      ): userObject && isCustomer && !isVendor ? (
-       <div> 
+       <div className="navbar"> 
    
    <div><a href="/" className="nav-link">Home</a></div>
          <div> <Link to="/getCustomer" className="nav-link">Your Customer</Link></div>
@@ -106,14 +106,14 @@ getCustomer();
 
      </div>
      ): userObject && !isCustomer ?(
-       <div>
+       <div className="navbar">
          <div><Link to="/getVendor" className="nav-link">Your Vendor</Link></div>
       <div> <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link></div> 
       <div><a href="/" className="nav-link">Home</a></div>
 
       </div>
      ): 
-     <div>
+     <div className="navbar">
      <div><Link to="/login" className="nav-link">Login</Link></div>
      <div><Link to="/createCustomer" className="nav-link">Create a Customer</Link></div>
      <div> <Link to="/createVendor" className="nav-link">Create a Vendor</Link></div>

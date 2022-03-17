@@ -1,3 +1,15 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: black;
+}
+
 .nav-link{
     
 text-decoration: none;
