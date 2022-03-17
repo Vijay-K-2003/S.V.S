@@ -21,7 +21,7 @@ import EditVendor from "./components/Vendor/EditVendor";
 import EditCustomer from "./components/Customer/EditCustomer";
 import MyCustomer from "./components/Vendor/MyCustomer";
 import PrivateRoute from "./components/PrivateRoute";
-
+import './css/App.css';
 
 function App() {
   const userObject = useContext(myContext);
@@ -90,33 +90,33 @@ getCustomer();
      {userObject && !isCustomer && !isVendor ? (
        <div>
          {console.log(isCustomer)}
-       <div><Link to="/createCustomer">Create a Customer</Link></div>
-     <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+       <div> <button> <Link to="/createCustomer" className="btn-link">Create a Customer</Link></button></div>
+     <div> <button><Link to="/createVendor" className="btn-link">Create a Vendor</Link></button> </div>
 
-       <div> <Link to="/logout" onClick={handleLogout}>Logout</Link></div> 
-       <div><a href="/">Home</a></div>
+       <div> <button> <Link to="/logout" onClick={handleLogout} className="btn-link">Logout</Link></button></div> 
+       <div> <button><a href="/" className="btn-link">Home</a></button> </div>
 
        </div>
      ): userObject && isCustomer && !isVendor ? (
        <div> 
    
-   <div><a href="/">Home</a></div>
-         <div> <Link to="/getCustomer">Your Customer</Link></div>
-     <div> <Link to="/logout" onClick={handleLogout}>Logout</Link></div> 
+   <div><button><a href="/" className="btn-link">Home</a></button></div>
+         <div> <button><Link to="/getCustomer" className="btn-link">Your Customer</Link></button></div>
+     <div> <button><Link to="/logout" onClick={handleLogout} className="btn-link">Logout</Link></button></div> 
 
      </div>
      ): userObject && !isCustomer ?(
        <div>
-         <div> <Link to="/getVendor">Your Vendor</Link></div>
-      <div> <Link to="/logout" onClick={handleLogout}>Logout</Link></div> 
-      <div><a href="/">Home</a></div>
+         <div> <button><Link to="/getVendor" className="btn-link">Your Vendor</Link></button></div>
+      <div> <button><Link to="/logout" onClick={handleLogout} className="btn-link">Logout</Link></button></div> 
+      <div><button><a href="/" className="btn-link">Home</a></button></div>
 
       </div>
      ): 
      <div>
-     <div><Link to="/login">Login</Link></div>
-     <div><Link to="/createCustomer">Create a Customer</Link></div>
-     <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+     <div><button><Link to="/login" className="btn-link">Login</Link></button></div>
+     <div><button><Link to="/createCustomer" className="btn-link">Create a Customer</Link></button></div>
+     <div> <button> <Link to="/createVendor" className="btn-link">Create a Vendor</Link></button></div>
      </div>}
           
 

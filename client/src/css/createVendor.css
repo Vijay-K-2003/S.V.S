@@ -1,0 +1,15 @@
+.main-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.main-form{
+    display: flex;
+    flex-direction: column;
+}
+.image{
+    display: flex;
+    flex-direction: column;
+    height: 25%;
+    width: 25%;
+}

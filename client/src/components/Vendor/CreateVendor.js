@@ -3,6 +3,8 @@ import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate } from "react-router";
 import FlashMessage from 'react-flash-message';
+import createVendor from "../assets/createVendor/createVendor.svg";
+import '../../css/createVendor.css';
 
 const initialState = {
   name: "",
@@ -148,8 +150,10 @@ let navigate = useNavigate();
          </FlashMessage>
          </div>
        ):
+       <div className="main-div">
+         <div className="main-form">
        <form>
-       <h1>Create Vendor</h1>
+       <h1>Sell Smartly and Effieciently by being at the right place at the right time</h1>
      <label htmlFor="name">Name</label>
      <input type="text" name="name" id="name" value={vendor.name} onChange={handleChange} />
      <p>{formErrors.name}</p>
@@ -201,6 +205,11 @@ let navigate = useNavigate();
        Submit
      </button>
     </form>
+    </div>
+    <div className="image">
+    <img src={createVendor} alt="createVendor" />
+    </div>
+    </div>
      }
  
  
