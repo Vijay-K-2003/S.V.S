@@ -112,7 +112,11 @@
 @media (max-width:1050px){
 
     .container{
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin:auto;
+        /* display: block; */
         font-size: 62.5%;
     }
     .divright img{
