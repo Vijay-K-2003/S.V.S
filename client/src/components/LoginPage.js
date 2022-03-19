@@ -16,8 +16,8 @@ const googleLogin = () => {
   return<div>
   <div className="container">
     <div className="divleft">
-      <h1>Login to</h1>
-      <h1>stay connected</h1>
+      <h1>Login to<br></br>
+      stay connected...</h1>
       <p>get instant notification as soon as your vendor get to your location , pick by your own hand or get it delivered fresh.</p>
       {/* <img src={googleImage} alt="googleIcon.png" /> */}
       <div className="leftdown">
