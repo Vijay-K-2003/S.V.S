@@ -9,6 +9,7 @@
 } */
 @import url('https://fonts.googleapis.com/css2?family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
 
+
 .container{
     display: flex;
     background: linear-gradient(180deg, rgba(0, 140, 0, 0.8) 0%, rgba(0, 140, 0, 0.2) 100%);
