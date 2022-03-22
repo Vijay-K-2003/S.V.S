@@ -9,12 +9,13 @@
     margin: 0;
     display: flex;
     color: rgba(26, 56, 41, 1);
+    font-family: 'Glory', sans-serif;
 
 
 }
 .left{
     font-size: 2rem;
-    padding:7rem;
+    padding:7.7rem;
 }
 .mainimg{
     height: 65vh;
@@ -51,6 +52,7 @@
     border-radius: 7rem;
     cursor: pointer;
     border: none;
+    font-size: 1rem;
 }
 
 .btn2{
@@ -61,6 +63,7 @@ padding: 1rem 2rem;
     border-radius: 7rem;
     cursor: pointer;
     background: rgba(227, 235, 228, 1);
+    font-size: 1rem;
 }
 /* .btn3{
     background: #9EC7A6;
@@ -72,14 +75,18 @@ padding: 1rem 2rem;
 
 
 @media (max-width:1150px){
-    .container{
+    .containers{
         display: flex;
         align-items: center;
         justify-content: center;
     }
     .left{
+        /* display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; */
         font-size: 1.5rem;
-        padding: 4rem 2rem;
+        padding: 2rem 2rem;
     }
     .mainimg{
         display: none;
@@ -91,11 +98,11 @@ padding: 1rem 2rem;
         display: none;
     }
     .btn1{
-        padding: 0.4rem 2rem;
+        padding: 0.6rem 2rem;
     }
     .btn2
     {
-        padding: 0.4rem 2rem;
+        padding: 0.6rem 2rem;
     }
 
        
