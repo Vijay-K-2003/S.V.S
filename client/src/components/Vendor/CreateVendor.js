@@ -6,7 +6,7 @@ import FlashMessage from "react-flash-message";
 import createVendor from "../assets/createVendor/createVendor.svg";
 import rectangle from "../assets/createVendor/rectangle.svg";
 import "../../css/createVendor.css";
-
+import "../assets/createVendor/Vector.svg";
 
 const initialState = {
   name: "",
@@ -100,7 +100,7 @@ const CreateVendor = () => {
 
   const validate = (values) => {
     const errors = {};
-    // const regex = /^[^\s@]+@[^\s@]+\.[^s@]{2,}$/i;
+
     const regexM = /^((\+91)?)?[6789][0-9]{9}/;
     if (!values.name) {
       errors.name = "Name is required";
@@ -110,7 +110,7 @@ const CreateVendor = () => {
     } else if (!values.mobileNumber.match(regexM)) {
       errors.mobileNumber = "Please enter a valid Mobile No.";
     }
-    if (!values.area) {
+    if (!values.area || values.area === "Area") {
       errors.area = "Please select a preffered area";
     }
 
@@ -175,65 +175,122 @@ const CreateVendor = () => {
               />
               <p className="form-errors">{formErrors.mobileNumber}</p>
               <div className="form-area-div">
-              <label className="form-label-area" htmlFor="area">
-                Please select area where you spend maximum time of the day
-              </label>
-            
+                <label className="form-label-area" htmlFor="area">
+                  Please select area where you spend maximum time of the day
+                </label>
+
                 <select
-                className="form-input-area"
-                name="area"
-                value={vendor.area}
-                onChange={handleChange}
-                id="area"
-              >
-                <option value="areas">Area</option>
-                <option value="ambavadi">Ambavadi</option>
-                <option value="bhadaj">Bhadaj</option>
-                <option value="ghodasar">Ghodasar</option>
-                <option value="naranpura">Naranpura</option>
-                <option value="vastrapura">Vastrapur</option>
-                <option value="prahladnagar">Prahladnagar</option>
-              </select>
-           
-              <p className="form-errors">{formErrors.area}</p>
+                  className="form-input-area"
+                  name="area"
+                  value={vendor.area}
+                  onChange={handleChange}
+                  id="area"
+                >
+                  <option value="areas">Area</option>
+                  <option value="ambavadi">Ambavadi</option>
+                  <option value="bhadaj">Bhadaj</option>
+                  <option value="ghodasar">Ghodasar</option>
+                  <option value="naranpura">Naranpura</option>
+                  <option value="vastrapura">Vastrapur</option>
+                  <option value="prahladnagar">Prahladnagar</option>
+                </select>
+
+                <p className="form-errors">{formErrors.area}</p>
               </div>
               <div className="checkbox-label-div">
-              <label className="form-label-checkbox" htmlFor="items">
-                Please select items that are on your cart
-              </label>
+                <label className="form-label-checkbox" htmlFor="items">
+                  Please select items that are on your cart
+                </label>
               </div>
-              <div className="checkbox-flex">
-           
-               {/* <img src={rectangle} alt="rectangle" className="rectangle"/> */}
-           
-              <div className="checkbox-wrapper">
-                {items.map((name, index) => {
-                  return (
-                  
-                        <div className="checkbox-item">
-                          <input
-                            type="checkbox"
-                            id={`custom-checkbox-${index}`}
-                            name={name}
-                            value={vendor.items}
-                            checked={checked[index]}
-                            onChange={() => handleItemChange(index)}
-                            className="checkbox-round"
-                          />
+              {/* <div className="checkbox-flex"> */}
 
-                          <label
-                            className="checkbox-label"
-                            htmlFor={`custom-checkbox-${index}`}>{name}
-                          </label>
+              {/* <div className="checkbox-wrapper"> */}
+              {/* {items.map((name, index) => {
+                  return (
+                    
+                    <div className="checkbox-item">
+                    <input
+                    type="checkbox"
+                    id={`custom-checkbox-${index}`}
+                    name={name}
+                    value={vendor.items}
+                    checked={checked[index]}
+                    onChange={() => handleItemChange(index)}
+                    className="checkbox-round"
+                    />
+                    
+                    <label
+                    className="checkbox-label"
+                    htmlFor={`custom-checkbox-${index}`}>{name}
+                    </label>
+                    </div>
+                    
+                    
+                    
+                    );
+                  })} */}
+              <div className="main-three-row">
+                <div className="first-halve">
+                  {items.map((name, index) => {
+                    return index < items.length / 2 ? (
+                      <div className="checkbox-item">
+                        <div className="c-input2">
+                        <input
+                          type="checkbox"
+                          id={`custom-checkbox-${index}`}
+                          name={name}
+                          value={vendor.items}
+                          checked={checked[index]}
+                          onChange={() => handleItemChange(index)}
+                          className="checkbox-round"
+                        />
                         </div>
-                     
-                     
-                  
-                  );
-                })}
+
+                        <label
+                          className="checkbox-label"
+                          htmlFor={`custom-checkbox-${index}`}
+                        >
+                          {name}
+                        </label>
+                      </div>
+                    ) : null;
+                  })}
+                </div>
+      <div className="img-rectangle">
+                <img src={rectangle} alt="rectangle" className="rectangle" />
+</div>
+                <div className="second-half">
+                  {items.map((name, index) => {
+                    return index >= items.length / 2 ? (
+                      <div className="checkbox-item">
+                        <div className="c-input">
+                        <input
+                          type="checkbox"
+                          id={`custom-checkbox-${index}`}
+                          name={name}
+                          value={vendor.items}
+                          checked={checked[index]}
+                          onChange={() => handleItemChange(index)}
+                          className="checkbox-round"
+                        />
+                        </div>
+                        <div className="c-label">
+
+                        <label
+                          className="checkbox-label"
+                          htmlFor={`custom-checkbox-${index}`}
+                        >
+                          {name}
+                        </label>
+                        </div>
+                      </div>
+                    ) : null;
+                  })}
+                </div>
               </div>
-              </div>
-             
+              {/* </div> */}
+              {/* </div> */}
+
               <div className="btn-flex">
                 <button
                   className="submit-btn"

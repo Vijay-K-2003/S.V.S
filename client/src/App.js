@@ -60,7 +60,8 @@ userObject && customer && customer.map((e) => {
   console.log("Hi")
 })
 getCustomer();
-  },[userObject, myContext])
+},[userObject, myContext])
+
 
   useEffect(() => {
 
@@ -89,6 +90,7 @@ getCustomer();
        
      {userObject && !isCustomer && !isVendor ? (
        <div className="navbar">
+         
          {console.log(isCustomer)}
        <div> <Link to="/createCustomer" className="nav-link">Create a Customer</Link></div>
      <div><Link to="/createVendor" className="nav-link">Create a Vendor</Link> </div>

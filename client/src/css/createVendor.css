@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   background-color: #edf2fb;
-  height: 115vh;
+  height: 130vh;
 }
 
 .form-div {
@@ -104,25 +104,63 @@ font-size: large;
 
 }
 
-.checkbox-flex{
+/* .checkbox-flex{
 display: flex;
 justify-content: center;
 margin-bottom: 2.25rem;
 
-}
+} */
 
 
-.checkbox-wrapper {
+/* .checkbox-wrapper {
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
- 
+  grid-template-columns: repeat(2, 1fr);
+} */
 
+.main-three-row{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  margin-bottom: 10%;
+}
+
+.checkbox-divider{
+  display: flex;
+ margin-top: 2%;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.c-input{
+margin: 0 25px;
+}
+
+.c-input2{
+  margin: 0 25px;
+}
+
+.checkbox-item{
+  display: flex;
+  /* flex-direction: row;
+  justify-content: space-evenly; */
+  padding: 0.5rem;
+}
+
+.rectangle{
+  height: 300px;
+  
+}
+
+.img-rectangle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .checkbox-item{
   padding: 8px, 48px;
-  margin: 8px;
+  /* margin: 8px; */
 }
 
 .btn-flex {
@@ -130,6 +168,7 @@ margin-bottom: 2.25rem;
   justify-content: center;
  
 }
+
 
 .submit-btn {
   font-family: "Glory", sans-serif;
@@ -142,7 +181,7 @@ margin-bottom: 2.25rem;
  padding-bottom: 0.25rem;
   padding-left: 2rem;
   padding-right: 2rem;
-  box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.274);
+  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.274);
 
 }
 
@@ -157,8 +196,8 @@ cursor: pointer;
 }
 
 .image {
-  height: 85%;
-  width: 85%;
+  height: 75%;
+  width: 75%;
 }
 
 .form-errors{
@@ -176,6 +215,6 @@ cursor: pointer;
 
 @media only screen and (max-width: 470px) {
   .main-div{
-    height: 130vh;
+    height: 135vh;
   }
  }
