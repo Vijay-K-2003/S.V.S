@@ -202,33 +202,7 @@ const CreateVendor = () => {
                   Please select items that are on your cart
                 </label>
               </div>
-              {/* <div className="checkbox-flex"> */}
-
-              {/* <div className="checkbox-wrapper"> */}
-              {/* {items.map((name, index) => {
-                  return (
-                    
-                    <div className="checkbox-item">
-                    <input
-                    type="checkbox"
-                    id={`custom-checkbox-${index}`}
-                    name={name}
-                    value={vendor.items}
-                    checked={checked[index]}
-                    onChange={() => handleItemChange(index)}
-                    className="checkbox-round"
-                    />
-                    
-                    <label
-                    className="checkbox-label"
-                    htmlFor={`custom-checkbox-${index}`}>{name}
-                    </label>
-                    </div>
-                    
-                    
-                    
-                    );
-                  })} */}
+          
               <div className="main-three-row">
                 <div className="first-halve">
                   {items.map((name, index) => {
@@ -288,8 +262,7 @@ const CreateVendor = () => {
                   })}
                 </div>
               </div>
-              {/* </div> */}
-              {/* </div> */}
+          
 
               <div className="btn-flex">
                 <button
