@@ -3,8 +3,11 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
 import "../../index.css";
-import FlashMessage from "react-flash-message";
 import '../../css/viewCustomer.css';
+import "../assets/viewCustomer/DeleteIcon.svg";
+import "../assets/viewCustomer/EditIcon.svg";
+
+
 
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
@@ -22,7 +25,7 @@ const ViewCustomer = () => {
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/street-v9",
+      style: "mapbox://styles/mapbox/dark-v10",
       center: [lng, lat],
       zoom: zoom,
     });
@@ -116,19 +119,19 @@ const ViewCustomer = () => {
  <div className="btn-split">
    <div className="left-side-view-c">
    <Link to={`/customers/${customer._id}/allVendor`}>
-     <button>All Vendors</button>
+     <button className="all-vendors">All Vendors</button>
    </Link>
  
  
    <Link to={`/customers/${customer._id}/myVendors`}>
-     <button>My Vendors</button>
+     <button className="my-vendors">My Vendors</button>
    </Link>
    </div>
    
  <div className="right-side-view-c">
- <button className="delete-btn" onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
+ <button className="delete-btn" onClick={() => onDeleteCustomer(customer._id)}></button>
 
-<button className="edit-btn" onClick={handleEdit}>Edit</button>
+<button className="edit-btn" onClick={handleEdit}></button>
 
  </div>
   </div>
