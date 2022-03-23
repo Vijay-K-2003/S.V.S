@@ -6,7 +6,6 @@ import FlashMessage from "react-flash-message";
 import createVendor from "../assets/createVendor/createVendor.svg";
 import rectangle from "../assets/createVendor/rectangle.svg";
 import "../../css/createVendor.css";
-import "../assets/createVendor/Vector.svg";
 
 const initialState = {
   name: "",
