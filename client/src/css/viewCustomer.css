@@ -32,7 +32,7 @@
 }
 
 .map-container{
-    border: 1px solid ;
+    
     border-radius: 25px;
 }
 
@@ -41,7 +41,6 @@
     flex-direction: column;
     max-width: 75rem;
     margin: 0 auto 0 auto;
-    border: 1px solid black;
     border-radius: 25px;
    margin-bottom: 3%;
    background: rgba(155, 64, 64, 0.5);

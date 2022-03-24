@@ -21,6 +21,7 @@ import EditVendor from "./components/Vendor/EditVendor";
 import EditCustomer from "./components/Customer/EditCustomer";
 import MyCustomer from "./components/Vendor/MyCustomer";
 import PrivateRoute from "./components/PrivateRoute";
+import Hamburger from "./components/assets/App/Hamburger.svg";
 import './css/App.css';
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
   const [vendor, setVendor] = useState("");
   const [isCustomer, setIsCustomer] = useState(false);
   const [isVendor, setIsVendor] = useState(false);
+  const [isToggles, setIsToggled] = useState(false);
+  
 
 
 
@@ -81,6 +84,12 @@ getCustomer();
     getVendor();
       },[userObject, myContext])
 
+    const handleHamburger = () => {
+      let mainNav = document.getElementById('js-menu');
+    mainNav.classList.toggle('active');
+  setIsToggled(!isToggles);
+    }
+
 
   return (
     
@@ -89,36 +98,60 @@ getCustomer();
       <Router>
        
      {userObject && !isCustomer && !isVendor ? (
-       <div className="navbar">
+   
+       <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
          
-         {console.log(isCustomer)}
-       <div> <Link to="/createCustomer" className="nav-link">Create a Customer</Link></div>
-     <div><Link to="/createVendor" className="nav-link">Create a Vendor</Link> </div>
+        <span className="navbar-toggle" id="js-navbar-toggle">
+        <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+        </span>
+        <div class="main-nav" id="js-menu">
+       <Link to="/createCustomer" className="nav-link">Create a Customer</Link>
+     <Link to="/createVendor" className="nav-link">Create a Vendor</Link>
 
-       <div> <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link></div> 
-       <div><a href="/" className="nav-link">Home</a></div>
-
+        <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link>
+       <a href="/" className="nav-link">Home</a>
+</div>
        </div>
      ): userObject && isCustomer && !isVendor ? (
-       <div className="navbar"> 
-   
-   <div><a href="/" className="nav-link">Home</a></div>
-         <div> <Link to="/getCustomer" className="nav-link">Your Customer</Link></div>
-     <div> <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link></div> 
+      <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
+         
+      <span className="navbar-toggle" id="js-navbar-toggle">
 
+      <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+      </span>
+      <div class="main-nav" id="js-menu">
+   
+   <a href="/" className="nav-link">Home</a>
+         <Link to="/getCustomer" className="nav-link">Your Customer</Link>
+     <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link>
+</div>
      </div>
      ): userObject && !isCustomer ?(
-       <div className="navbar">
-         <div><Link to="/getVendor" className="nav-link">Your Vendor</Link></div>
-      <div> <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link></div> 
-      <div><a href="/" className="nav-link">Home</a></div>
+      <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
+         
+      <span className="navbar-toggle" id="js-navbar-toggle">
 
+      <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+      </span>
+      <div class="main-nav" id="js-menu">
+
+         <Link to="/getVendor" className="nav-link">Your Vendor</Link>
+       <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link>
+      <a href="/" className="nav-link">Home</a>
+</div>
       </div>
      ): 
-     <div className="navbar">
-     <div><Link to="/login" className="nav-link">Login</Link></div>
-     <div><Link to="/createCustomer" className="nav-link">Create a Customer</Link></div>
-     <div> <Link to="/createVendor" className="nav-link">Create a Vendor</Link></div>
+     <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
+         
+     <span className="navbar-toggle" id="js-navbar-toggle">
+
+     <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+     </span>
+     <div class="main-nav" id="js-menu">
+     <Link to="/login" className="nav-link">Login</Link>
+     <Link to="/createCustomer" className="nav-link">Create a Customer</Link>
+      <Link to="/createVendor" className="nav-link">Create a Vendor</Link>
+     </div>
      </div>}
           
 
