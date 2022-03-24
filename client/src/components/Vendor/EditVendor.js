@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate,useParams } from "react-router-dom";
-import FlashMessage from 'react-flash-message';
 import createVendor from "../assets/createVendor/createVendor.svg";
 import rectangle from "../assets/createVendor/rectangle.svg";
 import "../../css/EditVendor.css";
@@ -23,7 +22,6 @@ const EditVendor = () => {
     new Array(items.length).fill(false)
 );
 const userObject = useContext(myContext);
-const [message, showMessage] = useState(false);
 const {id} = useParams();
   const handleChange = (event) =>setVendor((data) => ({
     ...data,
@@ -99,8 +97,9 @@ console.log(vendor);
     axios
       .put(`http://localhost:4000/vendors/${id}/edit`, vendor)
       .then((res) => {
-        showMessage(true);
         console.log(res.data);
+        navigate("/flash/?flash=Updated Vendor Successfully!");
+
       });
   };
 
@@ -109,14 +108,7 @@ console.log(vendor);
   return (
     
     <div>
-      {
-        message === true ?
-        (
-          <FlashMessage duration={5000}>
-            Vendor Edited Successfully
-          </FlashMessage>
-        ):
-        (
+      
           <form>
            <div className="main-div">
           <div className="form-div">
@@ -260,8 +252,8 @@ console.log(vendor);
         </div>
       </form>
 
-        )
-      }
+        
+      
           </div>
   );
 };

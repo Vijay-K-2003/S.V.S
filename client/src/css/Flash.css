@@ -1,0 +1,10 @@
+.main-flash{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flash-message{
+    background-color: green;
+}

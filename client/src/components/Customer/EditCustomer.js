@@ -22,7 +22,7 @@ const EditCustomer = () => {
     const [lng, setLng] = useState(0);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-  const [message, showMessage] = useState(false);
+  
 
     const userObject = useContext(myContext);
     const {id} = useParams();
@@ -66,7 +66,7 @@ const EditCustomer = () => {
   }, [])
   
 
-  
+  let navigate = useNavigate();
 useEffect(() => {
   if(Object.keys(formErrors).length === 0 && isSubmit){
  
@@ -75,7 +75,8 @@ useEffect(() => {
    .then((res) => {
      console.log(res.data);
      setCustomer(res.data);
-     showMessage(true);
+     navigate("/flash/?flash=Updated Customer Successfully!");
+
 
    });
  
@@ -117,12 +118,7 @@ useEffect(() => {
 
   return (
     <div>
-      {message === true ? (
-          <div><FlashMessage duration={5000}>
-          <div>Updated Customer Successfully!</div>
-          </FlashMessage>
-        </div>
-      ): ( <form>
+       <form>
       <h1>Edit Customer</h1>
     <label htmlFor="name">Name</label>
     <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
@@ -159,7 +155,7 @@ useEffect(() => {
     <button type="submit" onClick={handleEdit}>
       Update
     </button>
-  </form>)}
+  </form>
      
     </div>
   );

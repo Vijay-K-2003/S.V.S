@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import {Link, useLocation} from "react-router-dom";
+import React, { useContext } from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import { myContext } from "./Context";
 import "../css/Homepage.css";
@@ -10,6 +10,15 @@ import homepagelogoup from"./assets/homepagelogoup.png";
 
 const HomePage = () => {
   const context = useContext(myContext);
+
+  let navigate = useNavigate();
+  const createCustomer = () => {
+    navigate("/createCustomer")
+  }
+
+  const createVendor = () => {
+    navigate("/createVendor");
+  }
 
 
   return (
@@ -29,8 +38,8 @@ const HomePage = () => {
 
 <h1>Eat good<br></br>Feel good</h1>
 <div className="leftdown ">
-<button className="btn1">create customer</button>
-<button className="btn2"> create vendor</button>
+<button className="btn1" onClick={createCustomer}>create customer</button>
+<button className="btn2" onClick={createVendor}> create vendor</button>
     </div>
   </div>
 <div className="right">

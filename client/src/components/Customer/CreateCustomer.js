@@ -26,7 +26,6 @@ const CreateCustomer = () => {
   const [lng, setLng] = useState(0);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [message, showMessage] = useState(false);
   const userObject = useContext(myContext);
 
 
@@ -93,8 +92,8 @@ setVen(res.data);
     .post("http://localhost:4000/customers/new", customer)
     .then((res) => {
           console.log(res.data);
-       
-          showMessage(true);
+          navigate("/flash/?flash=Created Customer Successfully!");
+          
     
       
         });
@@ -135,30 +134,23 @@ return errors;
   return (
     <div className="component-full">
     
-    {/* {cus && cus.map((e) => {
+    {cus && cus.map((e) => {
        if(e.email === userObject.email)
        {
          navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
          return "A customer with the same email already exist";
        }
-     })} */}
+     })}
 
-     {/* {ven && ven.map((e) => {
+     {ven && ven.map((e) => {
        if(e.email === userObject.email)
        {
          navigate("/error/?error=A vendor has already been registered with the same email");
          return "A vendor has already been registered with the same email";
        }
-     })} */}
+     })}
 
-    {message === true && Object.keys(formErrors).length === 0 ? (
-
-      <div><FlashMessage duration={5000}>
-        <div>Created a Customer Successfully!</div>
-        </FlashMessage>
-      </div>
-    
-    ): <div className="container-create-customer">
+   <div className="container-create-customer">
       <form className="create-customer-form">
       <h1 className="left-headline">Create A Customer</h1>
     <label className="eles " htmlFor="name">Name</label>
@@ -201,10 +193,10 @@ return errors;
     </button></div>
   </form>
   <div className="create-customer-image">
-      <img className="create-customer-theimage" src={createCustomerImage} />
+      <img className="create-customer-theimage" alt="createCustomer" src={createCustomerImage} />
     </div>
   </div>
-  }
+  
      
     </div>
   );

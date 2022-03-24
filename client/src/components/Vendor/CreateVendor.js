@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate } from "react-router";
-import FlashMessage from "react-flash-message";
 import createVendor from "../assets/createVendor/createVendor.svg";
 import rectangle from "../assets/createVendor/rectangle.svg";
 import "../../css/createVendor.css";
@@ -39,7 +38,7 @@ const CreateVendor = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const userObject = useContext(myContext);
-  const [message, showMessage] = useState(false);
+  
 
   const handleChange = (event) =>
     setVendor((data) => ({
@@ -75,7 +74,6 @@ const CreateVendor = () => {
     validate(vendor);
     setFormErrors(validate(vendor));
     setIsSubmit(true);
-    showMessage(true);
   };
 
   const addItems = (checked) => {
@@ -91,8 +89,9 @@ const CreateVendor = () => {
       console.log(vendor);
       // navigate("/");
       axios.post("http://localhost:4000/vendors/new", vendor).then((res) => {
-        showMessage(true);
         console.log(res.data);
+        navigate("/flash/?flash=Created Vendor Successfully!");
+
       });
     }
   }, [formErrors]);
@@ -118,29 +117,23 @@ const CreateVendor = () => {
 
   return (
     <div>
-      {/* {cus && cus.map((e) => {
+      {cus && cus.map((e) => {
        if(e.email === userObject.email)
        {
          navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
          return "A customer with the same email already exist";
        }
-     })} */}
+     })} 
 
-      {/* {ven && ven.map((e) => {
+       {ven && ven.map((e) => {
        if(e.email === userObject.email)
        {
          navigate("/error/?error=A vendor has already been registered with the same email");
          return "A vendor has already been registered with the same email";
        }
-     })} */}
+     })}
 
-      {message === true && Object.keys(formErrors).length === 0 ? (
-        <div>
-          <FlashMessage duration={5000}>
-            <div>Created Vendor Successfully!</div>
-          </FlashMessage>
-        </div>
-      ) : (
+     
         <div className="main-div">
           <div className="form-div">
             <form className="main-form">
@@ -278,7 +271,7 @@ const CreateVendor = () => {
             <img className="image" src={createVendor} alt="createVendor" />
           </div>
         </div>
-      )}
+      
     </div>
   );
 };

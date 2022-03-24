@@ -29,7 +29,7 @@ let navigate = useNavigate();
             // navigate("/");
                     axios.delete(`http://localhost:4000/vendors/${id}/delete`)
                     .then((res) => {
-                     showMessage(true);
+                        navigate("/flash/?flash=Deleted Vendor Successfully!");
                     }).catch((e) => {
                         console.log(e);
                     })
@@ -44,11 +44,7 @@ let navigate = useNavigate();
   return (
       <div>
         
-      {message ? (
-           <FlashMessage duration={5000}>
-           <div>Deleted Vendor Successfully!</div>
-       </FlashMessage> 
-      ): userObject.email === vendor.email ? (
+      userObject.email === vendor.email ? (
           <>
         <h1>View Vendor</h1>
         <h3>Name: {vendor.name}</h3>
@@ -66,7 +62,7 @@ let navigate = useNavigate();
         <button onClick={handleEdit}>Edit</button>
         <Link to={`/vendors/${id}/myCustomers`}><button>My Customers</button></Link>
         </>
-        ): null}
+        
         </div>
         
   )
