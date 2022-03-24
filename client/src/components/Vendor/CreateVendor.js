@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 import createVendor from "../assets/createVendor/createVendor.svg";
 import rectangle from "../assets/createVendor/rectangle.svg";
 import "../../css/createVendor.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
   name: "",
@@ -90,7 +92,8 @@ const CreateVendor = () => {
       // navigate("/");
       axios.post("http://localhost:4000/vendors/new", vendor).then((res) => {
         console.log(res.data);
-        navigate("/flash/?flash=Created Vendor Successfully!");
+        // navigate("/flash/?flash=Created Vendor Successfully!");
+        toast.info("Log In to Register", { position: toast.POSITION.TOP_LEFT });
 
       });
     }

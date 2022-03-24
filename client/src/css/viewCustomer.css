@@ -2,7 +2,6 @@
     display: flex;
      flex-direction: column;
     height: 145vh;
-    margin-top: 2%;
     margin-bottom: -100px;
     background: linear-gradient(180deg, rgba(231, 141, 141, 0.9) 12.5%, rgba(231, 141, 141, 0.27) 94.27%);
 }

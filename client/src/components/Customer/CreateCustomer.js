@@ -6,6 +6,7 @@ import FlashMessage from "react-flash-message";
 import "../../css/CreateCustomer.css"
 import createCustomerImage from "../assets/create_customer.svg";
 
+
 const initialState = {
   name: "",
   email: "",
@@ -75,7 +76,7 @@ setVen(res.data);
     validate(customer);
     setFormErrors(validate(customer));
     setIsSubmit(true);
- 
+  
     // send me
     
    
