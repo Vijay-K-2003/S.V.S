@@ -8,7 +8,7 @@ import HomePage from "./components/HomePage";
 import StayVendor from "./components/Vendor/StayVendor";
 import Notify from "./components/Notify";
 import Error from "./components/Error";
-import Flash from "./components/Flash";
+
 
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
@@ -23,6 +23,10 @@ import MyCustomer from "./components/Vendor/MyCustomer";
 import PrivateRoute from "./components/PrivateRoute";
 import Hamburger from "./components/assets/App/Hamburger.svg";
 import './css/App.css';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 function App() {
   const userObject = useContext(myContext);
@@ -89,6 +93,7 @@ getCustomer();
     mainNav.classList.toggle('active');
   setIsToggled(!isToggles);
     }
+
 
 
   return (
@@ -187,7 +192,7 @@ getCustomer();
             <Route path="/vendors/:venid/locate/:id/notify" element={<Notify />} />
             <Route path="/vendors/:id/myCustomers" element={<MyCustomer />} />
             <Route path="/error" element={<Error />} />
-            <Route path="/flash" element={<Flash />} />
+          
        
             </Route>
    

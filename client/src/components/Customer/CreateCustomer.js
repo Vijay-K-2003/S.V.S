@@ -2,10 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate, Link } from "react-router-dom";
-import FlashMessage from "react-flash-message";
 import "../../css/CreateCustomer.css"
 import createCustomerImage from "../assets/create_customer.svg";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 const initialState = {
   name: "",
@@ -93,15 +95,17 @@ setVen(res.data);
     .post("http://localhost:4000/customers/new", customer)
     .then((res) => {
           console.log(res.data);
-          navigate("/flash/?flash=Created Customer Successfully!");
-          
     
-      
         });
   
+        return toast.success("Created Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
   }
+
+
    
   }, [formErrors])
+
+ 
   
 
   const validate = (values) => {
@@ -138,16 +142,17 @@ return errors;
     {cus && cus.map((e) => {
        if(e.email === userObject.email)
        {
-         navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
-         return "A customer with the same email already exist";
+        navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
+        return "A customer with the same email already exist";
+
        }
      })}
 
      {ven && ven.map((e) => {
        if(e.email === userObject.email)
        {
-         navigate("/error/?error=A vendor has already been registered with the same email");
-         return "A vendor has already been registered with the same email";
+        navigate("/error/?error=A vendor has already been registered with the same email");
+        return "A vendor has already been registered with the same email";
        }
      })}
 

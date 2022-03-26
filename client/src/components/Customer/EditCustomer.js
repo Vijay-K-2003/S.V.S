@@ -2,8 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate, useParams } from "react-router-dom";
-import FlashMessage from "react-flash-message";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 const initialState = {
   name: "",
@@ -75,10 +77,11 @@ useEffect(() => {
    .then((res) => {
      console.log(res.data);
      setCustomer(res.data);
-     navigate("/flash/?flash=Updated Customer Successfully!");
+    
 
 
    });
+   return toast.success("Updated Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
  
 }
 

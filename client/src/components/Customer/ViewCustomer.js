@@ -6,10 +6,14 @@ import "../../index.css";
 import '../../css/viewCustomer.css';
 import "../assets/viewCustomer/DeleteIcon.svg";
 import "../assets/viewCustomer/EditIcon.svg";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+toast.configure();
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 const ViewCustomer = () => {
   const userObject = useContext(myContext);
@@ -49,7 +53,7 @@ const ViewCustomer = () => {
 
   let navigate = useNavigate();
   const onDeleteCustomer = (id) => {
-    navigate("/flash/?flash=Deleted Customer Successfully!");
+    navigate("/")
     axios.delete(`http://localhost:4000/customers/${id}/delete`).then((res) => {
       if(res.data)
       {
@@ -59,6 +63,8 @@ const ViewCustomer = () => {
        
       }
     });
+    return toast.success("Deleted Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+
   };
 
   const { id } = useParams();

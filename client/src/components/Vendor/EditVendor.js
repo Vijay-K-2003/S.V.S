@@ -5,6 +5,10 @@ import { useNavigate,useParams } from "react-router-dom";
 import createVendor from "../assets/createVendor/createVendor.svg";
 import rectangle from "../assets/createVendor/rectangle.svg";
 import "../../css/EditVendor.css";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 
 const initialState = {
@@ -87,20 +91,21 @@ const {id} = useParams();
     }, [])
     
 
-let navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     vendor.email = userObject.email;
     addDeleteItems(checked);
-console.log(vendor);
-// navigate("/");
+
     axios
       .put(`http://localhost:4000/vendors/${id}/edit`, vendor)
       .then((res) => {
         console.log(res.data);
-        navigate("/flash/?flash=Updated Vendor Successfully!");
+        
 
       });
+      return toast.success("Updated Vendor Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+
   };
 
 

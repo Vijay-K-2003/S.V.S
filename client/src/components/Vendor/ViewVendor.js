@@ -2,7 +2,10 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from "axios";
 import {useNavigate, useParams, Link } from 'react-router-dom';
 import { myContext } from '../Context';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 const ViewVendor = () => {
 
@@ -29,10 +32,13 @@ let navigate = useNavigate();
             // navigate("/");
                     axios.delete(`http://localhost:4000/vendors/${id}/delete`)
                     .then((res) => {
-                        navigate("/flash/?flash=Deleted Vendor Successfully!");
+                    navigate("/");
                     }).catch((e) => {
                         console.log(e);
                     })
+
+                    return toast.success("Deleted Vendor Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+
                 
             }
             
