@@ -61,9 +61,13 @@ let navigate = useNavigate();
                   <h3 className='phvv'>Mobile Number: {vendor.mobileNumber}</h3>
                   <h3 className='mailvv'>Email: {vendor.email}</h3>
                   <h3 className='itemsvv'>Items on cart:</h3>
-                  {vendor.items.map((e) => {
+                  {vendor.items.map((e, index) => {
                       return(
-                          <h4 className='itemsvv'>{e}, </h4>
+                          <h4 className='itemsvv'>
+                
+                            <h3 className={index+1}>{e}</h3>
+                            
+                              </h4>
                           )
                         })}
                         </div>
