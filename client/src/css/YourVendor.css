@@ -9,17 +9,18 @@
 }
 
 .your-vendor-title {
-    font-size: 55px;
+    font-size: 62px;
 }
 
 .your-vendor-name {
-    font-size: 45px;
+    font-size: 48px;
 }
 
 .your-vendor-btn {
     border: none;
     padding: 8px 16px;
     color: white;
+    font-family: 'Glory', sans-serif;
     background: #502F20;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -43,18 +44,18 @@
 
 .your-vendor-left {
     background-color: transparent;
-    width: 45%;
+    width: 40%;
     height: fit-content;
-    margin: auto;
+    margin: auto 0 auto 10%;
     border-radius: 20px;
     background-repeat: no-repeat;
 }
 
 @media (max-width: 850px) {
-    .your-customer-right {
+    .your-vendor-right {
         display: none;
     }
-    .your-customer-left {
+    .your-vendor-left {
         margin: auto;
         height: 100vh;
         width: 80%;
