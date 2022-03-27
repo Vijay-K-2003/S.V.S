@@ -2,7 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { myContext } from "../Context";
 import axios from "axios";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 const CustomerVendor = () => {
   const [customer, setCustomer] = useState("");
   const userObject = useContext(myContext);
@@ -30,6 +33,8 @@ const CustomerVendor = () => {
 
  })
  checkDisable(index);
+ return toast.success("Removed from your list of vendors", {position: toast.POSITION.BOTTOM_LEFT});
+
   }
 
   return (

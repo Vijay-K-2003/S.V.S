@@ -3,6 +3,10 @@ import { useParams} from "react-router-dom";
 import axios from "axios";
 import "../../css/AllVendors.css"
 import AllVendorImage from "../assets/loginpage.png";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const AllVendors = () => {
 
@@ -42,6 +46,7 @@ const AllVendors = () => {
       
     })
     checkDisable(index);
+    return toast.success("Added to your list of vendors", {position: toast.POSITION.BOTTOM_LEFT});
 
 
 }
