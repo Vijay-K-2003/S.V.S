@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useNavigate, useLocation} from "react-router-dom";
 import axios from "axios";
+import "../css/Notify.css"
+import notifylogo from "./assets/notifylogo.png"
 
 const Notify = () => {
 
@@ -68,9 +70,16 @@ const Notify = () => {
 
      return (
     <div>
-        <h1>Notify component</h1>
+      <div className='containerss'>
+        <h1>Notifi component</h1>
         <h3>Notify to customer {customer.name}</h3>
         <h3>From vendor {vendor.name}</h3>
+        <div className='img' >
+          <img src='notifylogo' alt="notifylogo.jpg"/>
+          
+          
+        </div>
+    </div>
     </div>
   )
 }

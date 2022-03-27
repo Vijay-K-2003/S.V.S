@@ -1,0 +1,153 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Galdeano&display=swap');
+
+.containervv{
+background: linear-gradient(180deg, rgba(113, 26, 121, 0.8) 0%, rgba(70, 0, 140, 0.2) 100%);
+height:100vh;
+width:100vw;
+padding: 0;
+margin: 0;
+display: flex;
+font-family: 'Glory', sans-serif;
+
+
+}
+
+.container-flex-data{
+    display: flex;
+    margin: 0 auto;
+    gap: 3.2rem;
+    align-items: center;
+}
+
+.title-view-vendor{
+    margin-bottom: 5rem;
+    font-size: 4rem;
+}
+.namevv{
+    font-family: 'Galdeano';
+    padding: 0;
+    margin: 0;
+
+}
+.phvv{
+    font-family: 'Galdeano';
+    
+    margin: 0;
+}
+.mailvv{
+    font-family: 'Galdeano';
+    margin: 0;
+}
+.itemvv{
+    font-family: 'Galdeano';
+    margin: 0;
+}
+
+
+.leftvv{
+    color: #fff;
+}
+
+.leftin{
+    font-family: 'Galdeano';
+    font-size: 1.5rem;
+    background: rgba(154, 78, 167, 1);
+    color: rgba(255, 255, 255, 1);
+    height: 35vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    margin-bottom: 10rem;
+
+}
+.rightvv{
+    
+    display: flex;
+    flex-direction: column;
+}
+.btn-st{
+    background: rgba(55, 18, 115, 1);
+border-radius: 5rem;
+border: none;
+color: rgba(255, 255, 255, 1);
+padding: 1rem;
+font-size: 1rem;
+width: 15vw;
+margin: 1rem;
+
+}
+.btn-mc{
+    
+    /* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25); */
+    background: rgba(55, 18, 115, 1);
+    border-radius: 5rem;
+    color: rgba(255, 255, 255, 1);
+    padding: 0.1rem;
+    font-size: 1rem;
+    /* width: 15vw; */
+    margin: 1rem;
+
+    border: none;
+}
+.btn-edit{
+    background: rgba(193, 170, 48, 1);
+    border-radius: 5rem;
+color: rgba(255, 255, 255, 1);
+padding: 1rem;
+font-size: 1rem;
+width: 15vw;
+margin: 1rem;
+border: none;
+
+
+}
+.btn-delete{
+    background: rgba(95, 14, 14, 1);
+    border-radius: 5rem;
+    color: rgba(255, 255, 255, 1);
+    padding: 1rem;
+    font-size: 1rem;
+    width: 15vw;
+margin: 1rem;
+border: none;
+}
+@media (max-width:800px){
+    .container-flex-data{
+        gap: 1rem;
+    }
+    .title-view-vendor{
+        font-size: 3rem;
+    }
+        
+    .leftin{
+        padding: 0.5rem;
+        
+        margin-bottom: 12rem;
+        font-size: 0.8rem;
+    }
+    .btn-st{
+        padding: 0.8rem;
+        width: 30vw;
+        font-size: small;
+    }
+    .btn-delete{
+        padding: 0.8rem;
+        width: 30vw;
+
+    }
+    .btn-edit{
+        padding: 0.8rem;
+        width: 30vw;
+    }
+    .btn-mc{
+
+        
+        font-size: small;
+        padding: -10rem;
+        /* width: 5rem; */
+    }
+}
