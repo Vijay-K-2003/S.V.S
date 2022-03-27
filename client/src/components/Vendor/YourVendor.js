@@ -40,22 +40,22 @@ let navigate = useNavigate();
         {userObject.email === ven.email ? (
         <div className="your-vendor-component">  
         <div className='your-vendor-left'>
-        <div className='your-vendor-left-inside'>
+        {/* <div className='your-vendor-left-inside'> */}
         <ul>
              <li>
-                 <h1>Your Vendor</h1>
-                 <h3>Name: {ven.name}</h3>
-                 <h4>Preffered Area: {ven.area}</h4>
+                 <h1 className='your-vendor-title'>Your Vendor</h1>
+                 <h3 className='your-vendor-name'>Name: {ven.name}</h3>
+                 <h4 className='your-vendor-area'>Preffered Area: {ven.area}</h4>
                  <Link to={`/vendors/${ven._id}`}>
-                     <button onClick={() => handleVendor(ven._id)}>Your View Page</button>
+                     <button className='your-vendor-btn' onClick={() => handleVendor(ven._id)}>Your View Page</button>
                  </Link>
              </li>
          </ul>
         </div> 
-        </div>     
+        {/* </div>      */}
         
         <div className='your-vendor-right'>
-            <img src={yourVendorImage} alt='the vendor' />
+            <img className='your-vendor-right-image' src={yourVendorImage} alt='the vendor' />
         </div> 
 
          </div>
