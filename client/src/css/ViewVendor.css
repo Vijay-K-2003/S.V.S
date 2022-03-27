@@ -80,6 +80,7 @@ padding: 1rem;
 font-size: 1rem;
 width: 15vw;
 margin: 1rem;
+cursor: pointer;
 
 }
 .btn-mc{
@@ -94,6 +95,7 @@ margin: 1rem;
     margin: 1rem;
 text-align: center;
     border: none;
+    cursor: pointer;
 }
 .btn-edit{
     background: rgba(193, 170, 48, 1);
@@ -104,6 +106,7 @@ font-size: 1rem;
 width: 15vw;
 margin: 1rem;
 border: none;
+cursor: pointer;
 
 
 }
@@ -116,6 +119,7 @@ border: none;
     width: 15vw;
 margin: 1rem;
 border: none;
+cursor: pointer;
 }
 @media (max-width:850px){
     .container-flex-data{

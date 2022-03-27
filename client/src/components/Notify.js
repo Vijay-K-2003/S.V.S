@@ -71,11 +71,13 @@ const Notify = () => {
      return (
     <div>
       <div className='containerss'>
-        <h1>Notifi component</h1>
-        <h3>Notify to customer {customer.name}</h3>
-        <h3>From vendor {vendor.name}</h3>
+        <div className='info'>
+        <h1>Notification has been send to your costomer
+        :{customer.name}</h1>
+        {/* <h3>From vendor {vendor.name}</h3> */}
+        </div>
         <div className='img' >
-          <img src='notifylogo' alt="notifylogo.jpg"/>
+          <img src={notifylogo} alt="notifylogo.jpg"/>
           
           
         </div>

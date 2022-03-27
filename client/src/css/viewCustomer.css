@@ -109,6 +109,7 @@ cursor: pointer;
     background-position: center;
     background-size: 2rem 1.25rem;
     
+    
 }
 
 .edit-btn{
@@ -121,4 +122,5 @@ cursor: pointer;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 2rem 1.25rem;
+    
 }
