@@ -5,20 +5,21 @@
     overflow: hidden;
     font-family: 'Glory', sans-serif;
     padding: 1.5rem 0 2.5rem 0;
+    height: 100vh;
 }
 
-.container-create-customer {
+.container-edit-customer {
     display: flex;   
     justify-content: space-around;
     text-align: left;
     align-items: center;
 }
 
-.create-customer-form {
+.edit-customer-form {
     align-content: center;
 }
 
-.create-customer-checkbox {
+.edit-customer-checkbox {
     zoom: 1.5;
 }
 
@@ -48,12 +49,12 @@
     font-family: 'Glory', sans-serif;
 }
 
-.create-customer-submit-flex {
+.edit-customer-submit-flex {
     display: flex;
     justify-content: space-around;
 }
 
-.create-customer-submit {
+.edit-customer-submit {
     background-color: #5F021E;
     border: none;
     border-radius: 30px;
@@ -64,22 +65,22 @@
     width: 8rem;
 }
 
-.create-customer-submit:hover {
+.edit-customer-submit:hover {
     cursor: pointer;
 }
 
-.create-customer-theimage {
+.edit-customer-theimage {
     height: 95%;
     width: 95%;
 }
 
-.create-customer-image {
+.edit-customer-image {
     display: flex;
     align-items: center;
 }
 
 @media only screen and (max-width: 880px) {
-    .create-customer-image {
+    .edit-customer-image {
         display: none;
     }
 }

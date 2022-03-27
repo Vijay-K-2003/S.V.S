@@ -4,6 +4,8 @@ import { myContext } from "../Context";
 import { useNavigate, useParams } from "react-router-dom";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import editCustomerImage from "../assets/create_customer.svg";
+import "../../css/EditCustomer.css"
 
 toast.configure();
 
@@ -120,14 +122,16 @@ useEffect(() => {
 
 
   return (
-    <div>
-       <form>
-      <h1>Edit Customer</h1>
-    <label htmlFor="name">Name</label>
-    <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
+    <div className="component-full">
+      <div className="container-edit-customer">
+       <form className="edit-customer-form">
+      <h1 className="left-headline">Edit Customer</h1>
+    <label className="eles eles-align" htmlFor="name">Name</label>
+    <input className="eles-in eles-align" type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
 <p>{formErrors.name}</p>
-    <label htmlFor="mobileNumber">Mobile No.(Must include +91)</label>
+    <label className="eles eles-align" htmlFor="mobileNumber">Mobile No.(Must include +91)</label>
     <input
+    className="eles-in eles-align"
       type="tel"
       name="mobileNumber"
       id="mobileNumber"
@@ -138,8 +142,8 @@ useEffect(() => {
    <p> {formErrors.mobileNumber}</p>
 
 
-<label htmlFor="area">Please select area where you live</label>
-<select name="area" value={customer.area} onChange={handleChange} id="area">
+<label className="eles eles-align" htmlFor="area">Please select area where you live</label>
+<select className="eles-in eles-align" name="area" value={customer.area} onChange={handleChange} id="area">
 <option value="areas">Areas</option>
 <option value="ambavadi">Ambavadi</option>
 <option value="bhadaj">Bhadaj</option>
@@ -151,15 +155,18 @@ useEffect(() => {
 </select>
 <p>{formErrors.area}</p>
 
-<input type="checkbox" checked onChange={handleCheckBox} name="location" id="location" />
-    <label htmlFor="location">You are at location from where you want to be notified</label>
+<input className="edit-customer-checkbox" type="checkbox" checked onChange={handleCheckBox} name="location" id="location" />
+    <label className="eles" htmlFor="location">You are at location from where you want to be notified</label>
     <p>{formErrors.location}</p>
-
-    <button type="submit" onClick={handleEdit}>
+    <div className="edit-customer-submit-flex">
+    <button className="edit-customer-submit" type="submit" onClick={handleEdit}>
       Update
-    </button>
+    </button></div>
   </form>
-     
+  <div className="edit-customer-image">
+      <img className="edit-customer-theimage" alt="edit Customer" src={editCustomerImage} />
+    </div>
+    </div>
     </div>
   );
 };
