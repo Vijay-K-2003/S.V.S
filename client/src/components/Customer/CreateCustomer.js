@@ -159,13 +159,13 @@ return errors;
    <div className="container-create-customer">
       <form className="create-customer-form">
       <h1 className="left-headline">Create A Customer</h1>
-    <label className="eles " htmlFor="name">Name</label>
-    <input className="eles-in " type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
+    <label className="eles eles-align" htmlFor="name">Name</label>
+    <input className="eles-in eles-align" type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
     <p>{formErrors.name}</p>
     <br />
-    <label className="eles" htmlFor="mobileNumber">Mobile No.(Include +91)</label>
+    <label className="eles eles-align" htmlFor="mobileNumber">Mobile No.(Include +91)</label>
     <input
-      className="eles-in"
+      className="eles-in eles-align"
       type="tel"
       name="mobileNumber"
       id="mobileNumber"
@@ -175,8 +175,8 @@ return errors;
     />
     <p>{formErrors.mobileNumber}</p>
 <br />
-<label className="eles" htmlFor="area">Please select area where you live</label>
-<select className="eles-in" name="area" value={customer.area} onChange={handleChange} id="area">
+<label className="eles eles-align" htmlFor="area">Please select area where you live</label>
+<select className="eles-in eles-align" name="area" value={customer.area} onChange={handleChange} id="area">
 <option value="areas">Areas</option>
 <option value="ambavadi">Ambavadi</option>
 <option value="bhadaj">Bhadaj</option>

@@ -65,12 +65,12 @@ let navigate = useNavigate();
                       return(
                           <h4 className='itemsvv'>
                 
-                            <h3 className={index+1}>{e}</h3>
+                            <span className={index+1}>{index+1}. {e}</span>
                             
                               </h4>
                           )
-                        })}
-                        </div>
+                  })}
+                  </div>
                   </div>
                   <br />
                   

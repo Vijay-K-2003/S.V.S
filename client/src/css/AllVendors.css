@@ -42,6 +42,7 @@
 .btn-all-vendor {
     background: #B46BA4;
     color: white;
+    font-family: 'Glory', sans-serif;
     border: none;
     border-radius: 20px;
     padding: 8px;
@@ -50,7 +51,12 @@
 .btn-all-vendor:hover {
     cursor: pointer;
 }
- 
+
+.btn-all-vendor:disabled {
+    background-color: #622A55;
+    cursor: not-allowed;
+}
+
 @media (max-width:850px) {
     .image-right-all-vendor {
         display: none;
