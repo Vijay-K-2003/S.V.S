@@ -1,0 +1,30 @@
+.your-vendor-component {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2%;
+    padding: 4vh 0;
+    background: linear-gradient(180deg, rgba(146, 185, 200, 0.3) 0%, #92B9C8 100%);;
+}
+
+.your-vendor-left {
+    background-color: #0F4377;
+    width: 45%;
+    border-radius: 20px;
+    overflow-y: scroll;
+}
+
+.your-vendor-left-inside {
+    background-color: #2986C3;
+    width: 45%;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+
+}
+
+.your-vendor-right {
+
+}
+
+.your-vendor-right-image {
+
+}

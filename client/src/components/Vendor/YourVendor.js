@@ -2,6 +2,8 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
 import { myContext } from '../Context';
+import "../../css/YourVendor.css";
+import yourVendorImage from "../assets/yourvendor.svg";
 
 const YourVendor = () => {
 
@@ -36,8 +38,10 @@ let navigate = useNavigate();
         <>
         {/* {console.log(ven)} */}
         {userObject.email === ven.email ? (
-    
-         <ol>
+        <div className="your-vendor-component">  
+        <div className='your-vendor-left'>
+        <div className='your-vendor-left-inside'>
+        <ul>
              <li>
                  <h1>Your Vendor</h1>
                  <h3>Name: {ven.name}</h3>
@@ -46,7 +50,15 @@ let navigate = useNavigate();
                      <button onClick={() => handleVendor(ven._id)}>Your View Page</button>
                  </Link>
              </li>
-         </ol>
+         </ul>
+        </div> 
+        </div>     
+        
+        <div className='your-vendor-right'>
+            <img src={yourVendorImage} alt='the vendor' />
+        </div> 
+
+         </div>
           ): null}  
         </>
     )

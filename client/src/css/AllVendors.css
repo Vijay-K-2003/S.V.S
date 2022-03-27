@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;600;800&family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.container-all-vendor {
+    font-family: 'Glory', sans-serif;
+    /* margin-top: -2.1%; */
+    border: none;
+    background: linear-gradient(180deg, rgba(224, 172, 213, 0.3) 0%, #E0ACD5 100%);
+    color: white;
+    padding: 2%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.title-all-vendor {
+    font-size: 3em;
+}
+
+.vendor-item ul li {
+    list-style: none;
+}
+
+.vendor-item {
+    border-radius: 16px;
+    padding: 2vh;
+    margin: 2px;
+    background: #622A55;
+}
+
+.data-left-vendor {
+    background-color: green;
+    background: #A85F97;
+    border-radius: 20px;
+    padding: 2vw;
+    width: 42%;
+    overflow: scroll;
+}
+
+.image-right-all-vendor img {
+    width: 100%;
+}
+
+.btn-all-vendor {
+    background: #B46BA4;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+}
+
+.btn-all-vendor:hover {
+    cursor: pointer;
+}
+ 
+@media (max-width:850px) {
+    .image-right-all-vendor {
+        display: none;
+    }
+    .data-left-vendor {
+        width: 80%;
+    }
+}

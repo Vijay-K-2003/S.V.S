@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams} from "react-router-dom";
 import axios from "axios";
-
+import "../../css/AllVendors.css"
+import AllVendorImage from "../assets/loginpage.png";
 
 const AllVendors = () => {
 
@@ -49,12 +50,13 @@ const AllVendors = () => {
 
 // }
 
-  return <div>
-      <h1>Here is list of vendors</h1>
+  return <div className="container-all-vendor">
+      <div className="data-left-vendor">
+      <h1 className="title-all-vendor">Here is list of vendors</h1>
       {vendor.map((ven, index) => {
         return (
           <>
-        
+          <div className="vendor-item">
           <ul>
             <li>
             <h5>Name: {ven.name}</h5>
@@ -68,7 +70,7 @@ const AllVendors = () => {
             {/* {console.log(customer.myVendors[0].vendor._id.toString())} */}
             { (customer.myVendors && !(customer.myVendors.filter(e => e._id === ven._id).length > 0))? (
               
-              <button id={index} onClick={() => handleVendor(ven._id, index)}>Approve</button>
+              <button className="btn-all-vendor" id={index} onClick={() => handleVendor(ven._id, index)}>Approve</button>
                 //Frontend push 
               ): "Approved"} 
 
@@ -76,10 +78,16 @@ const AllVendors = () => {
           
             </li>
             </ul>
+            </div>
           </>
         )
 
       })}
+      </div>
+
+      <div className="image-right-all-vendor">
+        <img src={AllVendorImage} alt="allvendorimage" ></img>
+      </div>
     </div>
 
 };
