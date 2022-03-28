@@ -2,7 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { myContext } from "../Context";
 import axios from "axios";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "../../css/CustomerVendor.css";
+import MyVendorImage from "../assets/yourvendor.svg";
 
+toast.configure();
 const CustomerVendor = () => {
   const [customer, setCustomer] = useState("");
   const userObject = useContext(myContext);
@@ -12,7 +17,7 @@ const CustomerVendor = () => {
 
   useEffect(() => {
   
-  axios.get(`http://localhost:4000/customers/${id}`)
+  axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
   .then((res) => {
   // console.log(res.data);
     setCustomer(res.data);
@@ -25,33 +30,39 @@ const CustomerVendor = () => {
   }
 
   const handleVen = (venid, index) => {
- axios.delete(`http://localhost:4000/customers/${id}/myVendor/${venid}`)
+ axios.delete(`https://smart-vendor1.herokuapp.com/customers/${id}/myVendor/${venid}`)
  .then((res) => {
 
  })
  checkDisable(index);
+ return toast.success("Removed from your list of vendors", {position: toast.POSITION.BOTTOM_LEFT});
+
   }
 
   return (
-    <div>
-      <h1>Here is ur vendors list</h1>
-    
+    <div className="my-vendor-component">
+      <h1 className="my-vendor-title">Here is ur vendors list</h1>
+    <div className="my-vendor-data">
       {customer.myVendors && userObject.email === customer.email ? (
+        <div className="my-vendor-left">
  <ol>
  {Object.values(customer.myVendors).map((keyName, i) => (
-<li key={i}>
-    <span>Name: {keyName.name}</span>
-    <span>MobileNo: {keyName.mobileNumber}</span>
-    <div>Area: {keyName.area}</div>
-    <div>Items: {keyName.items+','}</div>
-    <button id={i} onClick={() => handleVen(keyName._id, i)}>Disapprove</button>
+<li className="my-vendor-list-item" key={i}>
+    <div className="my-vendor-name">Name: {keyName.name}</div>
+    <div className="my-vendor-phone">MobileNo: {keyName.mobileNumber}</div>
+    <div className="my-vendor-area">Area: {keyName.area}</div>
+    <div className="my-vendor-items">Items: {keyName.items+', '}</div>
+    <button className="my-vendor-btn"id={i} onClick={() => handleVen(keyName._id, i)}>Disapprove</button>
 </li>
 
 ))}
  </ol>
+ </div>
       ): null}
-     
-
+     <div className="my-customer-right">
+       <img className="my-customer-image" src={MyVendorImage} alt='my vendor' />
+     </div>
+     </div>
     </div>
   );
 };

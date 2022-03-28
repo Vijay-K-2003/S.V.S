@@ -8,7 +8,7 @@ import HomePage from "./components/HomePage";
 import StayVendor from "./components/Vendor/StayVendor";
 import Notify from "./components/Notify";
 import Error from "./components/Error";
-import Flash from "./components/Flash";
+
 
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
@@ -21,7 +21,12 @@ import EditVendor from "./components/Vendor/EditVendor";
 import EditCustomer from "./components/Customer/EditCustomer";
 import MyCustomer from "./components/Vendor/MyCustomer";
 import PrivateRoute from "./components/PrivateRoute";
+import Hamburger from "./components/assets/App/Hamburger.svg";
+import './css/App.css';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 function App() {
   const userObject = useContext(myContext);
@@ -30,12 +35,14 @@ function App() {
   const [vendor, setVendor] = useState("");
   const [isCustomer, setIsCustomer] = useState(false);
   const [isVendor, setIsVendor] = useState(false);
+  const [isToggles, setIsToggled] = useState(false);
+  
 
 
 
   const handleLogout = () => {
     axios
-      .get("http://localhost:4000/logout", { withCredentials: true })
+      .get("https://smart-vendor1.herokuapp.com/logout", { withCredentials: true })
       .then((res) => {
         if (res.data === "success") {
           window.location.href = "/";
@@ -47,7 +54,7 @@ function App() {
   useEffect(() => {
 
 const getCustomer = async() => {
- const res = await axios.get("http://localhost:4000/customers")
+ const res = await axios.get("https://smart-vendor1.herokuapp.com/customers")
  setCustomer(res.data);
 }
 
@@ -60,12 +67,13 @@ userObject && customer && customer.map((e) => {
   console.log("Hi")
 })
 getCustomer();
-  },[userObject, myContext])
+},[userObject, myContext])
+
 
   useEffect(() => {
 
     const getVendor = async() => {
-     const res = await axios.get("http://localhost:4000/vendors")
+     const res = await axios.get("https://smart-vendor1.herokuapp.com/vendors")
      setVendor(res.data);
     }
     
@@ -80,6 +88,13 @@ getCustomer();
     getVendor();
       },[userObject, myContext])
 
+    const handleHamburger = () => {
+      let mainNav = document.getElementById('js-menu');
+    mainNav.classList.toggle('active');
+  setIsToggled(!isToggles);
+    }
+
+
 
   return (
     
@@ -88,35 +103,60 @@ getCustomer();
       <Router>
        
      {userObject && !isCustomer && !isVendor ? (
-       <div>
-         {console.log(isCustomer)}
-       <div><Link to="/createCustomer">Create a Customer</Link></div>
-     <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+   
+       <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
+         
+        <span className="navbar-toggle" id="js-navbar-toggle">
+        <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+        </span>
+        <div class="main-nav" id="js-menu">
+       <Link to="/createCustomer" className="nav-link">Create a Customer</Link>
+     <Link to="/createVendor" className="nav-link">Create a Vendor</Link>
 
-       <div> <Link to="/logout" onClick={handleLogout}>Logout</Link></div> 
-       <div><a href="/">Home</a></div>
-
+        <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link>
+       <a href="/" className="nav-link">Home</a>
+</div>
        </div>
      ): userObject && isCustomer && !isVendor ? (
-       <div> 
-   
-   <div><a href="/">Home</a></div>
-         <div> <Link to="/getCustomer">Your Customer</Link></div>
-     <div> <Link to="/logout" onClick={handleLogout}>Logout</Link></div> 
+      <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
+         
+      <span className="navbar-toggle" id="js-navbar-toggle">
 
+      <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+      </span>
+      <div class="main-nav" id="js-menu">
+   
+   <a href="/" className="nav-link">Home</a>
+         <Link to="/getCustomer" className="nav-link">Your Customer</Link>
+     <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link>
+</div>
      </div>
      ): userObject && !isCustomer ?(
-       <div>
-         <div> <Link to="/getVendor">Your Vendor</Link></div>
-      <div> <Link to="/logout" onClick={handleLogout}>Logout</Link></div> 
-      <div><a href="/">Home</a></div>
+      <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
+         
+      <span className="navbar-toggle" id="js-navbar-toggle">
 
+      <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+      </span>
+      <div class="main-nav" id="js-menu">
+
+         <Link to="/getVendor" className="nav-link">Your Vendor</Link>
+       <Link to="/logout" onClick={handleLogout} className="nav-link">Logout</Link>
+      <a href="/" className="nav-link">Home</a>
+</div>
       </div>
      ): 
-     <div>
-     <div><Link to="/login">Login</Link></div>
-     <div><Link to="/createCustomer">Create a Customer</Link></div>
-     <div>  <Link to="/createVendor">Create a Vendor</Link></div>
+     <div className= {isToggles === false ? "bring-down navbar" : "navbar"}>
+         
+     <span className="navbar-toggle" id="js-navbar-toggle">
+
+     <button className="hamburger-btn" onClick={handleHamburger}><img src={Hamburger} alt="hamburger" /></button>
+     </span>
+     <div class="main-nav" id="js-menu">
+     <Link to="/login" className="nav-link">Login</Link>
+     <Link to="/createCustomer" className="nav-link">Create a Customer</Link>
+      <Link to="/createVendor" className="nav-link">Create a Vendor</Link>
+     </div>
      </div>}
           
 
@@ -152,7 +192,7 @@ getCustomer();
             <Route path="/vendors/:venid/locate/:id/notify" element={<Notify />} />
             <Route path="/vendors/:id/myCustomers" element={<MyCustomer />} />
             <Route path="/error" element={<Error />} />
-            <Route path="/flash" element={<Flash />} />
+          
        
             </Route>
    

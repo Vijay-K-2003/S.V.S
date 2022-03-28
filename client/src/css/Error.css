@@ -1,0 +1,29 @@
+.flex-error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(255,0,0,0) 0%, rgba(255,0,0,0.9) 72%, rgba(255,0,0,1) 100%);
+    color: white;
+    font-family: 'Glory', sans-serif;
+
+}
+
+.main-message{
+font-size: 50px ;
+}
+
+.sub-message{
+    font-size: 25px;
+}
+
+.home-btn-e{
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    font-size: larger;
+    border-radius: 25px;
+    padding: 15px 30px;
+    background-color: white;
+}

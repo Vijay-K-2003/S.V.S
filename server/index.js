@@ -85,8 +85,8 @@ app.get("/failed", (req, res) => {
 
 app.use("/customers", customerRoutes);
 app.use("/vendors", vendorRoutes);
+const PORT = process.env.PORT || 4000;
 
-
-app.listen(4000, () => {
-  console.log("Listening to port 4000");
+app.listen(PORT, () => {
+  console.log(`Listening to port ${PORT}`);
 });

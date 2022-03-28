@@ -2,8 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate, Link } from "react-router-dom";
-import FlashMessage from "react-flash-message";
+import "../../css/CreateCustomer.css"
+import createCustomerImage from "../assets/create_customer.svg";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 const initialState = {
   name: "",
@@ -25,7 +29,6 @@ const CreateCustomer = () => {
   const [lng, setLng] = useState(0);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [message, showMessage] = useState(false);
   const userObject = useContext(myContext);
 
 
@@ -49,7 +52,7 @@ const CreateCustomer = () => {
   }}
 
   useEffect(() => {
-    axios.get("http://localhost:4000/customers")
+    axios.get("https://smart-vendor1.herokuapp.com/customers")
     .then((res) => {
 setCus(res.data);
 
@@ -59,7 +62,7 @@ setCus(res.data);
   }, [])
   
   useEffect(() => {
-    axios.get("http://localhost:4000/vendors")
+    axios.get("https://smart-vendor1.herokuapp.com/vendors")
     .then((res) => {
 setVen(res.data);
 
@@ -75,7 +78,7 @@ setVen(res.data);
     validate(customer);
     setFormErrors(validate(customer));
     setIsSubmit(true);
- 
+  
     // send me
     
    
@@ -89,18 +92,20 @@ setVen(res.data);
   
    
     axios
-    .post("http://localhost:4000/customers/new", customer)
+    .post("https://smart-vendor1.herokuapp.com/customers/new", customer)
     .then((res) => {
           console.log(res.data);
-       
-          showMessage(true);
     
-      
         });
   
+        return toast.success("Created Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
   }
+
+
    
   }, [formErrors])
+
+ 
   
 
   const validate = (values) => {
@@ -132,39 +137,35 @@ return errors;
 
 
   return (
-    <div>
+    <div className="component-full">
     
-    {/* {cus && cus.map((e) => {
+    {cus && cus.map((e) => {
        if(e.email === userObject.email)
        {
-         navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
-         return "A customer with the same email already exist";
-       }
-     })} */}
+        navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
+        return "A customer with the same email already exist";
 
-     {/* {ven && ven.map((e) => {
+       }
+     })}
+
+     {ven && ven.map((e) => {
        if(e.email === userObject.email)
        {
-         navigate("/error/?error=A vendor has already been registered with the same email");
-         return "A vendor has already been registered with the same email";
+        navigate("/error/?error=A vendor has already been registered with the same email");
+        return "A vendor has already been registered with the same email";
        }
-     })} */}
+     })}
 
-    {message === true && Object.keys(formErrors).length === 0 ? (
-
-      <div><FlashMessage duration={5000}>
-        <div>Created a Customer Successfully!</div>
-        </FlashMessage>
-      </div>
-    
-    ): <form>
-      <h1>Create A Customer</h1>
-    <label htmlFor="name">Name</label>
-    <input type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
+   <div className="container-create-customer">
+      <form className="create-customer-form">
+      <h1 className="left-headline">Create A Customer</h1>
+    <label className="eles eles-align" htmlFor="name">Name</label>
+    <input className="eles-in eles-align" type="text" name="name" id="name" value={customer.name} onChange={handleChange} />
     <p>{formErrors.name}</p>
     <br />
-    <label htmlFor="mobileNumber">Mobile No.(Include +91)</label>
+    <label className="eles eles-align" htmlFor="mobileNumber">Mobile No.(Include +91)</label>
     <input
+      className="eles-in eles-align"
       type="tel"
       name="mobileNumber"
       id="mobileNumber"
@@ -174,8 +175,8 @@ return errors;
     />
     <p>{formErrors.mobileNumber}</p>
 <br />
-<label htmlFor="area">Please select area where you live</label>
-<select name="area" value={customer.area} onChange={handleChange} id="area">
+<label className="eles eles-align" htmlFor="area">Please select area where you live</label>
+<select className="eles-in eles-align" name="area" value={customer.area} onChange={handleChange} id="area">
 <option value="areas">Areas</option>
 <option value="ambavadi">Ambavadi</option>
 <option value="bhadaj">Bhadaj</option>
@@ -187,15 +188,21 @@ return errors;
 </select>
 <p>{formErrors.area}</p>
 
-    <input type="checkbox" defaultChecked onChange={handleCheckBox} name="location" id="location" />
-    <label htmlFor="location">You are at location from where you want to be notified</label>
+    <input className="create-customer-checkbox" type="checkbox" onChange={handleCheckBox} name="location" id="location" />
+    <label htmlFor="location" className="eles">You are at location from where you want to be notified</label>
+    
     <p>{formErrors.location}</p>
     <br />
-  <button type="submit" onClick={handleSubmit}>
+    <div className="create-customer-submit-flex">
+  <button className="create-customer-submit" type="submit" onClick={handleSubmit}>
       Submit
-    </button>
+    </button></div>
   </form>
-  }
+  <div className="create-customer-image">
+      <img className="create-customer-theimage" alt="createCustomer" src={createCustomerImage} />
+    </div>
+  </div>
+  
      
     </div>
   );

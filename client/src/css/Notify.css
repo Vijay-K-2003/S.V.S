@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.containerss{
+    background: linear-gradient(180deg, #29754C 0%, rgba(93, 221, 144, 0.28) 100%);
+height: 100vh;
+width:100vw;
+padding: 0;
+margin: 0;
+color: rgba(255, 255, 255, 1);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+}
+.info{
+    font-family: Glory;
+    weight:600, Semi Bold;
+    font-size: 1.7rem;
+    display: flex;
+    flex-direction: column;
+    width:40vw;
+    padding: 3rem;
+
+    
+    
+}
+.img{
+    height: 50vh;
+    
+}
+.img img{
+    height:30vh
+}
+@media (max-width:1000px){
+    .info{
+        font-size: 1rem;
+    }
+    .img img{
+        height:20vh;
+    }
+}
+@media (max-width:600px){
+    .info{
+        font-size: 0.8rem;
+    }
+    .img img{
+        height: 15vh;
+    }
+}

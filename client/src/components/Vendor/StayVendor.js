@@ -11,7 +11,7 @@ const StayVendor = () => {
 	const userObject = useContext(myContext)
 
 	useEffect(() => {
-		axios.get(`http://localhost:4000/vendors/${id}`).then((res) => {
+		axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}`).then((res) => {
 			setVendor(res.data);
 		});
 	}, []);
@@ -19,7 +19,7 @@ const StayVendor = () => {
 	useEffect(() => {
 		const customer = async() => {
 
-			const res = await axios.get("http://localhost:4000/customers")
+			const res = await axios.get("https://smart-vendor1.herokuapp.com/customers")
 		
 			setCustomer(res.data);
 		  }

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;600;800&family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.my-customer-component {
+    font-family: 'Glory', sans-serif;
+    background: linear-gradient(180deg, rgba(224, 172, 213, 0.3) 0%, #E0ACD5 100%);
+    margin: -1.4% 0;
+    height: 100vh;
+}
+
+.my-customer-title {
+    padding: 20px;
+    font-size: 2.8125em;
+    /* background-color: blueviolet; */
+}
+
+.my-customer-left {
+    background: #A85F97;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    width: 45%;
+    height: fit-content;
+    overflow-y: scroll;
+    max-height: 700px;
+}
+
+.my-customer-one {
+    background: #622A55;
+    padding: 8px 0;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    color: white;
+    margin: 8%;
+} 
+
+.my-customer-name, .my-customer-area, .my-customer-contact {
+    font-size: 32px;
+    margin: 12px 0;
+}
+
+.my-customer-image {
+    width: 85%;
+}
+
+.my-customer-main {
+    display: flex;
+    justify-content: space-evenly;
+    /* background-color: red; */
+}
+
+.my-customer-list-item {
+    list-style: none;
+    margin: auto;
+    /* background-color: pink; */
+}
+
+@media (max-width: 850px) {
+    .my-customer-image {
+        display: none;
+    }
+    .my-customer-component {
+        height: 100vh;
+    }
+    .my-customer-name, .my-customer-area, .my-customer-contact {
+        font-size: 28px;
+
+    }
+    .my-customer-left {
+        margin: auto;
+        width: 80%;
+    }
+    .my-customer-component {
+        margin-top: -2%;
+    }
+}

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useNavigate, useLocation} from "react-router-dom";
 import axios from "axios";
+import "../css/Notify.css"
+import notifylogo from "./assets/notifylogo.png"
 
 const Notify = () => {
 
@@ -13,7 +15,7 @@ const Notify = () => {
     useEffect(() => {
       
     const cust = async () => {
-        const res = await axios.get(`http://localhost:4000/customers/${id}`)
+        const res = await axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
         setCustomer(res.data);
     }
     cust();
@@ -23,7 +25,7 @@ const Notify = () => {
     useEffect(() => {
       
         const ven = async () => {
-            const res = await axios.get(`http://localhost:4000/vendors/${venid}`)
+            const res = await axios.get(`https://smart-vendor1.herokuapp.com/vendors/${venid}`)
             setVendor(res.data);
         }
         ven();
@@ -47,7 +49,7 @@ const Notify = () => {
             // checkValid(customer);
             // if(valid === true)
             // {
-          axios.get(`http://localhost:4000/customers/${id}/notify/${venid}`)
+          axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}/notify/${venid}`)
           .then((res) => {
               if(res.data === "Done")
               {
@@ -68,9 +70,18 @@ const Notify = () => {
 
      return (
     <div>
-        <h1>Notify component</h1>
-        <h3>Notify to customer {customer.name}</h3>
-        <h3>From vendor {vendor.name}</h3>
+      <div className='containerss'>
+        <div className='info'>
+        <h1>Notification has been send to your costomer
+        :{customer.name}</h1>
+        {/* <h3>From vendor {vendor.name}</h3> */}
+        </div>
+        <div className='img' >
+          <img src={notifylogo} alt="notifylogo.jpg"/>
+          
+          
+        </div>
+    </div>
     </div>
   )
 }

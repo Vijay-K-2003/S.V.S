@@ -1,0 +1,72 @@
+.my-vendor-component {
+    background: linear-gradient(180deg, rgba(146, 185, 200, 0.3) 0%, #92B9C8 100%);
+    font-family: 'Glory', sans-serif;
+    height: 100vh;
+}
+
+.my-vendor-title {
+    font-size: 50px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.my-vendor-list-item {
+    list-style: none;
+    background: #2986C3;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    color: white;
+    width: 80%;
+    font-size: 24px;
+    margin: 16px auto;
+    padding: 10px;
+}
+
+.my-vendor-data {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.my-vendor-btn {
+    background: #5F8091;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+}
+
+.my-vendor-btn:hover {
+    cursor: pointer;
+}
+
+.my-vendor-btn:disabled {
+    cursor: not-allowed;
+}
+
+.my-vendor-left {
+    width: 45%;
+    height: fit-content;
+    max-height: 650px;
+    background: #0F4377;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    overflow-y: scroll;
+}
+
+.my-customer-image {
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    .my-vendor-right {
+        display: none;
+    }
+    .my-vendor-left {
+        width: 80%;
+    }
+    .my-vendor-list-item {
+        margin: auto;
+    }
+}

@@ -3,9 +3,17 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
 import "../../index.css";
-import FlashMessage from "react-flash-message";
+import '../../css/viewCustomer.css';
+import "../assets/viewCustomer/DeleteIcon.svg";
+import "../assets/viewCustomer/EditIcon.svg";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+toast.configure();
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 const ViewCustomer = () => {
   const userObject = useContext(myContext);
@@ -21,7 +29,7 @@ const ViewCustomer = () => {
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/mapbox/dark-v10",
       center: [lng, lat],
       zoom: zoom,
     });
@@ -45,8 +53,8 @@ const ViewCustomer = () => {
 
   let navigate = useNavigate();
   const onDeleteCustomer = (id) => {
-    navigate("/flash/?flash=Deleted Customer Successfully!");
-    axios.delete(`http://localhost:4000/customers/${id}/delete`).then((res) => {
+    navigate("/")
+    axios.delete(`https://smart-vendor1.herokuapp.com/customers/${id}/delete`).then((res) => {
       if(res.data)
       {
         setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
@@ -55,13 +63,15 @@ const ViewCustomer = () => {
        
       }
     });
+    return toast.success("Deleted Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+
   };
 
   const { id } = useParams();
 
   useEffect(() => {
 
-    axios.get(`http://localhost:4000/customers/${id}`).then(
+    axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`).then(
       (res) => {
     setCustomer(res.data); // add conditional check
 
@@ -89,39 +99,51 @@ const ViewCustomer = () => {
   
 
   return (
-    <div>
+    <div className="main-div-view">
  
 
  <div>
-
+<div className="viewC-h1">
  <h1>View Customer</h1>
+ </div>
+ <div className="map-view">
 
- <div className="sidebar">
+ {/* <div className="sidebar">
    Longitude: {customer.latitude} | Latitude: {customer.longitude} |
    Zoom: {zoom}
- </div>
+ </div> */}
+ 
+ 
  <div ref={mapContainer} className="map-container" />
-
+ </div>
+ <div className="customer-details-flex">
+   <div className="customer-details-inside">
  <h1>{customer.name}</h1>
  <h1>{customer.email}</h1>
  <h1>{customer.mobileNumber}</h1>
  <h3>Send message: "join me-silly" to "+14155238886" to recieve notifications about the vendors</h3>
-
- <div>
+ <div className="btn-split">
+   <div className="left-side-view-c">
    <Link to={`/customers/${customer._id}/allVendor`}>
-     <button>All Vendors</button>
+     <button className="all-vendors">All Vendors</button>
    </Link>
- </div>
- <div>
+ 
+ 
    <Link to={`/customers/${customer._id}/myVendors`}>
-     <button>My Vendors</button>
+     <button className="my-vendors">My Vendors</button>
    </Link>
+   </div>
+   
+ <div className="right-side-view-c">
+ <button className="delete-btn" onClick={() => onDeleteCustomer(customer._id)}></button>
+
+<button className="edit-btn" onClick={handleEdit}></button>
+
  </div>
- <button onClick={() => onDeleteCustomer(customer._id)}>Delete</button>
+  </div>
 </div> 
-<div>
-  <button onClick={handleEdit}>Edit</button>
-</div>
+ </div>
+ </div>
  </div>
   );
 };

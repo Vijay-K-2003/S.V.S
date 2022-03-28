@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;600;800&family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.component-full {
+    background-color: #C8B0B7;
+    overflow: hidden;
+    font-family: 'Glory', sans-serif;
+    padding: 1.5rem 0 2.5rem 0;
+    height: 100vh;
+}
+
+.container-edit-customer {
+    display: flex;   
+    justify-content: space-around;
+    text-align: left;
+    align-items: center;
+}
+
+.edit-customer-form {
+    align-content: center;
+}
+
+.edit-customer-checkbox {
+    zoom: 1.5;
+}
+
+.left-headline {
+    font-size: 4.063rem;
+    line-height: 4.55rem;
+    font-weight: 600;
+}
+
+.eles {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.45rem;
+    margin-right: 1rem;
+}
+
+.eles-align {
+    display: inline-block;
+    text-align: center;
+}
+
+.eles-in {
+    border: 1px solid #5F021E;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-family: 'Glory', sans-serif;
+}
+
+.edit-customer-submit-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-customer-submit {
+    background-color: #5F021E;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-family: 'Glory', sans-serif;
+    font-size: 1.2rem;
+    height: 3rem;
+    width: 8rem;
+}
+
+.edit-customer-submit:hover {
+    cursor: pointer;
+}
+
+.edit-customer-theimage {
+    height: 95%;
+    width: 95%;
+}
+
+.edit-customer-image {
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 880px) {
+    .edit-customer-image {
+        display: none;
+    }
+}

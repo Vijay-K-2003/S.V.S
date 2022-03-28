@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router';
 import {
-  
   Link,
-
 } from "react-router-dom";
 import { myContext } from "../Context";
-
+import "../../css/YourCustomer.css";
+import YourCustomerImage from "../assets/YourCustomer.svg";
 
 const YourCustomer = () => {
 const [customer, setCustomer] = useState([]);
@@ -15,7 +14,7 @@ const userObject = useContext(myContext);
 
 
 useEffect(() => {
-    axios.get("http://localhost:4000/customers")
+    axios.get("https://smart-vendor1.herokuapp.com/customers")
     .then((res) => {
     
         setCustomer(res.data);
@@ -25,7 +24,7 @@ useEffect(() => {
 let navigate = useNavigate();
 const handleCustomer = (id) => {
  
-    axios.get(`http://localhost:4000/customers/${id}`)
+    axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
     .then((res) => {
       //Redirect to viewCustomer with res.data
    navigate(`/customers/${id}`);
@@ -42,19 +41,28 @@ const handleCustomer = (id) => {
   return(
     <>
       {userObject.email === cust.email ? (
-        
-        <ol>
+        <div className="your-customer-component">
+          <div className="your-customer-left">
+            {/* <div  className="your-customer-left-inside"> */}
+            <ul>
           <li>
-            <h1>Your customer</h1>
-        <h3>Name: {cust.name}</h3>
+            <h1 className="your-customer-title">Your customer</h1>
+        <h3 className="your-customer-name">Name: {cust.name}</h3>
        
 
         <Link to={`/customers/${cust._id}`}>
         
-        <button onClick={() => handleCustomer(cust._id)}>Your View Page</button>
+        <button className="your-customer-btn"onClick={() => handleCustomer(cust._id)}>Your View Page</button>
       </Link>
       </li>
-     </ol>
+     </ul>
+            {/* </div> */}
+          
+          </div>
+          <div className="your-customer-right">
+            <img className="your-customer-right-image" src={YourCustomerImage} alt="customer" />
+          </div>
+     </div>
        ): null} 
       
         
@@ -65,4 +73,3 @@ const handleCustomer = (id) => {
 };
 
 export default YourCustomer;
-

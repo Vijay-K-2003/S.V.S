@@ -1,0 +1,13 @@
+.main-flash{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    max-width: 400px;
+    
+}
+
+.flash-message{
+    background-color: rgba(14, 231, 25, 0.411);
+}

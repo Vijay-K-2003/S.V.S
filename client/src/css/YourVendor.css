@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;600;800&family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.your-vendor-component {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 4vh 0;
+    font-family: 'Glory', sans-serif;
+    background: linear-gradient(180deg, #92A73F 0%, rgba(125, 122, 47, 0.2) 100%);
+}
+
+.your-vendor-title {
+    font-size: 62px;
+}
+
+.your-vendor-name {
+    font-size: 48px;
+}
+
+.your-vendor-btn {
+    border: none;
+    padding: 8px 16px;
+    color: white;
+    font-family: 'Glory', sans-serif;
+    background: #502F20;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+
+.your-vendor-btn:hover {
+    cursor: pointer;
+}
+
+.your-vendor-left ul li {
+    list-style: none;
+}
+
+.your-vendor-right-image {
+    width: 92%;
+}
+
+.your-vendor-area {
+    font-size: 24px;
+}
+
+.your-vendor-left {
+    background-color: transparent;
+    width: 40%;
+    height: fit-content;
+    margin: auto 0 auto 10%;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 850px) {
+    .your-vendor-right {
+        display: none;
+    }
+    .your-vendor-left {
+        margin: auto;
+        height: 100vh;
+        width: 80%;
+    }
+}

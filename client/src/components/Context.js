@@ -14,7 +14,7 @@ const Context = (props) => {
     useEffect(() => {
      const getUser = async() => {
     
-     const res =  await axios.get("http://localhost:4000/getUser", {withCredentials: true});
+     const res =  await axios.get("https://smart-vendor1.herokuapp.com/getUser", {withCredentials: true});
      console.log(res.data);
       setUser(res.data);
      }
