@@ -61,7 +61,7 @@ const EditCustomer = () => {
     }
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/customers/${id}`)
+    axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
     .then((res) => {
         setCustomer(res.data);
     })
@@ -75,7 +75,7 @@ useEffect(() => {
   if(Object.keys(formErrors).length === 0 && isSubmit){
  
     axios
-   .put(`http://localhost:4000/customers/${id}/edit`, customer)
+   .put(`https://smart-vendor1.herokuapp.com/customers/${id}/edit`, customer)
    .then((res) => {
      console.log(res.data);
      setCustomer(res.data);

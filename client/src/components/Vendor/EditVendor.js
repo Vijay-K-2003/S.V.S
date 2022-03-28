@@ -80,7 +80,7 @@ const {id} = useParams();
 
   useEffect(() => {
     // defaultChecked(vendor)
-     axios.get(`http://localhost:4000/vendors/${id}`)
+     axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}`)
    .then((res) => {
      setVendor(res.data);
      defaultChecked(res.data)
@@ -98,7 +98,7 @@ const {id} = useParams();
     addDeleteItems(checked);
 
     axios
-      .put(`http://localhost:4000/vendors/${id}/edit`, vendor)
+      .put(`https://smart-vendor1.herokuapp.com/vendors/${id}/edit`, vendor)
       .then((res) => {
         console.log(res.data);
         

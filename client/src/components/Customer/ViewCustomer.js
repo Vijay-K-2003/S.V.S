@@ -54,7 +54,7 @@ const ViewCustomer = () => {
   let navigate = useNavigate();
   const onDeleteCustomer = (id) => {
     navigate("/")
-    axios.delete(`http://localhost:4000/customers/${id}/delete`).then((res) => {
+    axios.delete(`https://smart-vendor1.herokuapp.com/customers/${id}/delete`).then((res) => {
       if(res.data)
       {
         setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
@@ -71,7 +71,7 @@ const ViewCustomer = () => {
 
   useEffect(() => {
 
-    axios.get(`http://localhost:4000/customers/${id}`).then(
+    axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`).then(
       (res) => {
     setCustomer(res.data); // add conditional check
 

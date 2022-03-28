@@ -14,7 +14,7 @@ const userObject = useContext(myContext);
 
 
 useEffect(() => {
-    axios.get("http://localhost:4000/customers")
+    axios.get("https://smart-vendor1.herokuapp.com/customers")
     .then((res) => {
     
         setCustomer(res.data);
@@ -24,7 +24,7 @@ useEffect(() => {
 let navigate = useNavigate();
 const handleCustomer = (id) => {
  
-    axios.get(`http://localhost:4000/customers/${id}`)
+    axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
     .then((res) => {
       //Redirect to viewCustomer with res.data
    navigate(`/customers/${id}`);

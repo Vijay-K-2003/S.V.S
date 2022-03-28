@@ -9,7 +9,7 @@ const LoginPage = () => {
 
 
 const googleLogin = () => {
-  window.open("http://localhost:4000/google", "_self");
+  window.open("https://smart-vendor1.herokuapp.com/google", "_self");
 }
 
 

@@ -11,19 +11,19 @@ export const createVendor = async (req, res) => {
   try {
     const customer = await Customer.find({});
     const vendor = await Vendor.find({});
-  // customer.map((e) => {
-    //   if(e.email === req.body.email)
-    //   {
-    //     res.status(400).json({message: "A Customer already exists with the same account"});
-    //   }
-    // })
+  customer.map((e) => {
+      if(e.email === req.body.email)
+      {
+        res.status(400).json({message: "A Customer already exists with the same account"});
+      }
+    })
 
-    // vendor.map((e) => {
-    //   if(e.email === req.body.email)
-    //   {
-    //     res.status(400).json({message: "A Vendor already exists with the same account"});
-    //   }
-    // })
+    vendor.map((e) => {
+      if(e.email === req.body.email)
+      {
+        res.status(400).json({message: "A Vendor already exists with the same account"});
+      }
+    })
     const newVendor = new Vendor(req.body);
     await newVendor.save();
     res.status(200).json("Done");

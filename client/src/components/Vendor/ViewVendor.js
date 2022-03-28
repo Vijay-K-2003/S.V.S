@@ -17,7 +17,7 @@ const userObject = useContext(myContext);
 const {id} = useParams();
     useEffect(() => {
       
-    axios.get(`http://localhost:4000/vendors/${id}`)
+    axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}`)
     .then((res) => {
         setVendor(res.data);
     })
@@ -31,7 +31,7 @@ let navigate = useNavigate();
   
         const handleDelete = () => {
             // navigate("/");
-                    axios.delete(`http://localhost:4000/vendors/${id}/delete`)
+                    axios.delete(`https://smart-vendor1.herokuapp.com/vendors/${id}/delete`)
                     .then((res) => {
                     navigate("/");
                     }).catch((e) => {

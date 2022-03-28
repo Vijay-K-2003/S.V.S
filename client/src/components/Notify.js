@@ -15,7 +15,7 @@ const Notify = () => {
     useEffect(() => {
       
     const cust = async () => {
-        const res = await axios.get(`http://localhost:4000/customers/${id}`)
+        const res = await axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
         setCustomer(res.data);
     }
     cust();
@@ -25,7 +25,7 @@ const Notify = () => {
     useEffect(() => {
       
         const ven = async () => {
-            const res = await axios.get(`http://localhost:4000/vendors/${venid}`)
+            const res = await axios.get(`https://smart-vendor1.herokuapp.com/vendors/${venid}`)
             setVendor(res.data);
         }
         ven();
@@ -49,7 +49,7 @@ const Notify = () => {
             // checkValid(customer);
             // if(valid === true)
             // {
-          axios.get(`http://localhost:4000/customers/${id}/notify/${venid}`)
+          axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}/notify/${venid}`)
           .then((res) => {
               if(res.data === "Done")
               {

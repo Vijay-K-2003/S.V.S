@@ -7,7 +7,7 @@ dotenv.config();
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:4000/google/callback/",
+    callbackURL: "https://smart-vendor1.herokuapp.com/google/callback/",
     passReqToCallback: true
   },
   async (req, accessToken, refreshToken, profile, cb) => {

@@ -52,7 +52,7 @@ const CreateCustomer = () => {
   }}
 
   useEffect(() => {
-    axios.get("http://localhost:4000/customers")
+    axios.get("https://smart-vendor1.herokuapp.com/customers")
     .then((res) => {
 setCus(res.data);
 
@@ -62,7 +62,7 @@ setCus(res.data);
   }, [])
   
   useEffect(() => {
-    axios.get("http://localhost:4000/vendors")
+    axios.get("https://smart-vendor1.herokuapp.com/vendors")
     .then((res) => {
 setVen(res.data);
 
@@ -92,7 +92,7 @@ setVen(res.data);
   
    
     axios
-    .post("http://localhost:4000/customers/new", customer)
+    .post("https://smart-vendor1.herokuapp.com/customers/new", customer)
     .then((res) => {
           console.log(res.data);
     

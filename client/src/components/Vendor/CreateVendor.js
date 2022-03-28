@@ -59,13 +59,13 @@ const CreateVendor = () => {
     setChecked(updatedChecked);
   };
   useEffect(() => {
-    axios.get("http://localhost:4000/customers").then((res) => {
+    axios.get("https://smart-vendor1.herokuapp.com/customers").then((res) => {
       setCus(res.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/vendors").then((res) => {
+    axios.get("https://smart-vendor1.herokuapp.com/vendors").then((res) => {
       setVen(res.data);
     });
   }, []);
@@ -97,7 +97,7 @@ const CreateVendor = () => {
       console.log(vendor);
    
      
-      axios.post("http://localhost:4000/vendors/new", vendor).then((res) => {
+      axios.post("https://smart-vendor1.herokuapp.com/vendors/new", vendor).then((res) => {
         console.log(res.data);
        
       });

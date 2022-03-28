@@ -6,6 +6,9 @@
   "repository": "https://github.com/Vijay-K-2003/S.V.S.git",
   "author": "Vijay-Kewal",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "@vonage/server-sdk": "^2.10.10",
     "cors": "^2.8.5",

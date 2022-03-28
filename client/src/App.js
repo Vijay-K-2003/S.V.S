@@ -42,7 +42,7 @@ function App() {
 
   const handleLogout = () => {
     axios
-      .get("http://localhost:4000/logout", { withCredentials: true })
+      .get("https://smart-vendor1.herokuapp.com/logout", { withCredentials: true })
       .then((res) => {
         if (res.data === "success") {
           window.location.href = "/";
@@ -54,7 +54,7 @@ function App() {
   useEffect(() => {
 
 const getCustomer = async() => {
- const res = await axios.get("http://localhost:4000/customers")
+ const res = await axios.get("https://smart-vendor1.herokuapp.com/customers")
  setCustomer(res.data);
 }
 
@@ -73,7 +73,7 @@ getCustomer();
   useEffect(() => {
 
     const getVendor = async() => {
-     const res = await axios.get("http://localhost:4000/vendors")
+     const res = await axios.get("https://smart-vendor1.herokuapp.com/vendors")
      setVendor(res.data);
     }
     

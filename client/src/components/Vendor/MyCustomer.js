@@ -17,7 +17,7 @@ const MyCustomer = () => {
 
     useEffect(() => {
       const getCustomer = async() => {
-          const res = await axios.get(`http://localhost:4000/vendors/${id}/myCustomers`)
+          const res = await axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}/myCustomers`)
           setCustomer(res.data);
           if (res.data.length === 0) {
             setEmpty(true);
@@ -28,7 +28,7 @@ const MyCustomer = () => {
 
     useEffect(() => {
         const getVendor = async() => {
-            const res = await axios.get(`http://localhost:4000/vendors/${id}`)
+            const res = await axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}`)
             setVendor(res.data);
         }
       getVendor();
