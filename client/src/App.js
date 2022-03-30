@@ -42,7 +42,7 @@ function App() {
 
   const handleLogout = () => {
     axios
-      .get("https://smart-vendor1.herokuapp.com/logout", { withCredentials: true })
+      .get("http://localhost:4000/logout", { withCredentials: true })
       .then((res) => {
         if (res.data === "success") {
           window.location.href = "/";
@@ -54,12 +54,12 @@ function App() {
   useEffect(() => {
 
 const getCustomer = async() => {
- const res = await axios.get("https://smart-vendor1.herokuapp.com/customers")
+ const res = await axios.get("http://localhost:4000/customers")
  setCustomer(res.data);
 }
 
 userObject && customer && customer.map((e) => {
-  if(e.email === userObject.email)
+  if(e.email === userObject.emails[0].value)
   {
     // c++;
     setIsCustomer(true);
@@ -67,18 +67,18 @@ userObject && customer && customer.map((e) => {
   console.log("Hi")
 })
 getCustomer();
-},[userObject, myContext])
-
+}, [userObject, customer])
+console.log(userObject)
 
   useEffect(() => {
 
     const getVendor = async() => {
-     const res = await axios.get("https://smart-vendor1.herokuapp.com/vendors")
+     const res = await axios.get("http://localhost:4000/vendors")
      setVendor(res.data);
     }
     
     userObject && vendor && vendor.map((e) => {
-      if(e.email === userObject.email)
+      if(e.email === userObject.emails[0].value)
       {
         // c++;
         setIsVendor(true);
@@ -86,7 +86,7 @@ getCustomer();
       console.log("Hi")
     })
     getVendor();
-      },[userObject, myContext])
+      },[userObject, vendor])
 
     const handleHamburger = () => {
       let mainNav = document.getElementById('js-menu');

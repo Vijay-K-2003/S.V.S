@@ -14,7 +14,7 @@ const userObject = useContext(myContext);
 
 
 useEffect(() => {
-    axios.get("https://smart-vendor1.herokuapp.com/customers")
+    axios.get("http://localhost:4000/customers")
     .then((res) => {
     
         setCustomer(res.data);
@@ -24,7 +24,7 @@ useEffect(() => {
 let navigate = useNavigate();
 const handleCustomer = (id) => {
  
-    axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
+    axios.get(`http://localhost:4000/customers/${id}`)
     .then((res) => {
       //Redirect to viewCustomer with res.data
    navigate(`/customers/${id}`);
@@ -40,7 +40,7 @@ const handleCustomer = (id) => {
 {customer.map((cust) => {
   return(
     <>
-      {userObject.email === cust.email ? (
+      {userObject.emails[0].value === cust.email ? (
         <div className="your-customer-component">
           <div className="your-customer-left">
             {/* <div  className="your-customer-left-inside"> */}

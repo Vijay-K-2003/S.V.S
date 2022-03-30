@@ -17,14 +17,14 @@ const AllVendors = () => {
   
   // const customerId = id;
   useEffect(() => {
-    axios.get(`https://smart-vendor1.herokuapp.com/customers/${customerId}/allVendor`).then((res) => {
+    axios.get(`http://localhost:4000/customers/${customerId}/allVendor`).then((res) => {
       // setVendor(customer.myVendors.filter(e => e.vendor._id.toString() !==).length > 0);
       setVendor(res.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get(`https://smart-vendor1.herokuapp.com/customers/${customerId}`).then((res) => {
+    axios.get(`http://localhost:4000/customers/${customerId}`).then((res) => {
       // console.log(res.data);
       // console.log(customer.myVendors[0]._id)
       setCustomer(res.data);
@@ -40,7 +40,7 @@ const AllVendors = () => {
   const handleVendor = (id, index) => {
 
     
-    axios.put(`https://smart-vendor1.herokuapp.com/customers/${customerId}/allVendor/${id}`)
+    axios.put(`http://localhost:4000/customers/${customerId}/allVendor/${id}`)
     .then((res) => {
  
       

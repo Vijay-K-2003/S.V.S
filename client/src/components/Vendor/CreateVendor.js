@@ -59,13 +59,13 @@ const CreateVendor = () => {
     setChecked(updatedChecked);
   };
   useEffect(() => {
-    axios.get("https://smart-vendor1.herokuapp.com/customers").then((res) => {
+    axios.get("http://localhost:4000/customers").then((res) => {
       setCus(res.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get("https://smart-vendor1.herokuapp.com/vendors").then((res) => {
+    axios.get("http://localhost:4000/vendors").then((res) => {
       setVen(res.data);
     });
   }, []);
@@ -73,7 +73,7 @@ const CreateVendor = () => {
   let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    vendor.email = userObject.email;
+    vendor.email = userObject.emails[0].value;
     addItems(checked);
     validate(vendor);
     setFormErrors(validate(vendor));
@@ -97,7 +97,7 @@ const CreateVendor = () => {
       console.log(vendor);
    
      
-      axios.post("https://smart-vendor1.herokuapp.com/vendors/new", vendor).then((res) => {
+      axios.post("http://localhost:4000/vendors/new", vendor).then((res) => {
         console.log(res.data);
        
       });
@@ -128,7 +128,7 @@ const CreateVendor = () => {
   return (
     <div>
       {cus && cus.map((e) => {
-       if(e.email === userObject.email)
+       if(e.email === userObject.emails[0].value)
        {
          navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
          return "A customer with the same email already exist";
@@ -136,7 +136,7 @@ const CreateVendor = () => {
      })} 
 
        {ven && ven.map((e) => {
-       if(e.email === userObject.email)
+       if(e.email === userObject.emails[0].value)
        {
          navigate("/error/?error=A vendor has already been registered with the same email");
          return "A vendor has already been registered with the same email";

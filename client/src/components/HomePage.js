@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
 import { myContext } from "./Context";
 import "../css/Homepage.css";
 import homepage from "./assets/homepage.png";
@@ -31,7 +30,7 @@ const HomePage = () => {
 
 
      {context ? (
-      <h1>Welcome to our site {context.username}</h1>
+      <h1>Welcome to our site {context.displayName}</h1>
     ): <h1>Welcome to our site</h1>} 
 
    
@@ -46,7 +45,6 @@ const HomePage = () => {
 
   
 
-  {/* <button className="btn3" >Login</button> */}
   < img className="logodown" src={homepagelogo} alt="homepagelogo.png"/>
 
 <img className="logoup" src={homepagelogoup} alt="homepagelogoup.png"/>

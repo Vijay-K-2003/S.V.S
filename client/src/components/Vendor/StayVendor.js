@@ -11,7 +11,7 @@ const StayVendor = () => {
 	const userObject = useContext(myContext)
 
 	useEffect(() => {
-		axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}`).then((res) => {
+		axios.get(`http://localhost:4000/vendors/${id}`).then((res) => {
 			setVendor(res.data);
 		});
 	}, []);
@@ -19,7 +19,7 @@ const StayVendor = () => {
 	useEffect(() => {
 		const customer = async() => {
 
-			const res = await axios.get("https://smart-vendor1.herokuapp.com/customers")
+			const res = await axios.get("http://localhost:4000/customers")
 		
 			setCustomer(res.data);
 		  }
@@ -46,7 +46,7 @@ let location = useLocation();
 			// console.log("Matched");
 		    // console.log(cust.myVendors);
 			cust.myVendors.map((e) => {
-				if(e._id === id && userObject.email === e.email) 
+				if(e._id === id && userObject.emails[0].value === e.email) 
 				{
 					//Should notify customer that which particular vendor has come
 					//We have send customer and vendor id from here 

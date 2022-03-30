@@ -17,7 +17,7 @@ const CustomerVendor = () => {
 
   useEffect(() => {
   
-  axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
+  axios.get(`http://localhost:4000/customers/${id}`)
   .then((res) => {
   // console.log(res.data);
     setCustomer(res.data);
@@ -30,7 +30,7 @@ const CustomerVendor = () => {
   }
 
   const handleVen = (venid, index) => {
- axios.delete(`https://smart-vendor1.herokuapp.com/customers/${id}/myVendor/${venid}`)
+ axios.delete(`http://localhost:4000/customers/${id}/myVendor/${venid}`)
  .then((res) => {
 
  })
@@ -43,7 +43,7 @@ const CustomerVendor = () => {
     <div className="my-vendor-component">
       <h1 className="my-vendor-title">Here is ur vendors list</h1>
     <div className="my-vendor-data">
-      {customer.myVendors && userObject.email === customer.email ? (
+      {customer.myVendors && userObject.emails[0].value === customer.email ? (
         <div className="my-vendor-left">
  <ol>
  {Object.values(customer.myVendors).map((keyName, i) => (
