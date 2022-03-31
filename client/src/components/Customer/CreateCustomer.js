@@ -97,8 +97,10 @@ setVen(res.data);
           console.log(res.data);
     
         });
+
+        navigate("/");
   
-        return toast.success("Created Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+        return toast.success("Created Customer Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
   }
 
 

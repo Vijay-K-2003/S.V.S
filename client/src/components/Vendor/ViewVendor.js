@@ -36,6 +36,7 @@ const ViewVendor = () => {
       .catch((e) => {
         console.log(e);
       });
+navigate("/");
 
     return toast.success(
       "Deleted Vendor Successfully! Click on Home on the navbar to continue...",

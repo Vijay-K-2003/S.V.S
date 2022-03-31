@@ -91,7 +91,7 @@ const {id} = useParams();
     }, [])
     
 
-
+let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     vendor.email = userObject.emails[0].value;
@@ -104,7 +104,8 @@ const {id} = useParams();
         
 
       });
-      return toast.success("Updated Vendor Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+      navigate("/");
+      return toast.success("Updated Vendor Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
 
   };
 

@@ -101,8 +101,8 @@ const CreateVendor = () => {
         console.log(res.data);
        
       });
-
-      return toast.success("Created Vendor Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+      navigate("/");
+      return toast.success("Created Vendor Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
     } 
   }, [formErrors]);
 

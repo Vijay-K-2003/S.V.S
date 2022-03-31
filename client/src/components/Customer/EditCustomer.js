@@ -83,7 +83,8 @@ useEffect(() => {
 
 
    });
-   return toast.success("Updated Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+   navigate("/");
+   return toast.success("Updated Customer Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
  
 }
 
