@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
+import "../../css/Wait.css";
+import waiting from "../assets/Waiting.svg";
 
 const StayVendor = () => {
 	const [vendor, setVendor] = useState("");
@@ -86,11 +88,20 @@ let location = useLocation();
 	
 	
 	return (
-		<div>
-			<h1>
+		<div className="containerw">
+			<div className="infos">
+			<h1 className="info-heading">
+				We will inform the<br></br> customer as soon as you <br></br>get closer
+			</h1>
+			<h1 className="info-mobile">
 				We will inform the customer as soon as you get closer
 			</h1>
-			
+			</div>
+			<div className="imgs">
+				
+			<img className="waitimgt" src={waiting} alt="waiting.svg"/>
+
+			</div>
 
 		</div>
 	);
