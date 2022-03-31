@@ -52,7 +52,7 @@ const CreateCustomer = () => {
   }}
 
   useEffect(() => {
-    axios.get("https://smart-vendor1.herokuapp.com/customers")
+    axios.get("http://localhost:4000/customers")
     .then((res) => {
 setCus(res.data);
 
@@ -62,7 +62,7 @@ setCus(res.data);
   }, [])
   
   useEffect(() => {
-    axios.get("https://smart-vendor1.herokuapp.com/vendors")
+    axios.get("http://localhost:4000/vendors")
     .then((res) => {
 setVen(res.data);
 
@@ -74,7 +74,7 @@ setVen(res.data);
   let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    customer.email = userObject.email;
+    customer.email = userObject.emails[0].value;
     validate(customer);
     setFormErrors(validate(customer));
     setIsSubmit(true);
@@ -92,13 +92,15 @@ setVen(res.data);
   
    
     axios
-    .post("https://smart-vendor1.herokuapp.com/customers/new", customer)
+    .post("http://localhost:4000/customers/new", customer)
     .then((res) => {
           console.log(res.data);
     
         });
+
+        navigate("/");
   
-        return toast.success("Created Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+        return toast.success("Created Customer Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
   }
 
 
@@ -140,7 +142,7 @@ return errors;
     <div className="component-full">
     
     {cus && cus.map((e) => {
-       if(e.email === userObject.email)
+       if(e.email === userObject.emails[0].value)
        {
         navigate("/error/?error=A customer has already been registered with the same email");  //Should redirect to a error template displaying this message;
         return "A customer with the same email already exist";
@@ -149,7 +151,7 @@ return errors;
      })}
 
      {ven && ven.map((e) => {
-       if(e.email === userObject.email)
+       if(e.email === userObject.emails[0].value)
        {
         navigate("/error/?error=A vendor has already been registered with the same email");
         return "A vendor has already been registered with the same email";

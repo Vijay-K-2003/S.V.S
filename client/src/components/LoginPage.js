@@ -9,7 +9,7 @@ const LoginPage = () => {
 
 
 const googleLogin = () => {
-  window.open("https://smart-vendor1.herokuapp.com/google", "_self");
+  window.open("http://localhost:4000/google", "_self");
 }
 
 
@@ -24,6 +24,7 @@ const googleLogin = () => {
 
         <button className="btn" onClick={googleLogin}>
         <div class="btn-text">Login with Google<img src={googleImage} alt="googleimage.png" /> </div></button>
+        
         <span className="logo">
           < img src={loginpagelogo} alt="loginpagelogo.png" />
 

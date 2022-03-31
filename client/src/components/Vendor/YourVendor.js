@@ -11,7 +11,7 @@ const YourVendor = () => {
     const userObject = useContext(myContext);
 
     useEffect(() => {
-      axios.get("https://smart-vendor1.herokuapp.com/vendors")
+      axios.get("http://localhost:4000/vendors")
       .then((res) => {
           setVendor(res.data);
         console.log(res.data);
@@ -22,7 +22,7 @@ const YourVendor = () => {
     }, [])
 let navigate = useNavigate();
     const handleVendor = (id) => {
-        axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}`)
+        axios.get(`http://localhost:4000/vendors/${id}`)
         .then((res) => {
             navigate(`/vendors/${id}`);
         })
@@ -37,7 +37,7 @@ let navigate = useNavigate();
     return(
         <>
         {/* {console.log(ven)} */}
-        {userObject.email === ven.email ? (
+        {userObject.emails[0].value === ven.email ? (
         <div className="your-vendor-component">  
         <div className='your-vendor-left'>
         {/* <div className='your-vendor-left-inside'> */}

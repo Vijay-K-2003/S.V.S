@@ -15,7 +15,7 @@ const Notify = () => {
     useEffect(() => {
       
     const cust = async () => {
-        const res = await axios.get(`https://smart-vendor1.herokuapp.com/customers/${id}`)
+        const res = await axios.get(`http://localhost:4000/customers/${id}`)
         setCustomer(res.data);
     }
     cust();

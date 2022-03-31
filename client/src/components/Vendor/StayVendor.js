@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
+import "../../css/Wait.css";
+import waiting from "../assets/Waiting.svg";
 
 const StayVendor = () => {
 	const [vendor, setVendor] = useState("");
@@ -11,7 +13,7 @@ const StayVendor = () => {
 	const userObject = useContext(myContext)
 
 	useEffect(() => {
-		axios.get(`https://smart-vendor1.herokuapp.com/vendors/${id}`).then((res) => {
+		axios.get(`http://localhost:4000/vendors/${id}`).then((res) => {
 			setVendor(res.data);
 		});
 	}, []);
@@ -19,7 +21,7 @@ const StayVendor = () => {
 	useEffect(() => {
 		const customer = async() => {
 
-			const res = await axios.get("https://smart-vendor1.herokuapp.com/customers")
+			const res = await axios.get("http://localhost:4000/customers")
 		
 			setCustomer(res.data);
 		  }
@@ -46,7 +48,7 @@ let location = useLocation();
 			// console.log("Matched");
 		    // console.log(cust.myVendors);
 			cust.myVendors.map((e) => {
-				if(e._id === id && userObject.email === e.email) 
+				if(e._id === id && userObject.emails[0].value === e.email) 
 				{
 					//Should notify customer that which particular vendor has come
 					//We have send customer and vendor id from here 
@@ -86,11 +88,20 @@ let location = useLocation();
 	
 	
 	return (
-		<div>
-			<h1>
+		<div className="containerw">
+			<div className="infos">
+			<h1 className="info-heading">
+				We will inform the<br></br> customer as soon as you <br></br>get closer
+			</h1>
+			<h1 className="info-mobile">
 				We will inform the customer as soon as you get closer
 			</h1>
-			
+			</div>
+			<div className="imgs">
+				
+			<img className="waitimgt" src={waiting} alt="waiting.svg"/>
+
+			</div>
 
 		</div>
 	);
