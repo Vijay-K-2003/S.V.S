@@ -43,9 +43,11 @@
     background: #B46BA4;
     color: white;
     font-family: 'Glory', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
     border: none;
-    border-radius: 20px;
-    padding: 8px;
+    border-radius: 15px;
+    padding: 8px 14px;
 }
 
 .btn-all-vendor:hover {

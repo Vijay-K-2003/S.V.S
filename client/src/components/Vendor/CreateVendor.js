@@ -101,10 +101,10 @@ const CreateVendor = () => {
         console.log(res.data);
        
       });
-      navigate("/");
-      return toast.success("Created Vendor Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
+    
+      return toast.success("Created Vendor Successfully!, Click on the Home in the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
     } 
-  }, [formErrors]);
+  }, [formErrors, vendor, isSubmit]);
 
   const validate = (values) => {
     const errors = {};

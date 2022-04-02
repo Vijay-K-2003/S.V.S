@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { myContext } from "../Context";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../css/CreateCustomer.css"
 import createCustomerImage from "../assets/create_customer.svg";
 import {toast} from 'react-toastify';
@@ -97,15 +97,13 @@ setVen(res.data);
           console.log(res.data);
     
         });
-
-        navigate("/");
   
-        return toast.success("Created Customer Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
+        return toast.success("Created Customer Successfully!, Click on the Home in the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
   }
 
 
    
-  }, [formErrors])
+  }, [formErrors, customer, isSubmit])
 
  
   

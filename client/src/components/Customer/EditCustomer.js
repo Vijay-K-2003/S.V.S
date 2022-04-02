@@ -67,7 +67,7 @@ const EditCustomer = () => {
     })
   
    
-  }, [])
+  }, [id])
   
 
   let navigate = useNavigate();
@@ -89,7 +89,7 @@ useEffect(() => {
 }
 
  
-}, [formErrors])
+}, [formErrors, customer, id, isSubmit, navigate])
 
 
 

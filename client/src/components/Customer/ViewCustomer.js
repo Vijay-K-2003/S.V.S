@@ -1,7 +1,6 @@
-import React, { useRef, useEffect, useState, useContext } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { myContext } from "../Context";
 import "../../index.css";
 import '../../css/viewCustomer.css';
 import "../assets/viewCustomer/DeleteIcon.svg";
@@ -16,14 +15,13 @@ import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-load
 toast.configure();
 mapboxgl.accessToken = process.env.REACT_APP_MAPTOKEN;
 const ViewCustomer = () => {
-  const userObject = useContext(myContext);
+  
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
   const [customer, setCustomer] = useState("");
-  const [message, showMessage] = useState(false);
 
   useEffect(() => {
     
@@ -33,7 +31,7 @@ const ViewCustomer = () => {
       center: [lng, lat],
       zoom: zoom,
     });
-  }, []);
+  }, [lat, lng, zoom]);
 
   useEffect(() => {
     // if(map.current) return;
@@ -58,8 +56,6 @@ const ViewCustomer = () => {
       if(res.data)
       {
         setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
-
-          showMessage(true);
        
       }
     });

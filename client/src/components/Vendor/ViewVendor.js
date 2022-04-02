@@ -20,7 +20,7 @@ const ViewVendor = () => {
       .then((res) => {
         setVendor(res.data);
       });
-  }, []);
+  }, [id]);
   let navigate = useNavigate();
   const handleTracking = () => {
     navigate(`locate`);

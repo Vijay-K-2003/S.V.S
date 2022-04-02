@@ -10,6 +10,7 @@ import MyVendorImage from "../assets/yourvendor.svg";
 toast.configure();
 const CustomerVendor = () => {
   const [customer, setCustomer] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
   const userObject = useContext(myContext);
 
   const { id } = useParams();
@@ -21,9 +22,12 @@ const CustomerVendor = () => {
   .then((res) => {
   // console.log(res.data);
     setCustomer(res.data);
-    
+    if(res.data.myVendors.length === 0)
+    {
+      setIsEmpty(true);
+    }
   })
-  }, []);
+  }, [id]);
 
   const checkDisable = (index) => {
     document.getElementById(index).disabled = true;
@@ -32,6 +36,9 @@ const CustomerVendor = () => {
   const handleVen = (venid, index) => {
  axios.delete(`http://localhost:4000/customers/${id}/myVendor/${venid}`)
  .then((res) => {
+  // setCustomer((data) => data.filter((vendor) => vendor._id !== venid));
+  //  setCustomer((data) => console.log(data));
+
 
  })
  checkDisable(index);
@@ -43,7 +50,10 @@ const CustomerVendor = () => {
     <div className="my-vendor-component">
       <h1 className="my-vendor-title">Here is ur vendors list</h1>
     <div className="my-vendor-data">
-      {customer.myVendors && userObject.emails[0].value === customer.email ? (
+      
+      {isEmpty ? (
+        <div>You currently do not have any approved Vendors</div>
+      ): userObject.emails[0].value === customer.email ? (
         <div className="my-vendor-left">
  <ol>
  {Object.values(customer.myVendors).map((keyName, i) => (
@@ -59,6 +69,7 @@ const CustomerVendor = () => {
  </ol>
  </div>
       ): null}
+     
      <div className="my-customer-right">
        <img className="my-customer-image" src={MyVendorImage} alt='my vendor' />
      </div>

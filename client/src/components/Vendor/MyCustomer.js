@@ -24,7 +24,7 @@ const MyCustomer = () => {
           }
       }
     getCustomer();
-    }, [])
+    }, [id])
 
     useEffect(() => {
         const getVendor = async() => {
@@ -33,7 +33,7 @@ const MyCustomer = () => {
         }
       getVendor();
        
-      }, [])
+      }, [id])
 
  
     
@@ -41,7 +41,16 @@ const MyCustomer = () => {
       
         <div className='my-customer-component'>
         {empty ? (
-            <h1 className='my-customer-title'>Empty</h1>
+            <>
+            <div className='empty-customer-flex'>
+            
+            <h1>You have been not approved by any customer till now</h1>
+            
+                    
+                        <img src={YourCustomer} alt="my-customer" />
+                    
+                </div>
+                </>
         ):
         <h1 className='my-customer-title'>Here is a list of customers who approved for you</h1> }
             {customer && customer.map((cus) => {

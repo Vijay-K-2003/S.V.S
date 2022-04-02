@@ -21,7 +21,7 @@ const AllVendors = () => {
       // setVendor(customer.myVendors.filter(e => e.vendor._id.toString() !==).length > 0);
       setVendor(res.data);
     });
-  }, []);
+  }, [customerId]);
 
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}`).then((res) => {
@@ -29,7 +29,7 @@ const AllVendors = () => {
       // console.log(customer.myVendors[0]._id)
       setCustomer(res.data);
     });
-  }, []);
+  }, [customerId]);
 
   const checkDisable = (index) => {
     document.getElementById(index).disabled = true;
@@ -42,9 +42,8 @@ const AllVendors = () => {
     
     axios.put(`http://localhost:4000/customers/${customerId}/allVendor/${id}`)
     .then((res) => {
- 
       
-    })
+ })
     checkDisable(index);
     return toast.success("Added to your list of vendors", {position: toast.POSITION.BOTTOM_LEFT});
 
