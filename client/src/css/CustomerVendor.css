@@ -42,7 +42,9 @@
 }
 
 .my-vendor-btn:disabled {
-    cursor: not-allowed;
+    
+    all: unset;
+  
 }
 
 .my-vendor-left {

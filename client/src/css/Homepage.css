@@ -46,7 +46,16 @@
 }
 .leftdown{
     display: flex;
+    flex-direction: column;
+    
 }
+
+.down-btn{
+display: flex;
+flex-direction: column;
+}
+
+
 .btn1{
     background: #9EC7A6;
     padding: 1rem 2rem;
@@ -65,6 +74,38 @@ padding: 1rem 2rem;
     border-radius: 7rem;
     cursor: pointer;
     background: rgba(227, 235, 228, 1);
+    font-size: 1rem;
+}
+
+.btn-c-flex{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.btn-v-flex{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.btn-yourV{
+    background: #9EC7A6;
+    padding: 1rem 2rem;
+    margin:2rem 0.1rem;
+    border-radius: 7rem;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-yourC{
+    background: #9EC7A6;
+    padding: 1rem 2rem;
+    margin:2rem 0.1rem;
+    border-radius: 7rem;
+    cursor: pointer;
+    border: none;
     font-size: 1rem;
 }
 /* .btn3{

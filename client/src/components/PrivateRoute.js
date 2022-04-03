@@ -5,14 +5,12 @@ import { myContext } from "./Context"
 const PrivateRoute = () => {
     const userObject = useContext(myContext);
 
+    console.log(userObject)
   return !userObject ? (
     <Navigate to="/login"/>
-    ) : userObject ? (
+    ) : (
       <Outlet />
-      ): (
-        
-        <Navigate to="/login"/>
-  );
+    )
 };
 
 export default PrivateRoute;

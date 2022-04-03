@@ -55,8 +55,7 @@
 }
 
 .btn-all-vendor:disabled {
-    background-color: #622A55;
-    cursor: not-allowed;
+   all: unset;
 }
 
 @media (max-width:850px) {

@@ -30,7 +30,7 @@ const CreateCustomer = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const userObject = useContext(myContext);
-
+console.log(userObject)
 
   const handleChange = (event) =>setCustomer((data) => ({
     ...data,
@@ -95,15 +95,19 @@ setVen(res.data);
     .post("http://localhost:4000/customers/new", customer)
     .then((res) => {
           console.log(res.data);
-    
+          setTimeout(() => {
+            navigate("/");
+            window.location.reload(false);
+            
+          }, 3000);
         });
-  
-        return toast.success("Created Customer Successfully!, Click on the Home in the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+
+        return toast.success("Created Customer Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
   }
 
 
    
-  }, [formErrors, customer, isSubmit])
+  }, [formErrors, customer, isSubmit, navigate])
 
  
   

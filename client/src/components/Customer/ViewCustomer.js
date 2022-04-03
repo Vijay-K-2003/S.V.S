@@ -51,15 +51,19 @@ const ViewCustomer = () => {
 
   let navigate = useNavigate();
   const onDeleteCustomer = (id) => {
-    navigate("/")
+  
     axios.delete(`http://localhost:4000/customers/${id}/delete`).then((res) => {
       if(res.data)
       {
-        setCustomer((data) => data.filter((cust) => cust._id !== cust.id));
+        setTimeout(() => {
+          navigate("/");
+          window.location.reload(false);
+        }, 3000);
+      
        
       }
     });
-    return toast.success("Deleted Customer Successfully! Click on Home on the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
+    return toast.success("Deleted Customer Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
 
   };
 

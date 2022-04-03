@@ -101,10 +101,12 @@ let navigate = useNavigate();
       .put(`http://localhost:4000/vendors/${id}/edit`, vendor)
       .then((res) => {
         console.log(res.data);
+        setTimeout(() => {
+          navigate("/");
         
+        }, 3000);
 
       });
-      navigate("/");
       return toast.success("Updated Vendor Successfully!", {position: toast.POSITION.BOTTOM_LEFT})
 
   };
