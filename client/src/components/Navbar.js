@@ -57,9 +57,9 @@ const Navbar = () => {
     }
 
 
-    <HomePage customer = {isCustomer}/>
     return (
-        <div>
+      <div>
+          {/* <HomePage customer = {isCustomer}/> */}
       {userObject && !isCustomer && !isVendor ? (
         <div className={isToggles === false ? "bring-down navbar" : "navbar"}>
           <span className="navbar-toggle" id="js-navbar-toggle">

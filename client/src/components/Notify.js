@@ -25,12 +25,12 @@ const Notify = () => {
     useEffect(() => {
       
         const ven = async () => {
-            const res = await axios.get(`https://smart-vendor1.herokuapp.com/vendors/${venid}`)
+            const res = await axios.get(`https://localhost:4000/vendors/${venid}`)
             setVendor(res.data);
         }
         ven();
          
-        }, [])
+        }, [venid])
 
      
 
@@ -49,7 +49,7 @@ const Notify = () => {
       
         
      
-        }, [])
+        }, [id, venid])
         
 
 
