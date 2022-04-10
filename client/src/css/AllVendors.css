@@ -12,7 +12,7 @@
 }
 
 .title-all-vendor {
-    font-size: 3em;
+    font-size: 3.2em;
 }
 
 .vendor-item ul li {
@@ -32,7 +32,7 @@
     border-radius: 20px;
     padding: 2vw;
     width: 42%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .image-right-all-vendor img {
@@ -44,7 +44,7 @@
     color: white;
     font-family: 'Glory', sans-serif;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 26px;
     border: none;
     border-radius: 15px;
     padding: 8px 14px;
