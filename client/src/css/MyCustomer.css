@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;600;800&family=Glory:wght@100;200;300;400;500;600;700;800&display=swap');
 
-
-
-
-
+.empty-customer-flex {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 3em;
+    color: white;
+    background-color: red;
+}
 
 .my-customer-component {
     font-family: 'Glory', sans-serif;
