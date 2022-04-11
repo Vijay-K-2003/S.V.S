@@ -27,19 +27,22 @@ const ViewVendor = () => {
   };
 
   const handleDelete = () => {
-    // navigate("/");
+    
     axios
       .delete(`http://localhost:4000/vendors/${id}/delete`)
       .then((res) => {
-        navigate("/");
+       setTimeout(() => {
+         navigate("/");
+         window.location.reload(false);
+       }, 3000);
       })
       .catch((e) => {
         console.log(e);
       });
-navigate("/");
+
 
     return toast.success(
-      "Deleted Vendor Successfully! Click on Home on the navbar to continue...",
+      "Deleted Vendor Successfully!",
       { position: toast.POSITION.BOTTOM_LEFT }
     );
   };

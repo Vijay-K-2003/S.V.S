@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 // import Hamburger from "../components/assets/Navbar/Hamburger.svg";
-import HomePage from "../components/HomePage.js";
 import {Link} from "react-router-dom";
 import { myContext } from "./Context";
 import '../css/Navbar.css';
@@ -59,7 +58,7 @@ const Navbar = () => {
 
     return (
       <div>
-          {/* <HomePage customer = {isCustomer}/> */}
+    
       {userObject && !isCustomer && !isVendor ? (
         <div className={isToggles === false ? "bring-down navbar" : "navbar"}>
           <span className="navbar-toggle" id="js-navbar-toggle">
@@ -78,9 +77,11 @@ const Navbar = () => {
             <Link to="/logout" onClick={handleLogout} className="nav-link">
               Logout
             </Link>
-            <a href="/" className="nav-link">
+            <Link to="/" className="nav-link">
               Home
-            </a>
+            </Link>
+
+           
           </div>
         </div>
       ) : userObject && isCustomer && !isVendor ? (
@@ -98,9 +99,10 @@ const Navbar = () => {
             <Link to="/logout" onClick={handleLogout} className="nav-link">
               Logout
             </Link>
-            <a href="/" className="nav-link">
+            <Link to="/" className="nav-link">
               Home
-            </a>
+            </Link>
+
           </div>
         </div>
       ) : userObject && !isCustomer ? (
@@ -139,6 +141,9 @@ const Navbar = () => {
             <Link to="/createVendor" className="nav-link">
               Create a Vendor
             </Link>
+            <a href="/" className="nav-link">
+              Home
+            </a>
           </div>
         </div>
       )}

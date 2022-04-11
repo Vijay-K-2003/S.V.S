@@ -1,13 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { myContext } from "./Context";
 import "../css/Homepage.css";
 import homepage from "./assets/homepage.png";
 import homepagelogo from "./assets/homepagelogo.png";
 import homepagelogoup from "./assets/homepagelogoup.png";
 
-const HomePage = (props) => {
+const HomePage = () => {
   const context = useContext(myContext);
+  const [isCustomer, setIsCustomer] = useState(false);
+  const [isVendor, setIsVendor] = useState(false);
+
+  useEffect(() => {
+    const getCustomer = async () => {
+      const res = await axios.get("http://localhost:4000/customers");
+      context &&
+        res.data.map((e) => {
+          if (e.email === context.emails[0].value) {
+            setIsCustomer(true);
+          }
+        });
+    };
+
+    getCustomer();
+  }, [context]);
+
+  useEffect(() => {
+    const getVendor = async () => {
+      const res = await axios.get("http://localhost:4000/vendors");
+      context &&
+        res.data.map((e) => {
+          if (e.email === context.emails[0].value) {
+            setIsVendor(true);
+          }
+        });
+    };
+
+    getVendor();
+}, [context]);
 
   let navigate = useNavigate();
   const createCustomer = () => {
@@ -25,42 +56,61 @@ const HomePage = (props) => {
   const yourVendor = () => {
     navigate("/getVendor");
   };
-  console.log(props.customer);
+  
 
   return (
     <div>
       <div className="containers">
         <div className="left">
-          {context && props.customer === true ? (
+          {context && isCustomer === true ? (
             <div>
               <h1>Welcome to our site {context.displayName}</h1>
-              <button className="Home-yourCustomer" onClick={yourCustomer}>
-                Your Customer
-              </button>
-            </div>
-          ) : context && props.customer === false ? (
-            <div>
-              <h1>Welcome to our site {context.displayName}</h1>
-              <button className="Home-yourCustomer" onClick={yourVendor}>
-                Your Vendor
-              </button>
-            </div>
-          ) : (
-            <h1>Welcome to our site</h1>
-          )}
-
-          <h1>
+              <h1>
             Eat good<br></br>Feel good
           </h1>
-          <div className="leftdown ">
-            <button className="btn1" onClick={createCustomer}>
-              Create Customer
-            </button>
-            <button className="btn2" onClick={createVendor}>
-              {" "}
-              Create Vendor
-            </button>
+          <div className="btn-c-flex">
+              <button className="btn-yourC" onClick={yourCustomer}>
+                Your Customer
+              </button>
+              </div>
+            </div>
+          ) : context && isVendor === true ? (
+            <div>
+              <h1>Welcome to our site {context.displayName}</h1>
+                <h1>
+            Eat good<br></br>Feel good
+          </h1>
+          <div className="btn-v-flex">
+              <button className="btn-yourV" onClick={yourVendor}>
+                Your Vendor
+              </button>
+              </div>
+            </div>
+          ) : (
+            <div className="leftdown">
+        <div>
+            <h1>Welcome to our site</h1>
+            </div>
+            <div>
+            <h1>
+            Eat good<br></br>Feel good
+          </h1>
           </div>
+   <div>
+            <button className="btn1" onClick={createCustomer}>
+            Create Customer
+          </button>
+          <button className="btn2" onClick={createVendor}>
+           {" "}
+           Create Vendor
+         </button>
+         </div>
+          </div>
+         
+          )}
+
+        
+       
         </div>
         <div className="right">
           <img className="logodown" src={homepagelogo} alt="homepagelogo.png" />

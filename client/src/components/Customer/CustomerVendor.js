@@ -31,13 +31,18 @@ const CustomerVendor = () => {
 
   const checkDisable = (index) => {
     document.getElementById(index).disabled = true;
+    document.getElementById(index).innerText = "Disapproved";
+
   }
 
   const handleVen = (venid, index) => {
- axios.delete(`http://localhost:4000/customers/${id}/myVendor/${venid}`)
- .then((res) => {
-  // setCustomer((data) => data.filter((vendor) => vendor._id !== venid));
-  //  setCustomer((data) => console.log(data));
+    //  setCustomer((data) => console.log(data));
+    //  setCustomer((cus) => data.myVendors.filter((vendor) => vendor._id !== venid));
+    customer.myVendors.filter(e => e._id !== venid);
+    setCustomer(customer);
+    console.log(customer);
+    axios.delete(`http://localhost:4000/customers/${id}/myVendor/${venid}`)
+    .then((res) => {
 
 
  })

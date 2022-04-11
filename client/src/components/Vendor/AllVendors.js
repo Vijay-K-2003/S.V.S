@@ -33,6 +33,7 @@ const AllVendors = () => {
 
   const checkDisable = (index) => {
     document.getElementById(index).disabled = true;
+    document.getElementById(index).innerText = "Approved";
     // console.log(index);
   }
 

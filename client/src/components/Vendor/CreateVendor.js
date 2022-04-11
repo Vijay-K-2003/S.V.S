@@ -99,12 +99,15 @@ const CreateVendor = () => {
      
       axios.post("http://localhost:4000/vendors/new", vendor).then((res) => {
         console.log(res.data);
-       
+       setTimeout(() => {
+         navigate("/");
+         window.location.reload(false);
+         
+       }, 3000);
       });
-    
       return toast.success("Created Vendor Successfully!, Click on the Home in the navbar to continue...", {position: toast.POSITION.BOTTOM_LEFT})
     } 
-  }, [formErrors, vendor, isSubmit]);
+  }, [formErrors, vendor, isSubmit, navigate]);
 
   const validate = (values) => {
     const errors = {};
