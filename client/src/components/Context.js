@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react'
 import axios from "axios";
 
+
 // const initialState = {
 //     username: "",
 //     email: "",
@@ -23,8 +24,11 @@ import axios from "axios";
     }, [])
   console.log(user);
   
+  
   return (
+    
       <myContext.Provider value={user}>{props.children}</myContext.Provider>
+      
   )
 }
 

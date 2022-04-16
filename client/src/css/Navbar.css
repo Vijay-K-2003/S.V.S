@@ -35,11 +35,16 @@
     cursor: pointer;
     font-size: 24px;
   }
+
+  .hamburger{
+    height: 40px;
+    width: 30px;
+  }
   
-  /* .hamburger-btn {
+  .hamburger-btn {
     all: unset;
     cursor: pointer;
-  } */
+  }
   
   @media screen and (min-width: 768px) {
     .navbar {

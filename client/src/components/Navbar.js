@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-// import Hamburger from "../components/assets/Navbar/Hamburger.svg";
+import hamburger from "../components/assets/Navbar/hamburger.svg";
 import {Link} from "react-router-dom";
 import { myContext } from "./Context";
 import '../css/Navbar.css';
@@ -63,7 +63,7 @@ const Navbar = () => {
         <div className={isToggles === false ? "bring-down navbar" : "navbar"}>
           <span className="navbar-toggle" id="js-navbar-toggle">
             <button className="hamburger-btn" onClick={handleHamburger}>
-              {/* <img src={Hamburger} alt="hamburger" /> */}
+              <img class="hamburger" src={hamburger} alt="hamburger" />
             </button>
           </span>
           <div class="main-nav" id="js-menu">
@@ -88,7 +88,7 @@ const Navbar = () => {
         <div className={isToggles === false ? "bring-down navbar" : "navbar"}>
           <span className="navbar-toggle" id="js-navbar-toggle">
             <button className="hamburger-btn" onClick={handleHamburger}>
-              {/* <img src={Hamburger} alt="hamburger" /> */}
+              <img class="hamburger" src={hamburger} alt="hamburger" />
             </button>
           </span>
           <div class="main-nav" id="js-menu">
@@ -109,7 +109,7 @@ const Navbar = () => {
         <div className={isToggles === false ? "bring-down navbar" : "navbar"}>
           <span className="navbar-toggle" id="js-navbar-toggle">
             <button className="hamburger-btn" onClick={handleHamburger}>
-              {/* <img src={Hamburger} alt="hamburger" /> */}
+              <img class="hamburger" src={hamburger} alt="hamburger" />
             </button>
           </span>
           <div class="main-nav" id="js-menu">
@@ -128,7 +128,7 @@ const Navbar = () => {
         <div className={isToggles === false ? "bring-down navbar" : "navbar"}>
           <span className="navbar-toggle" id="js-navbar-toggle">
             <button className="hamburger-btn" onClick={handleHamburger}>
-              {/* <img src={Hamburger} alt="hamburger" /> */}
+              <img class="hamburger" src={hamburger} alt="hamburger" />
             </button>
           </span>
           <div class="main-nav" id="js-menu">

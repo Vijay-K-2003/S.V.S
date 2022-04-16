@@ -38,7 +38,7 @@ const HomePage = () => {
     };
 
     getVendor();
-}, [context]);
+  }, [context]);
 
   let navigate = useNavigate();
   const createCustomer = () => {
@@ -56,7 +56,6 @@ const HomePage = () => {
   const yourVendor = () => {
     navigate("/getVendor");
   };
-  
 
   return (
     <div>
@@ -66,51 +65,47 @@ const HomePage = () => {
             <div>
               <h1>Welcome to our site {context.displayName}</h1>
               <h1>
-            Eat good<br></br>Feel good
-          </h1>
-          <div className="btn-c-flex">
-              <button className="btn-yourC" onClick={yourCustomer}>
-                Your Customer
-              </button>
+                Eat good<br></br>Feel good
+              </h1>
+              <div className="btn-c-flex">
+                <button className="btn-yourC" onClick={yourCustomer}>
+                  Your Customer
+                </button>
               </div>
             </div>
           ) : context && isVendor === true ? (
             <div>
               <h1>Welcome to our site {context.displayName}</h1>
-                <h1>
-            Eat good<br></br>Feel good
-          </h1>
-          <div className="btn-v-flex">
-              <button className="btn-yourV" onClick={yourVendor}>
-                Your Vendor
-              </button>
+              <h1>
+                Eat good<br></br>Feel good
+              </h1>
+              <div className="btn-v-flex">
+                <button className="btn-yourV" onClick={yourVendor}>
+                  Your Vendor
+                </button>
               </div>
             </div>
           ) : (
-            <div className="leftdown">
-        <div>
-            <h1>Welcome to our site</h1>
+            <div className="leftdownn">
+              <div>
+                <h1>Welcome to our site</h1>
+              </div>
+              <div>
+                <h1>
+                  Eat good<br></br>Feel good
+                </h1>
+              </div>
+              <div>
+                <button className="btn1" onClick={createCustomer}>
+                  Create Customer
+                </button>
+                <button className="btn2" onClick={createVendor}>
+                  {" "}
+                  Create Vendor
+                </button>
+              </div>
             </div>
-            <div>
-            <h1>
-            Eat good<br></br>Feel good
-          </h1>
-          </div>
-   <div>
-            <button className="btn1" onClick={createCustomer}>
-            Create Customer
-          </button>
-          <button className="btn2" onClick={createVendor}>
-           {" "}
-           Create Vendor
-         </button>
-         </div>
-          </div>
-         
           )}
-
-        
-       
         </div>
         <div className="right">
           <img className="logodown" src={homepagelogo} alt="homepagelogo.png" />

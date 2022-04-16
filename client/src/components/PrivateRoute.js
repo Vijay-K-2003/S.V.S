@@ -1,16 +1,29 @@
-import React, { useContext } from "react";
+import React, {useState, useEffect} from "react";
 import { Navigate, Outlet} from "react-router-dom";
-import { myContext } from "./Context"
+import axios from "axios";
+
 
 const PrivateRoute = () => {
-    const userObject = useContext(myContext);
 
-    console.log(userObject)
-  return !userObject ? (
-    <Navigate to="/login"/>
+  const [user, setUser] = useState({});
+  
+  useEffect(() => {
+    const getUser = async() => {
+   
+     const res =  await axios.get("http://localhost:4000/getUser", {withCredentials: true});
+     console.log(res.data);
+     setUser(res.data);
+    }
+    getUser();
+    
+   }, [])
+
+    console.log(user)
+  return user ? (
+    <Outlet />
     ) : (
-      <Outlet />
-    )
+      <Navigate to="/login"/>
+      )
 };
 
 export default PrivateRoute;
