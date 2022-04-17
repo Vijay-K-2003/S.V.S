@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { myContext } from "../Context";
 import "../../css/YourCustomer.css";
-import YourCustomerImage from "../assets/YourCustomer.svg";
+import YourCustomerImage from "../assets/yourCustomer/YourCustomer.svg";
 
 const YourCustomer = () => {
 const [customer, setCustomer] = useState([]);

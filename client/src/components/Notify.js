@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../css/Notify.css";
-import notifylogo from "./assets/notifylogo.png";
+import notifylogo from "./assets/Notify/notifylogo.png";
 
 const Notify = () => {
   const [customer, setCustomer] = useState("");

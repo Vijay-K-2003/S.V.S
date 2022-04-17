@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams} from "react-router-dom";
 import axios from "axios";
 import "../../css/AllVendors.css"
-import AllVendorImage from "../assets/loginpage.png";
+import AllVendorImage from "../assets/yourCustomer/yourcoustmer.png";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,22 +11,19 @@ toast.configure();
 const AllVendors = () => {
 
   const [vendor, setVendor] = useState([]);
-  // const [disable, setDisable] = useState(false);
   const [customer, setCustomer] = useState("");
   const customerId = useParams().id;
   
-  // const customerId = id;
+  
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}/allVendor`).then((res) => {
-      // setVendor(customer.myVendors.filter(e => e.vendor._id.toString() !==).length > 0);
       setVendor(res.data);
     });
   }, [customerId]);
 
   useEffect(() => {
     axios.get(`http://localhost:4000/customers/${customerId}`).then((res) => {
-      // console.log(res.data);
-      // console.log(customer.myVendors[0]._id)
+      
       setCustomer(res.data);
     });
   }, [customerId]);
@@ -34,7 +31,7 @@ const AllVendors = () => {
   const checkDisable = (index) => {
     document.getElementById(index).disabled = true;
     document.getElementById(index).innerText = "Approved";
-    // console.log(index);
+    
   }
 
 
@@ -51,9 +48,7 @@ const AllVendors = () => {
 
 }
 
-// const checkDisable = (id) => {
 
-// }
 
   return <div className="container-all-vendor">
       <div className="data-left-vendor">
@@ -72,7 +67,7 @@ const AllVendors = () => {
 
             <h5>Items found on his cart: {ven.items+','}</h5>
           
-            {/* {console.log(customer.myVendors[0].vendor._id.toString())} */}
+            
             { (customer.myVendors && !(customer.myVendors.filter(e => e._id === ven._id).length > 0))? (
               
               <button className="btn-all-vendor" id={index} onClick={() => handleVendor(ven._id, index)}>Approve</button>

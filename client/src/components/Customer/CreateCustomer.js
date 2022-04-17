@@ -3,7 +3,7 @@ import axios from "axios";
 import { myContext } from "../Context";
 import { useNavigate } from "react-router-dom";
 import "../../css/CreateCustomer.css"
-import createCustomerImage from "../assets/create_customer.svg";
+import createCustomerImage from "../assets/createCustomer/create_customer.svg";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

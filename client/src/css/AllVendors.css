@@ -9,6 +9,7 @@
     padding: 2%;
     display: flex;
     justify-content: space-evenly;
+
 }
 
 .title-all-vendor {
@@ -17,6 +18,7 @@
 
 .vendor-item ul li {
     list-style: none;
+    
 }
 
 .vendor-item {
@@ -24,6 +26,8 @@
     padding: 2vh;
     margin: 2px;
     background: #622A55;
+    font-size: 25px;
+    
 }
 
 .data-left-vendor {
@@ -32,7 +36,7 @@
     border-radius: 20px;
     padding: 2vw;
     width: 42%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .image-right-all-vendor img {
@@ -44,7 +48,7 @@
     color: white;
     font-family: 'Glory', sans-serif;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 20px;
     border: none;
     border-radius: 15px;
     padding: 8px 14px;

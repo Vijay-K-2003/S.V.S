@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "./Context";
 import "../css/Homepage.css";
-import homepage from "./assets/homepage.png";
-import homepagelogo from "./assets/homepagelogo.png";
-import homepagelogoup from "./assets/homepagelogoup.png";
+import homepage from "../components/assets/HomePage/homepage.svg";
 
 const HomePage = () => {
   const context = useContext(myContext);
@@ -108,15 +106,11 @@ const HomePage = () => {
           )}
         </div>
         <div className="right">
-          <img className="logodown" src={homepagelogo} alt="homepagelogo.png" />
+          {/* <img className="logodown" src={homepagelogo} alt="homepagelogo.png" /> */}
 
-          <img
-            className="logoup"
-            src={homepagelogoup}
-            alt="homepagelogoup.png"
-          />
+          
 
-          <img className="mainimg" src={homepage} alt="homepage.png" />
+          <img className="mainimg" src={homepage} alt="homepage.svg" />
         </div>
       </div>
     </div>

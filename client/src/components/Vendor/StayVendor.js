@@ -4,7 +4,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
 import "../../css/Wait.css";
-import waiting from "../assets/Waiting.svg";
+import waiting from "../assets/Waiting/Waiting.svg";
 
 const StayVendor = () => {
 	const [vendor, setVendor] = useState("");

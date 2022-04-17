@@ -4,7 +4,7 @@ import { myContext } from "../Context";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import editCustomerImage from "../assets/create_customer.svg";
+import editCustomerImage from "../assets/createCustomer/create_customer.svg";
 import "../../css/EditCustomer.css";
 
 toast.configure();

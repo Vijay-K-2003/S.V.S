@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { myContext } from '../Context';
 import "../../css/MyCustomer.css";
-import YourCustomer from "../assets/yourcoustmer.png";
+import YourCustomer from "../assets/yourCustomer/yourcoustmer.png";
 
 const MyCustomer = () => {
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
 import { myContext } from '../Context';
 import "../../css/YourVendor.css";
-import yourVendorImage from "../assets/yourvendor.svg";
+import yourVendorImage from "../assets/yourVendor/yourvendor.svg";
 
 const YourVendor = () => {
 
