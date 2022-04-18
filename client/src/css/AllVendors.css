@@ -18,29 +18,40 @@
 
 .vendor-item ul li {
     list-style: none;
-    
 }
 
 .vendor-item {
     border-radius: 16px;
-    padding: 2vh;
-    margin: 2px;
+    padding: 0.25em;
+    margin: 20px;
     background: #622A55;
     font-size: 25px;
     
 }
 
+
 .data-left-vendor {
+   max-height: 650px;
     background-color: green;
     background: #A85F97;
     border-radius: 20px;
     padding: 2vw;
     width: 42%;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
+}
+
+.image-right-all-vendor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+height: 100vh;
+
 }
 
 .image-right-all-vendor img {
-    width: 100%;
+ 
+    width: 475px;
+    height: 625px;
 }
 
 .btn-all-vendor {
